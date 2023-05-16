@@ -1,0 +1,6 @@
+scrapy crawl Big_Blue 
+scrapy crawl Big_BlueFD
+scrapy crawl Black_turtle
+scrapy crawl KTD
+scrapy crawl scuba_birds
+scrapy crawl Hydro

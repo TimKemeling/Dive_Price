@@ -1,7 +1,9 @@
 # DivePrices.com
 
 ## Table of contents
-[The idea](#The-idea)   
+[The idea](#The-idea) 
+[How does it work](#how-does-it-work)
+[What did I use](#what-did-i-use)
 
 ## The issue
 
@@ -15,7 +17,7 @@ Diveprices.com is designed as a website that collects scuba diving price data an
 In one quick look you can find the cheapest, most expensive and any other course you want to know more about. 
 Search by location, school or course to get an overview of courses available and prices.
 
-## How Does it Work
+## How does it work?
 
 Data gets collected from several scuba websites and put into a central database. In the database there's some cleaning and restructuring before storage.
 The website than requests that data depending on the page being shown. Calculations are done on the backend before being pushed to different front end templates.
