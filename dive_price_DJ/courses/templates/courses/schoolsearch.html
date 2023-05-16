@@ -1,0 +1,76 @@
+{% load static%}
+{% if courselist %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'courses/schoolsearch.css' %}">
+
+    <title>DivePrice.com</title>
+</head>
+<body>
+    <header>
+        <img src="{% static 'courses/logo-TRY-1.png' %}" alt="logo-placeholder" class="logo">
+        <ul>
+            <li class="menu-button-left"><a href="{% url 'courses:search' %}">Search</a></li>
+            <li class="menu-button"><a href="{% url 'courses:all_courses' %}">All courses</a></li>
+        </ul>
+    </header>
+    <section class="school-content">
+        <h1>Diving at {{min.school}}</h1>
+
+        <div class="extremes-card">
+            <h2>Cheapest<a href="{% url 'courses:course' min.school_cf min.name_cf min.id %}" ><span class="link-span"></span></a></h2>
+            <h3>{{min.name}}</h3>
+            <p>Price</p>
+            <p>{{min.price}}</p>
+        </div>
+        <div class="extremes-card">
+            <h2>most expensive<a href="{% url 'courses:course' max.school_cf max.name_cf max.id %}" ><span class="link-span"></span></a></h2>
+            <h3>{{max.name}}</h3>
+            <p>Price</p>
+            <p>{{max.price}}</p>
+        </div>
+        <div class="rest-card">
+            <a href="{% url 'courses:course' ow.school_cf ow.name_cf ow.id %}"><h2>Open water course price</h2></a>
+            <p>{{ow.price}}</p>
+        
+            <a href="{% url 'courses:course' advanced.school_cf advanced.name_cf advanced.id %}"><h2>Advanced course price</h2></a>
+            <p>{{advanced.price}}</p>
+        
+            {% if fd.price %}
+
+                <a href="{% url 'courses:course' advanced.school_cf advanced.name_cf advanced.id %}"><h2>Fun dives per dive</h2></a>
+                <p>{{fd.price}}</p>  
+
+            {% endif %}
+        </div>  
+        
+        <details>
+            <summary>See all courses at {{min.school}}</summary>
+            <ul>
+                {%for course in courselist %}
+                <li>
+                    <p><a href="{% url 'courses:course' course.school_cf course.name_cf course.id %}" >{{course.name}}</a></p>
+                </li>
+                {% endfor %}
+            </ul> 
+        </details>
+    </section>
+
+<footer>
+    <ul>
+        <li class="menu-button-left"><a href="{% url 'courses:search' %}">Search</a></li>
+        <li class=""><a href="{% url 'courses:all_courses' %}">All courses</a></li>
+    </ul>
+</footer>
+
+</body>
+{% endif %}

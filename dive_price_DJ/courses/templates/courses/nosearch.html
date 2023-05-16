@@ -1,0 +1,40 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'courses/nosearch.css' %}">
+
+    <title>DivePrice.com</title>
+</head>
+
+<body>
+    <header>
+        <a href="/" class="home-link"><img src="{% static 'courses/logo-TRY-1.png' %}" alt="logo-placeholder" class="logo"></a>
+        <ul>
+            <li class="menu-button-left"><a href="{% url 'courses:search' %}">Search</a></li>
+            <li class="menu-button"><a href="{% url 'courses:all_courses' %}">All courses</a></li>
+        </ul>
+    </header>
+    <div>
+        <p>Sorry, we could not find '{{q}}'</p>
+        <p>Please search by location, coursename or by school</p>
+        <a href="{% url 'courses:search' %}">Try again</a>
+    </div>
+    <footer>
+        <ul>
+            <li class="menu-button-left"><a href="{% url 'courses:search' %}">Search</a></li>
+            <li class=""><a href="{% url 'courses:all_courses' %}">All courses</a></li>
+        </ul>
+    </footer>
+
+</body>
+
+

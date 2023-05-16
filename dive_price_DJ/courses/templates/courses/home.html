@@ -1,0 +1,78 @@
+{% load static%}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'courses/home.css' %}">
+
+    <title>DivePrice.com</title>
+</head>
+<body>
+    <header>
+        <a href="/" class="home-link"><img src="{% static 'courses/logo-TRY-1.png' %}" alt="logo-placeholder" class="logo"></a>
+
+        <ul>
+            <li class="menu-button-left"><a href="{% url 'courses:search' %}">Search</a></li>
+            <li class="menu-button"><a href="{% url 'courses:all_courses' %}">All courses</a></li>
+        </ul>
+    </header>
+    <main>
+        <section class="main-title">
+                <h1 class="main-title">Welcome to DivePrice.com</h1>
+    
+                <p class = "title-text">The best place to find scuba diving prices</p>
+        </section>
+
+        <section class="odd first-odd">
+            <div>
+                <img src="{% static 'courses/whaleshark-back-unsplash.jpg' %}" alt="whaleshark" class="whaleshark-img">
+            </div>
+            <div>
+                <h2 class="section-title">Quick</h2>
+    
+                <p class="section-text">Find the price you need. Fast</p>
+            </div>
+        </section>
+
+        <section class="even">
+            <div>
+                <h2 class="section-title">Easy</h2>
+    
+                <p class="section-text">Know how much you're paying <br> before you take the plunge</p>
+            </div>            
+            <div>
+                <img src="{% static 'courses/sattakut-rear-gun-unsplash.jpg' %}" alt="shipwreck" class="shipwreck-img">
+            </div>
+        </section>
+
+        <section class="odd last-odd">
+            <div>
+                <img src="{% static 'courses/turtle-back-unsplash.jpg' %}" alt="tutle" class="turtle-img">
+            </div>
+            <div>
+                <h2 class="section-title">By traveling divers, <br> for traveling divers</h2>
+    
+                <p class="section-text">Run by scuba diving experts who have a deep understanding of the industry</p>
+            </div>
+        </section>
+    </main>
+    
+
+    <footer>
+        <ul>
+            <li class="menu-button-left"><a href="{% url 'courses:search' %}">Search</a></li>
+            <li class=""><a href="{% url 'courses:all_courses' %}">All courses</a></li>
+        </ul>
+    </footer>
+
+
+</body>
+</html>
