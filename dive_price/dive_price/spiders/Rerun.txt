@@ -4,3 +4,5 @@ scrapy crawl Black_turtle
 scrapy crawl KTD
 scrapy crawl scuba_birds
 scrapy crawl Hydro
+scrapy crawl Sairee_cottage         #NEEDS TO HAVE THE NAMES OF COURSES CHECKED. 
+scrapy crawl Sairee_cottage_OW      #NEEDS TO BE CHECKED. DATA IS IN DB BUT IS HARDCODED
