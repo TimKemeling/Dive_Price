@@ -22,16 +22,16 @@ class SaireeCottageOwSpider(scrapy.Spider):
 
         # course contains all cards for each course. Scrape from here 
         course = response.css('div.wpb_column.vc_column_container.vc_col-sm-4')
-        name = 'Open Water Diver' # course.css('h4::text')[-1].get()
+        name = course.css('h4::text')[-2].get()
         price_line = course.css('p::text')[-1].get()
-        price = "11000" #e.search(r'Price: (\d*,\d+)', price_line)
+        price = re.search(r'(\d+) THB', price_line)
 
 
         l = ItemLoader(item = DivePriceItem(), selector=course)
 
 
         l.add_value('name', name)
-        l.add_value('price', price)
+        l.add_value('price', price.group(1))
         l.add_value('course_Link', url)
         l.add_value('agency', agency)
         l.add_value('school', school)
