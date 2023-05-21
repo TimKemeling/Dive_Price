@@ -6,3 +6,4 @@ scrapy crawl scuba_birds
 scrapy crawl Hydro
 scrapy crawl Sairee_cottage         #NEEDS TO HAVE THE NAMES OF COURSES CHECKED. 
 scrapy crawl Sairee_cottage_OW
+scrapy crawl scuba_shack            #Needs AOW, FD, DMT and refresher added manually due to weird pages

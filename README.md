@@ -1,9 +1,9 @@
 # DivePrices.com
 
 ## Table of contents
-[The idea](#The-idea) 
-[How does it work](#how-does-it-work)
-[What did I use](#what-did-i-use)
+- [The idea](#The-idea) 
+- [How does it work](#how-does-it-work)
+- [What did I use](#what-did-i-use)
 
 ## The issue
 
