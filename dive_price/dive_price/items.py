@@ -11,7 +11,7 @@ def clean_name(value):
     return value.replace("PADI",'').replace("SSI",'').replace("AWARE",'').replace("Koh Tao",'').replace("Course",'').replace("RAID",'').strip()
 
 def clean_price(value):
-    value = value.replace('฿', '').replace(',', '').strip()
+    value = value.replace('฿', '').replace(',', '').replace('.','').strip()
     if '/' in value:
         value = value.split()[0]
 

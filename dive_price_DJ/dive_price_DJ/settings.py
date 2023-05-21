@@ -77,7 +77,7 @@ WSGI_APPLICATION = "dive_price_DJ.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "C:/Users/Tim/Documents/coding/projects/Python_projects/Dive_price/dive_price/Diveprices.db"
+        "NAME": "C:/Users/Tim/Documents/coding/projects/Python_projects/Dive_price/dive_price/dive_price/Diveprices.db"
     }           
 }
 
