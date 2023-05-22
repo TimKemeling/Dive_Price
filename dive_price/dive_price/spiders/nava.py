@@ -6,7 +6,7 @@ from scrapy.loader import ItemLoader
 
 
 
-class ScubaBirdsSpider(scrapy.Spider):
+class NavaSpider(scrapy.Spider):
     name = "Nava"
     allowed_domains = ["https://www.navascuba.com/"]
     start_urls = ["https://www.navascuba.com/diving-level/beginner/",

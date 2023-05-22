@@ -9,3 +9,5 @@ scrapy crawl Sairee_cottage_OW
 scrapy crawl scuba_shack            # Needs AOW, FD, DMT and refresher added manually due to weird pages
 scrapy crawl new_heaven             # Needs DM and FD added manually, different pages 
 scrapy crawl Nava           
+scrapy crawl Bans           
+scrapy crawl Bans_specs

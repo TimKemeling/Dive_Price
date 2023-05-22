@@ -5,7 +5,7 @@ from scrapy.http.response import urljoin
 from dive_price.items import DivePriceItem
 from scrapy.loader import ItemLoader
 
-class ScubaShackSpider(scrapy.Spider):
+class NewHeavenSpider(scrapy.Spider):
     name = "new_heaven"
     start_urls = ["https://newheavendiveschool.com/"]
     links_list = []

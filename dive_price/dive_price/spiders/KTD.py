@@ -5,7 +5,7 @@ from scrapy.http.response import urljoin
 from dive_price.items import DivePriceItem
 from scrapy.loader import ItemLoader
 
-class FiftySixSpider(scrapy.Spider):
+class KTDSpider(scrapy.Spider):
     name = "KTD"
     start_urls = ["https://kohtaodivers.com/dive-courses/beginners",
                   "https://kohtaodivers.com/dive-courses/continue-your-education",
