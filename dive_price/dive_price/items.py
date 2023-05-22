@@ -8,10 +8,10 @@ from itemloaders.processors import TakeFirst, MapCompose
 from w3lib.html import remove_tags
 
 def clean_name(value):
-    return value.replace("PADI",'').replace("SSI",'').replace("AWARE",'').replace("Koh Tao",'').replace("Course",'').replace("RAID",'').strip()
+    return value.replace("PADI",'').replace("SSI",'').replace("AWARE",'').replace("Koh Tao",'').replace('Thailand', '').replace("Course",'').replace("RAID",'').replace(',', '').strip()
 
 def clean_price(value):
-    value = value.replace('฿', '').replace('Baht', '').replace(',', '').replace('.','').strip()
+    value = value.replace('฿', '').replace('Baht', '').replace('THB', '').replace(',', '').replace('.','').strip()
     if '/' in value:
         value = value.split()[0]
 
