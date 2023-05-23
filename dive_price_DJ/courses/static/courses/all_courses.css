@@ -75,7 +75,7 @@ div ul {
     padding: 0;
 }
 
-div li a{
+td.course_name a{
     color: black;
     text-decoration: underline;
 }

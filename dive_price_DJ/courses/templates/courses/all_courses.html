@@ -28,12 +28,23 @@
         {%if courselist%}
         <h1>All Courses</h1>
 
-        <ul>
-            {%for course in courselist%}
-                <li><a href="{% url 'courses:course' course.school_cf course.name_cf course.id %}" >{{course.name}} - {{course.school}}</a>
-        </li>
-            {% endfor %}
-        </ul>
+        <div class="courses">
+            <table>
+                <tr>
+                    <th>Course</th>
+                    <th>School</th>
+                    <th>Price</th>
+                </tr>
+                {%for course in courselist%}
+                <tr>
+                    <td class="course_name"><a href="{% url 'courses:course' course.school_cf course.name_cf course.id %}" >{{course.name}}</a></td>
+                    <td class="course_school"><p>{{course.school}}</p></td>
+                    <td class="course_price"><p>{{course.price}}</p></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
     
         {% else %}
             <p>No courses available</p>
