@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Avg
 from django.views.generic import FormView, ListView
-from .forms import SearchForm
+from .forms import SearchForm, BookingForm
 from .models import prices
+
 
 def courses (request):
     if request.method == "GET":
@@ -72,6 +73,17 @@ def courses (request):
 
             
 
+class Bookingview(FormView):
+    template_name = 'courses/booking.html'
+    form_class = BookingForm
+    # from django.core.mail import send_mail
+
+    # send_mail(
+    #     'subject',
+    #     "search just fired",#message,
+    #     "tmkcrypto@gmail.com",#from,
+    #     ["timkemeling@gmail.com"],#to,
+    #     fail_silently=False,)
 
 def nosearch(request):
     return render(request, 'courses/nosearch.html')
