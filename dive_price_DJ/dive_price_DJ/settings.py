@@ -39,8 +39,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "courses.apps.CoursesConfig",
     "api.apps.ApiConfig",
+    "corsheaders",
     "rest_framework"
 ]
+
+# Add react host to whitelist. CHANGE ON PRODUCTION
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -50,7 +56,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-]
+    "corsheaders.middleware.CorsMiddleware",
+    ]
 
 ROOT_URLCONF = "dive_price_DJ.urls"
 
@@ -125,6 +132,11 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
 if DEBUG:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'timkemeling@gmail.com'
+    EMAIL_HOST_PASSWORD = 'hlmzflbszxqedirj'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_USE_SSL = False

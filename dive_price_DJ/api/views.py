@@ -1,17 +1,22 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from rest_framework import generics
 from rest_framework.response import Response
 from api.models import schools, prices
 from api.serializers import schoolSerializer, priceSerializer
-
-@api_view(['GET', 'POST'])
-def school_list(request):
-    if request.method == 'GET':
-        School_list = schools.objects.all()
-        serializer = schoolSerializer(School_list, many=True)
-        return Response(serializer.data)
     
+class all_schools(generics.ListAPIView):
+    queryset = schools.objects.all()
+    serializer_class = schoolSerializer
+
+    def school_list(self, request):
+        if request.method == 'GET':
+            queryset =  self.get_queryset()
+            serializer = schoolSerializer(queryset, many=True)
+            return Response(serializer.data)
+
+
 class SchoolsByLocation(APIView):
     def get(self, request):
         course_list = schools.objects.filter(location__icontains = 'Koh Tao')
