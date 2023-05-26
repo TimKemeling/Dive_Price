@@ -1,8 +1,9 @@
 from django.core.mail import send_mail
 from django.conf import settings
 import requests
+import config
 	
-api_key = 'e9815d53fc734a079316f830da996200'
+api_key = config.email_check_API_key
 api_url = "https://emailvalidation.abstractapi.com/v1/?api_key=" + api_key
 
 

@@ -1,0 +1,96 @@
+.courses {
+    display: block;
+}
+
+.coursesTitle{
+    font-weight: bolder;
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.CoursesList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    align-items: start; 
+}
+
+.courseCard {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 250px;
+    margin: 25px 0px; 
+    background-color: #121619;
+    box-shadow: 5px 5px 5px #232427;
+}
+
+.cardImage {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 150px;
+}
+
+
+.courseCard p,
+.courseCard h3 {
+    color: white;
+    text-align: center;
+    height: 100%;
+}
+
+.courseCard h3 {
+    font-size: 1.3rem;
+}
+
+.courseCard p {
+    padding: 0 1em;
+}
+
+.courseCard a {
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+
+}
+
+.courseCard button {
+    width: 100%;
+    height: 3rem;
+    background-color: #121619;
+    color: white;
+    font-size: 1.1rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: 2px solid black;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.courseCard button:hover,
+.courseCard button:focus {
+    background-color: #232427;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+    outline: none;
+}
+
+@media only screen and (max-width: 850px) {
+    .CoursesList {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .CoursesList {
+        grid-template-columns: 1fr;
+    }
+}

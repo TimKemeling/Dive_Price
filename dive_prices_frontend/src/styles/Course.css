@@ -1,0 +1,78 @@
+.courseContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.course {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 66vw;
+    min-width: 18.75em;
+    margin: 5em 0px; 
+    background-color: #121619;
+    box-shadow: 5px 5px 5px #232427;
+    color: white;
+    text-align: center;
+    align-items: center;
+    
+}
+
+.course h2 {
+    padding-top: 0.3em;
+    font-size: 2.1em;
+}
+
+.courseImage {
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    max-width: 25em;
+    margin-bottom: 1.5em;
+}
+
+.courseDescription {
+    width: 66%;
+    line-height: 1.8;
+    font-size: 1.1em;
+}
+
+.coursePrice {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1.5em;
+}
+
+.bookButton {
+    font-family: monospace;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+    background-color: #030394;
+    height: 50px;
+    width: 150px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 2em;
+}
+
+@media only screen and (max-width: 650px) {
+    .courseImage {
+        max-width: 18.75em;
+    }
+
+    .courseDescription {
+        line-height: 1.4;
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    .courseImage {
+        max-width: 12.5em;
+    }
+
+}
