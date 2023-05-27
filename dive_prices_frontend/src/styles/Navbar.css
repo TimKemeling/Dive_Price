@@ -47,8 +47,10 @@
     padding: 10px;
 }
 
-.navbar a:hover,
-.navbar a:focus-visible {
+.navbar .hiddenLinks a:hover,
+.navbar .hiddenLinks a:focus-visible,
+.navbar .rightSide a:hover,
+.navbar .rightSide a:focus-visible {
     border-bottom: 2px solid white;
     outline: none;
 }

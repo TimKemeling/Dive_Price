@@ -1,10 +1,10 @@
-.contact {
+.booking {
     width: 100%;
     height: 90vh;
     display: flex;
 }
 
-.contactLeft {
+.bookingLeft {
     height: 100%;
     flex: 50%;
     background-position: center;
@@ -12,7 +12,7 @@
     background-size: cover;
 }
 
-.contactRight {
+.bookingRight {
     height: 100%;    
     flex: 50%;
     display: flex;
@@ -20,7 +20,7 @@
     justify-content: center;
 }
 
-.contactRight h1 {
+.bookingRight h1 {
     margin-left: 25px;
 }
 
@@ -40,18 +40,43 @@ form input {
     color: black;
 }
 
+div.SchoolAndCourse {
+    display: flex;
+}
+
+.schoolDrop, 
+.courseDrop {
+    display: flex;
+    flex-direction: column;
+}
+
+.courseDrop {
+    margin-left: 25%;
+}
+
 input::placeholder,
 textarea::placeholder {
     color: black;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-form input:focus,
-form textarea:focus {
-    outline: none;
+form label {
+    margin-top: 25px;
 }
 
-form label {
+.DobAndMed {
+    display: flex;
+}
+
+.medcheck {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 1rem;
+    
+}
+
+.bookingdate,
+.DoB {
     margin-top: 25px;
 }
 
@@ -63,7 +88,7 @@ form textarea {
     color: black;
 }
 
-.contactRight button {
+.bookingRight button {
     width: 80%;
     height: 30px;
     color: white;
@@ -73,14 +98,38 @@ form textarea {
     margin-top: 25px;
 }
 
-.contactRight button:hover {
+.bookingRight button:hover {
     background-color: #232427;
     cursor: pointer;
     transition: 0.2s ease-in;
 }
 
-@media only screen and (max-width: 430px) {
-    .contact {
+@media only screen and (max-width: 850px) {
+    .SchoolAndCourse {
+        display: block !important;
+        width: max-content;
+    }
+
+    .courseDrop {
+        margin: 0;
+    }
+
+    .DobAndMed {
+        display: block;
+    }
+
+    .DoB {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .bookingdate {
+        justify-content: inherit;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .booking {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -90,7 +139,7 @@ form textarea {
         background-size: cover;
     }
 
-    .contactLeft{
+    .bookingLeft{
         width: 100%;
     height: 50vh;
     display: flex;
@@ -102,7 +151,7 @@ form textarea {
     background-size: cover;
     }
 
-    .contactRight button {
+    .bookingRight button {
         margin-bottom: 30px;
     }
 }

@@ -4,8 +4,8 @@ import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Home from './pages/Home';
 import Courses from './pages/Courses';
-import About from './pages/About';
-import Contact from './pages/Contact';
+import Schools from './pages/Schools';
+import Booking from './pages/Booking';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Course from './pages/Course';
 
@@ -17,8 +17,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/courses" element={<Courses />}/>
-          <Route path="/about" element={<About />}/>
-          <Route path="/contact" element={<Contact />}/>
+          <Route path="/schools" element={<Schools />}/>
+          <Route path="/Booking" element={<Booking />}/>
           <Route path="/course/:id" element ={<Course />}/>
         </Routes>
         <Footer />

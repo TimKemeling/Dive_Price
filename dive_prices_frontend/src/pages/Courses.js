@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import CourseList from '../helpers/CourseList';
+import React from 'react';
+import {Helmet} from 'react-helmet'
 import CourseCard from '../Components/courseCard';
+import CourseList from '../helpers/CourseList';
 import "../styles/Courses.css";
 
 function Courses() {
@@ -15,8 +16,16 @@ function Courses() {
                     id={key}/>
     })
 
+    const school = "BLABLABLA"
+    const location = "BLLLLAAA"
+
     return (
         <div className="courses">
+            <Helmet>
+                <title>courses at {school} in {location}</title>
+                <meta name='description' content='Find all courses at your favourite location. Filter for age group, vibe or diveschool name!'/>
+
+            </Helmet>
             <h1 className="coursesTitle">Courses</h1>
             <div className="CoursesList">
                 {coursesList}                
