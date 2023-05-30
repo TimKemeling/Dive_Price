@@ -2,7 +2,6 @@
     width: 100%;
     height: 90vh;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     background-position: center;
     background-repeat: no-repeat;
@@ -11,7 +10,7 @@
 
 .headerContainer {
     width: auto;
-    margin-left: 50px;
+    margin-left: 3rem;
 }
 
 .headerContainer h1 {

@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react'
 import "../styles/Schools.css"
 import maltaRock from "../assets/MaltaRock.png"
-import CourseCard from '../Components/courseCard';
+import CourseCard from '../Components/CourseCard';
 
 
 function Schools() {

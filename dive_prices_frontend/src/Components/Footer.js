@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 function Footer() {
     return (
-        <div className="footer">
+        <footer className="footer">
             <div className="socialMedia">
                 <Link to="https://www.facebook.com/TMKScuba"><p>NEED SOCIAL LINKS MAYBE</p></Link>
                 <Link to="https://www.facebook.com/TMKScuba"><p>NEED SOCIAL LINKS MAYBE</p></Link>
@@ -12,7 +12,7 @@ function Footer() {
             </div>
             <p>&copy; 2023 DivePrices.com</p>
 
-        </div>
+        </footer>
     )
 }
 

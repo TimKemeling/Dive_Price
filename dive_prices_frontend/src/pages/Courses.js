@@ -1,6 +1,6 @@
 import React from 'react';
 import {Helmet} from 'react-helmet'
-import CourseCard from '../Components/courseCard';
+import CourseCard from '../Components/CourseCard';
 import CourseList from '../helpers/CourseList';
 import "../styles/Courses.css";
 

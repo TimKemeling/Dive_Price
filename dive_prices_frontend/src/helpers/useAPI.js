@@ -4,7 +4,7 @@ export const useAPI = url => {
     const [state, setState] = useState({data: null, loading: true});
 
     useEffect (() => {
-        setState(({date: null, loading: true}));
+        setState(({data: null, loading: true}));
         fetch(url)
         .then(response => response.json())
         .then(y => {

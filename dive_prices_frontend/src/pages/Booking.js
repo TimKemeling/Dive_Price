@@ -24,7 +24,7 @@ function Booking() {
                 <h1>Book your Scuba Adventure</h1>
 
                 
-                <form id="bookingForm" method="POST">
+                <form id="bookingForm" method="POST" className='BookingForm'>
                     <div className='SchoolAndCourse'>
                         <div className='schoolDrop'>
                             <label htmlFor='chooseDiveschool' >choose a diveschool</label>
@@ -67,7 +67,7 @@ function Booking() {
                     </div>
                     <label htmlFor='medical' >
                         <input name='medical' className='medcheck' required type='checkbox' />
-                        <span>I read the  form and made sure I'm safe to dive</span>
+                        <span>I read the form and made sure I'm safe to dive</span>
                     </label>
 
                     <label htmlFor="comment">Comments</label>

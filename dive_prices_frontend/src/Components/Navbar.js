@@ -20,23 +20,20 @@ function Navbar() {
 
                 {/* mobile menu */}
                 <div className="hiddenLinks">
+                    <Link to="/search">Find</Link>
                     <Link to="/courses">Beginners</Link>  
-
-                    {/* add more links to different pages/ files depending on what I want */}
-
+                    <Link to="/courses">Advanced</Link>  
                     <Link to="/schools">Schools</Link>          
                     <Link to="/booking">Book now</Link> 
                 </div>  
             </div>      
             {/* desktop menu */}
             <div className='rightSide'> 
+                <Link to="/search">Find</Link>
                 <Link to="/courses">Beginners</Link>  
-
                 <Link to="/courses">Advanced</Link>  
-                {/* add more links to different pages/ files depending on what I want */}
-              
                 <Link to="/schools">schools</Link>          
-                <Link to="/booking">Book now</Link> 
+                <Link to="/booking">Book</Link> 
                 <button onClick={toggleNavBar}>
                     <p>NEED BUTTON PICTURE</p>       
                 </button>  

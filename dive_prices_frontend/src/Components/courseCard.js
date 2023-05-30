@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-function courseCard({ image,  name, tagline, price, id}) {
+function CourseCard({ image,  name, tagline, price, id}) {
     return (
         <div className="courseCard" >
             <div className="cardImage" style={{ backgroundImage: `url(${image})`}}></div>
@@ -15,4 +15,4 @@ function courseCard({ image,  name, tagline, price, id}) {
     )
 }
 
-export default courseCard
+export default CourseCard

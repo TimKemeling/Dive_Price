@@ -6,9 +6,15 @@
   display: flex;
   flex-direction: column;
   font-family: 'Big Shoulders Text', sans-serif; 
+  min-height: 100vh;
 }
+
 
 body {
   padding: 0px;
   margin: 0px;
+}
+
+.footer {
+  margin-top: auto;
 }
