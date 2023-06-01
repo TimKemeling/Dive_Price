@@ -7,49 +7,86 @@ import "../styles/Search.css"
 
 function Search() {
 
-    const [viz, setViz] = useState('none');
-
-    function handleClick() {
-        if (viz === "none"){
-            setViz('block')
-        }
-        else {setViz('none')}
-    };
-
     const [searched, setSearched] = useState(false)
 
-    function handleSearchClick() {
-        setSearched(!searched)
-    }
     const FetchData = () => {
 
         const url = "http://127.0.0.1:8000/api/school-list"
         const response = useAPI(url)
         return response      
     }
+
     const response = FetchData()  
+
+    function makeComp(schools) {
+        const schoolList = schools.map(school => {
+
+            let price = 'bla'
+            if (school.price_1 === true) {
+                price = "$"
+            } else if (school.price_2 === true){
+                price = "$$"
+            } else {price = "$$$"}
+
+            return <SchoolCard
+                key={school.id}
+                name={school.school_name} 
+                price = {price}
+                agency={school.agency} 
+                id={school.id}/>
+        })
+        return schoolList
+    }
 
     const SchoolList = () => {
         if (response.loading === false) {
-            const schoolList = response.data.map(school => {
-                return <SchoolCard
-                    key={school.id}
-                    name={school.school_name} 
-                    agency={school.agency} 
-                    id={school.id}/>
-            })
-            return schoolList
+        const schools = response.data
+        return makeComp(schools)
         };
-        
     };
 
-    const filtered = () => {
-        return <p>you searched</p>
+    const [filteredres, setFilteredres] = useState([])
+
+
+    function onfilter(event) {
+        event.preventDefault();
+        
+        const form = event.target;
+        const formData = new FormData(form)
+
+        const formJson = Object.fromEntries(formData.entries());
+        const filters = []
+        for (const key in formJson){
+            filters.push(key)
+        }
+
+        const filtered = []
+
+        response.data.forEach(school => {
+
+            let check = true
+            filters.forEach(filter => {
+                if (filter === 'maehaad' || filter === 'sairee' || filter === 'chalok') {
+                    const name = school['neighbourhood'].replace(' ','').toLowerCase();
+                    if (name !== filter){check = false}
+                }
+                else if (!school[filter]) {
+                    check = false}
+            })
+                
+            if (check) {filtered.push(school)}
+        });
+
+        setFilteredres(makeComp(filtered))
+        handleSearchClick()
+    }
+
+    function handleSearchClick() {
+        setSearched (true)
     }
 
     const schoolList = SchoolList()
-    const Filtered = filtered()
-    
+
 
 
     return (
@@ -62,51 +99,47 @@ function Search() {
             <h1>Find the perfect diveschool for you!</h1>
             <p>Select your parameters, hit Search and Find the perfect dive school for your next Adventure</p>
             <div className="Search">
-                <form className="SearchForm"> 
+                <form className="SearchForm" onSubmit={onfilter}> 
 
                 <div className="optionbox">
-                    <label htmlFor="VibeFun">I'm looking for a ____ diveschool</label>
-                    <label><input name="VibeFun" id="VibeFun" type="checkbox"/>Fun</label>
-                    <label><input name="Vibefam" type="checkbox"/>Family Friendly</label>
-                    <label><input name="Vibebackp" type="checkbox"/>Backpackers</label>
-                    <label><input name="Vibequiet" type="checkbox"/>Quiet</label>
-                    <label><input name="Vibeserious" type="checkbox"/>Serious</label>
+                    <label htmlFor="Vibe">I'm looking for a ____ diveschool</label>
+                    <label><input name="vibe_fun" type="checkbox"/>Fun</label>
+                    <label><input name="vibe_family" type="checkbox"/>Family Friendly</label>
+                    <label><input name="vibe_backpack" type="checkbox"/>Backpackers</label>
+                    <label><input name="vibe_quiet" type="checkbox"/>Quiet</label>
+                    <label><input name="vibe_serious" type="checkbox"/>Serious</label>
                 </div>
 
                 <div className="optionbox">
                     <label htmlFor="PriceRange">Price Range</label>
-                    <label><input name="price1" type="checkbox"/>$</label>
-                    <label><input name="price2" type="checkbox"/>$$</label>
-                    <label><input name="price3" type="checkbox"/>$$$</label>
+                    <label><input name="price_1" type="checkbox"/>$</label>
+                    <label><input name="price_2" type="checkbox"/>$$</label>
+                    <label><input name="price_3" type="checkbox"/>$$$</label>
                 </div>
 
                 <div className="optionbox">
                     <label htmlFor="Size">School Size</label>
-                    <label><input name="Size1" type="radio"/>Small</label>
-                    <label><input name="Size2" type="radio"/>Medium</label>
-                    <label><input name="Size3" type="radio"/>Large</label>
+                    <label><input name="size_1" type="checkbox"/>Small</label>
+                    <label><input name="size_2" type="checkbox"/>Medium</label>
+                    <label><input name="size_3" type="checkbox"/>Large</label>
                 </div>
 
                 <div className="optionbox">
                     <label htmlFor="Location">Location</label>
-                    <label><input name="Mae Haad" type="checkbox"/>Mae Haad</label>
-                    <label><input name="Sairee" type="checkbox"/>Sairee</label>
-                    <label><input name="Chalok" type="checkbox"/>Chalok</label>
+                    <label><input name="maehaad" type="checkbox"/>Mae Haad</label>
+                    <label><input name="sairee" type="checkbox"/>Sairee</label>
+                    <label><input name="chalok" type="checkbox"/>Chalok</label>
                 </div>
 
                 <div className="optionbox">
-                    <label htmlFor="Beachfront">Beachfront Location</label>
-                    <label><input name="Beachfront" type="checkbox" />Yes Please!</label>
+                    <label htmlFor="beach">Beachfront Location</label>
+                    <label><input name="beach" type="checkbox" />Yes Please!</label>
                 </div>
+                <button name="search" type="submit">Search</button>
                 </form>
             </div>  
-            <button name="search" onClick={handleSearchClick}>Search</button>
-
-            
-
             <div className="Results">
-                <h2 style={{display: viz}}>Your results:</h2>
-                <div className="SchoolResults">{searched? Filtered : schoolList}</div>
+                <div className="SchoolResults">{searched? filteredres : schoolList}</div>
             </div>
         </div>
     )

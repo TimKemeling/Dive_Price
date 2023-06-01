@@ -1,7 +1,7 @@
 scrapy crawl Big_Blue 
 scrapy crawl Big_BlueFD
 scrapy crawl Black_turtle
-scrapy crawl KTD
+scrapy crawl KTD                    # CHANGE OW PRICE TO 9900 AND ADVANCED WRECK DIVING TO 8K!!
 scrapy crawl scuba_birds
 scrapy crawl Hydro
 scrapy crawl Sairee_cottage         # NEEDS TO HAVE THE NAMES OF COURSES CHECKED. 
@@ -13,3 +13,22 @@ scrapy crawl Bans
 scrapy crawl Bans_specs
 scrapy crawl Crystal 
 scrapy crawl simple_life            # errors on accommodation and coral restoration spec. not worried about it 
+
+
+new heaven stuff{
+Fun Diving	1000.0	https://www.newheavendiveschool.com/scuba-diving-koh-tao/fun-diving
+Dive Master	30000.0	https://www.newheavendiveschool.com/scuba-diving-koh-tao/divemaster-training
+}
+
+Sairee_cottage stuff {
+    day1 = scuba diver
+    first day = AOW
+    1 Dive trip (2 dives) = Fun Diving
+}
+
+Scuba Shack things {
+    Advanced Open Water	10000	https://www.scubashackkohtao.com/padi-courses-scuba-diving-thailand/advanced-open-water-course/
+    Dive Master Training	37000	https://www.scubashackkohtao.com/padi-courses-scuba-diving-thailand/divemaster-thailand/
+    Refresher	2400	https://www.scubashackkohtao.com/certified-divers-diving-koh-tao-thailand/scuba-review/
+    Fun Diving	1000	https://www.scubashackkohtao.com/certified-divers-diving-koh-tao-thailand/fun-diving/   
+}
