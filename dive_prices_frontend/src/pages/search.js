@@ -32,7 +32,9 @@ function Search() {
                 key={school.id}
                 name={school.school_name} 
                 price = {price}
-                agency={school.agency} 
+                agency={school.agency}
+                tagline = {school.tagline} 
+                description = {school.description}
                 id={school.id}/>
         })
         return schoolList
@@ -96,7 +98,7 @@ function Search() {
                 <meta name="description" content="Select your parameters, hit Search and Find the perfect dive school for your next Adventure"/>
             </Helmet>
 
-            <h1>Find the perfect diveschool for you!</h1>
+            <h1>Find the perfect dive school for you!</h1>
             <p>Select your parameters, hit Search and Find the perfect dive school for your next Adventure</p>
             <div className="Search">
                 <form className="SearchForm" onSubmit={onfilter}> 

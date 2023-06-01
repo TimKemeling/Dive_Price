@@ -7,6 +7,8 @@ class schools(models.Model):
     country = models.TextField(blank=True, null=True, max_length=100)
     city = models.TextField(blank=True, null=True, max_length=100)
     neighbourhood = models.TextField(blank=True, null=True, max_length=100)
+    description = models.TextField(blank=True, null=True, max_length=750)
+    tagline = models.TextField(blank=True, null=True, max_length=150)
 
     vibe_fun = models.BooleanField(blank=True, null=True, default=True)
     vibe_family = models.BooleanField(blank=True, null=True, default=False)

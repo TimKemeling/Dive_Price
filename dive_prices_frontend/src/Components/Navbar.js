@@ -23,7 +23,6 @@ function Navbar() {
                     <Link to="/search">Find</Link>
                     <Link to="/courses">Beginners</Link>  
                     <Link to="/courses">Advanced</Link>  
-                    <Link to="/schools">Schools</Link>          
                     <Link to="/booking">Book now</Link> 
                 </div>  
             </div>      
@@ -32,7 +31,6 @@ function Navbar() {
                 <Link to="/search">Find</Link>
                 <Link to="/courses">Beginners</Link>  
                 <Link to="/courses">Advanced</Link>  
-                <Link to="/schools">schools</Link>          
                 <Link to="/booking">Book</Link> 
                 <button onClick={toggleNavBar}>
                     <p>NEED BUTTON PICTURE</p>       

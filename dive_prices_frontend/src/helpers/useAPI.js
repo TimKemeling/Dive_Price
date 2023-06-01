@@ -9,8 +9,6 @@ export const useAPI = url => {
         .then(response => response.json())
         .then(y => {
             setState({ data: y, loading: false})
-
-            console.log(y)
         });
 
     }, [url])
