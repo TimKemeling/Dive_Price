@@ -1,7 +1,8 @@
 from django.db import models
 
 class schools(models.Model):
-    school_name = models.TextField(blank=True, null=True, max_length=50)
+    id = models.AutoField(auto_created=True, db_column='id', primary_key=True)
+    school_name = models.TextField(max_length=50, unique=True)
     agency = models.TextField(blank=True, null=True, max_length=10)
     website_link = models.URLField(blank=True, null=True, max_length=200)
     country = models.TextField(blank=True, null=True, max_length=100)
@@ -47,13 +48,11 @@ class prices(models.Model):
     price = models.IntegerField(blank=True, null=True)
     course_link = models.TextField(blank=True, null=True, max_length=200)
     agency = models.TextField(blank=True, null=True, max_length=10)
-    school = models.ForeignKey(schools, on_delete=models.CASCADE)
+    school = models.ForeignKey(schools, blank=True, null=True, max_length=50, on_delete=models.CASCADE)
     timestamp = models.TextField(blank=True, null=True)
     location = models.TextField(blank=True, null=True, max_length=100)
-    name_cf = models.CharField(blank=True, null=True, max_length=100)
-    location_cf = models.CharField(blank=True, null=True, max_length=100)
-    school_cf = models.CharField(blank=True, null=True, max_length=100)
+
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'prices'
