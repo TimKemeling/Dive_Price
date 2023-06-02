@@ -32,7 +32,7 @@ class BansSpider(scrapy.Spider):
         
         n = datetime.now()
         now = n.strftime("%m/%d/%Y")
-        school = "Bans"
+        school = "Bans Diving"
         location = "Koh Tao"
         agency = "PADI"
 

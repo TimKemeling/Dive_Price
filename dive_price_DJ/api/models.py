@@ -48,7 +48,8 @@ class prices(models.Model):
     price = models.IntegerField(blank=True, null=True)
     course_link = models.TextField(blank=True, null=True, max_length=200)
     agency = models.TextField(blank=True, null=True, max_length=10)
-    school = models.ForeignKey(schools, blank=True, null=True, max_length=50, on_delete=models.CASCADE)
+    schoolsid = models.ForeignKey(schools, blank=True, null=True, on_delete=models.CASCADE)
+    school = models.TextField(blank=True, null=True, max_length=50)
     timestamp = models.TextField(blank=True, null=True)
     location = models.TextField(blank=True, null=True, max_length=100)
 

@@ -17,7 +17,7 @@ class NavaSpider(scrapy.Spider):
         
         n = datetime.now()
         now = n.strftime("%m/%d/%Y")
-        school = "Nava"
+        school = "Nava Scuba"
         location = "Koh Tao"
         agency = "PADI"
 

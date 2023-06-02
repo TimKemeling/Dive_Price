@@ -22,9 +22,9 @@ class DivePriceItem(scrapy.Item):
     # define the fields for your item here like:
     name = scrapy.Field(input_processor = MapCompose(remove_tags, clean_name), output_processor = TakeFirst())
     price = scrapy.Field(input_processor = MapCompose(remove_tags, clean_price), output_processor = TakeFirst())
+    school = scrapy.Field(output_processor = TakeFirst())
     course_Link = scrapy.Field(output_processor = TakeFirst())
     agency = scrapy.Field(output_processor = TakeFirst())
-    school = scrapy.Field(output_processor = TakeFirst())
     timestamp = scrapy.Field(output_processor = TakeFirst())
     location = scrapy.Field(output_processor = TakeFirst())
 

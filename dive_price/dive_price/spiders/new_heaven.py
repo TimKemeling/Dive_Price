@@ -30,7 +30,7 @@ class NewHeavenSpider(scrapy.Spider):
 
         n = datetime.now()
         now = n.strftime("%m/%d/%Y")
-        school = "New Heaven"
+        school = "New Heaven Dive School"
         location = "Koh Tao"
         agency = "SSI"
         url = urljoin('https://www.newheavendiveschool.com', response.request.url)
