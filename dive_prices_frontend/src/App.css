@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@300;400;600;800&display=swap');
 
 .App {
+  font-size: 20px;
   width: 100%;
   height: auto;
   display: flex;

@@ -52,6 +52,7 @@ class prices(models.Model):
     school = models.TextField(blank=True, null=True, max_length=50)
     timestamp = models.TextField(blank=True, null=True)
     location = models.TextField(blank=True, null=True, max_length=100)
+    level = models.TextField(blank=True, null=True, max_length=15)
 
 
     class Meta:

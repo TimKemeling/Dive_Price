@@ -1,42 +1,34 @@
 .navbar {
     width: 100%;
-    height: 100px;
+    height: auto;
     background-color: #121619;
     display: flex;
     flex-direction: row;
 }
 
-.leftSide {
+.company{
     flex: 50%;
     height: 100%;
     display: flex;
     align-items: center;
 }
 
-.navbar .rightSide {
+.desktoplinks {
     flex: 50%;
-    height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
-.navbar .leftSide img {
+.complogo {
     width: 6rem;
 }
 
-.navbar .leftSide .companyName {
+.companyName {
     color: white;
     padding-left: 0.6rem;
     font-size: 2rem;
     font-weight: bold;
-}
-
-.navbar .rightSide button {
-    background-color: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
 }
 
 .navbar a {
@@ -46,80 +38,51 @@
     padding: 0.6rem;
 }
 
-.navbar .hiddenLinks a:hover,
-.navbar .hiddenLinks a:focus-visible,
-.navbar .rightSide a:hover,
-.navbar .rightSide a:focus-visible {
+.burger {
+    display: none;
+}
+
+.mobilelinks a:hover,
+.mobilelinks a:focus-visible,
+.desktoplinks a:hover,
+.desktoplinks a:focus-visible {
     border-bottom: 2px solid white;
     outline: none;
 }
 
-.navbar .rightSide svg {
-    font-size: 40px;
+.mobilelinks {
+    margin: 2rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: min-content;
 }
 
-.navbar #open {
-    padding-left: 0px;
-}
 
-.navbar #open img {
-    display: none;
-}
-.navbar #open .companyName {
-    display: none;
-}
+@media only screen and (max-width: 825px) {
 
-.navbar #open a {
-    width: 0;
-    margin: 10px;
-}
-
-.navbar #closed img {
-    display: inherit;
-}
-
-.navbar #closed .companyName {
-    display: inherit;
-}
-
-.navbar #closed .hiddenLinks {
-    display: none;
-}
-
-@media only screen and (max-width: 700px) {
-    .navbar .rightSide a {
-        display: none;
-    }
-
-    .navbar .rightSide {
-        justify-content: flex-end;
-        padding-right: 50px;
-    }
-
-    .navbar .rightSide button {
-        display: inherit;
-    }
-}
-
-@media only screen and (min-width: 700px) {
-    .navbar .rightSide button {
-        display: none;
-    }
-
-    .hiddenLinks {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 750px) {
-    .navbar .leftSide .companyName {
+    .companyName {
         font-size: 1.5rem;
     }
-    .navbar .rightSide {
-        padding-right: 0;
+}
+
+@media only screen and (max-width: 790px) {
+
+    .companyName {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+
+    .desktoplinks {
+        display: none;
     }
 
-    .navbar .leftSide {
-        font-size: 0.8rem;
+    .burger {
+        display: block;
+        margin-right: 2rem;
     }
+
+
+
 }

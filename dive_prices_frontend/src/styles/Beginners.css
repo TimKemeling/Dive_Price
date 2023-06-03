@@ -1,0 +1,53 @@
+.courses {
+    display: block;
+}
+
+.BeginnersTitle{
+    font-weight: bolder;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.buttoncontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.buttoncontainer button {
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #030394;
+    min-height: 4rem;
+    height: auto;
+    width: 10rem;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0 1rem;
+}
+
+.buttoncontainer button:hover,
+.buttoncontainer button:focus,
+.buttoncontainer a:focus {
+    background-color: #030365;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+    outline: none;
+}
+
+.CoursesList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    align-items: start; 
+}
+
+.beginnertext {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}

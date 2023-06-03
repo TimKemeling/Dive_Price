@@ -1,5 +1,3 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.response import Response
@@ -30,9 +28,33 @@ class courseDetail(APIView):
         serializer = priceSerializer(course)
         return Response(serializer.data)
     
-class courseOverview(APIView):
+class BeginnerOverview(APIView):
     def get(self, request):
-        course_list = prices.objects.filter(name__icontains = 'open water')
+        course_list = prices.objects.filter(level = 'beginner')
+        serializer = priceSerializer(course_list, many=True)   
+        return Response(serializer.data)
+    
+class AdvancedOverview(APIView):
+    def get(self, request):
+        course_list = prices.objects.filter(level = 'advanced')
+        serializer = priceSerializer(course_list, many=True)   
+        return Response(serializer.data)
+    
+class ProOverview(APIView):
+    def get(self, request):
+        course_list = prices.objects.filter(level = 'pro')
+        serializer = priceSerializer(course_list, many=True)   
+        return Response(serializer.data)
+    
+class TechOverview(APIView):
+    def get(self, request):
+        course_list = prices.objects.filter(level = 'tech')
+        serializer = priceSerializer(course_list, many=True)   
+        return Response(serializer.data)
+    
+class FundivingOverview(APIView):
+    def get(self, request):
+        course_list = prices.objects.filter(level = 'fundiving')
         serializer = priceSerializer(course_list, many=True)   
         return Response(serializer.data)
     
