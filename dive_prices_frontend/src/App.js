@@ -25,7 +25,7 @@ function App() {
           <Route path="/fundiving" element={<Fundiving />}/>
           <Route path="/schools/:id" element={<Schools />}/>
           <Route path="/Booking" element={<Booking />}/>
-          <Route path="/course/:id" element ={<Course />}/>
+          <Route path="/course/:course" element ={<Course />}/>
           <Route path="/Search" element={<Search />}/>
           <Route path="/API" element={<ApiView />}/>
 

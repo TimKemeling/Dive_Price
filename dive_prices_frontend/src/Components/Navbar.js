@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
-import Burger from '../Components/burger';
-
 import fishLogo from '../assets/fishLogo.png';
 import '../styles/burger.css';
 import '../styles/Navbar.css';
@@ -18,6 +16,12 @@ function Navbar() {
         console.log(openLinks)
     } 
     
+    const navlink1 = 'Find'
+    const navlink2 = 'Beginners'
+    const navlink3 = 'Advanced'
+    const navlink4 = 'Fun Diving'
+    const navlink5 = 'Book'
+    
     // if (!openLinks) {
         return (
         <div className='navbar'>
@@ -27,19 +31,19 @@ function Navbar() {
             </div> 
             {!openLinks? (
                 <div className='desktoplinks'> 
-                <Link to="/search">Find</Link>
-                <Link to="/beginners">Beginners</Link>  
-                <Link to="/advanced">Advanced</Link>  
-                <Link to="/fundiving">FunDiving</Link>  
-                <Link to="/booking">Book</Link> 
+                <Link to="/search">{navlink1}</Link>
+                <Link to="/beginners">{navlink2}</Link>  
+                <Link to="/advanced">{navlink3}</Link>  
+                <Link to="/fundiving">{navlink4}</Link>  
+                <Link to="/booking">{navlink5}</Link> 
             </div> 
             ): (
                 <div className='mobilelinks'> 
-                <Link to="/search">Find</Link>
-                <Link to="/beginners">Beginners</Link>  
-                <Link to="/advanced">Advanced</Link> 
-                <Link to="/fundiving">FunDiving</Link>  
-                <Link to="/booking">Book</Link> 
+                <Link to="/search">{navlink1}</Link>
+                <Link to="/beginners">{navlink2}</Link>  
+                <Link to="/advanced">{navlink3}</Link> 
+                <Link to="/fundiving">{navlink4}</Link>  
+                <Link to="/booking">{navlink5}</Link> 
             </div>
             )}     
             <div className="burger">

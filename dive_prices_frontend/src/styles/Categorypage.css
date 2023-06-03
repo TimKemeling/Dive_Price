@@ -1,8 +1,8 @@
-.courses {
+.category {
     display: block;
 }
 
-.BeginnersTitle{
+.categoryTitle{
     font-weight: bolder;
     width: 100%;
     height: auto;
@@ -14,6 +14,7 @@
 .buttoncontainer {
     display: flex;
     justify-content: center;
+    margin: 2rem 0;
 }
 
 .buttoncontainer button {
@@ -40,14 +41,31 @@
     outline: none;
 }
 
-.CoursesList {
+.categoryList {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
     align-items: start; 
 }
 
-.beginnertext {
-    margin-left: 1rem;
-    margin-right: 1rem;
+.textbox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    background-image: url('../assets/reefcropUnsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 2rem 0;
 }
+
+.categorytext {
+    width: 70%;
+    padding: 1rem;
+    background-color: rgba(0,0,0, 0.65);
+    color: white;
+
+}
+
+
+

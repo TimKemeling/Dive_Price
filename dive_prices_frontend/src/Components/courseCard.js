@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-function CourseCard({ image,  name, tagline, price, id}) {
+function CourseCard({name, level, price, school_id}) {
     return (
         <div className="courseCard" >
-            <div className="cardImage" style={{ backgroundImage: `url(${image})`}}></div>
                 <h3>{name}</h3>
-                <p>{tagline}</p>
+                <p>{level}</p>
                 <p>${price}</p>   
-                <Link to={`/course/${id}`} tabIndex="-1" >
+                <Link to={`/schools/${school_id}`} tabIndex="-1" >
                     <button> Learn more </button>
                 </Link>  
         </div>

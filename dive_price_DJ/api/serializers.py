@@ -11,6 +11,9 @@ class priceSerializer(serializers.ModelSerializer):
             'course_link',
             'school',
             'location',
+            'level',
+            'agency',
+            'schoolsid_id',
         ]
 
 class schoolSerializer(serializers.ModelSerializer):
