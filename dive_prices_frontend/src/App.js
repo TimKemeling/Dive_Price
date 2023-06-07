@@ -12,6 +12,7 @@ import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Course from './pages/Course';
 import Advanced from './pages/Advanced';
 import Fundiving from './pages/Fundiving';
+import PageNotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/course/:course" element ={<Course />}/>
           <Route path="/Search" element={<Search />}/>
           <Route path="/API" element={<ApiView />}/>
+          <Route path="*" element={<PageNotFound />}/>
 
         </Routes>
         <Footer />

@@ -1,78 +1,50 @@
-.courseContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.coursePage h1 {
+    text-align: center;
 }
 
-.course {
+.info {
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
-    width: 66vw;
-    min-width: 18.75em;
-    margin: 5em 0px; 
-    background-color: #121619;
-    box-shadow: 5px 5px 5px #232427;
-    color: white;
+    flex-wrap: wrap;    
+    align-content: center;
+}
+
+.courseOutline,
+.courseSchedule, 
+.info h2 {
     text-align: center;
-    align-items: center;
-    
+    width: 80%;
 }
 
-.course h2 {
-    padding-top: 0.3em;
-    font-size: 2.1em;
+
+.coursesContainer {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: auto 2rem;
 }
 
-.courseImage {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-position: center;
-    max-width: 25em;
-    margin-bottom: 1.5em;
+.disclaimer {
+    font-size: 1rem;
+    width: 80%;
 }
 
-.courseDescription {
-    width: 66%;
-    line-height: 1.8;
-    font-size: 1.1em;
-}
-
-.coursePrice {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 1.5em;
-}
-
-.bookButton {
-    font-family: monospace;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    justify-content: center;
-    background-color: #030394;
-    height: 50px;
-    width: 150px;
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    margin-bottom: 2em;
-}
-
-@media only screen and (max-width: 650px) {
-    .courseImage {
-        max-width: 18.75em;
+@media only screen and (max-width: 1000px) {
+    .coursesContainer {
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
-    .courseDescription {
-        line-height: 1.4;
+}
+
+@media only screen and (max-width: 775px) {
+    .coursesContainer {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
-@media only screen and (max-width: 475px) {
-    .courseImage {
-        max-width: 12.5em;
+@media only screen and (max-width: 550px) {
+    .coursesContainer {
+        grid-template-columns: 1fr;
     }
 
 }

@@ -1,11 +1,9 @@
 .booking {
-    width: 100%;
     height: 90vh;
     display: flex;
 }
 
 .bookingLeft {
-    height: 100%;
     flex: 50%;
     background-position: center;
     background-repeat: no-repeat;
@@ -13,11 +11,9 @@
 }
 
 .bookingRight {
-    height: 100%;    
-    flex: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    overflow: scroll;
 }
 
 .bookingRight h1 {
@@ -123,35 +119,16 @@ textarea::placeholder {
         flex-direction: column;
     }
     
-    .bookingdate {
-        justify-content: inherit;
-    }
 }
 
 @media only screen and (max-width: 550px) {
     .booking {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: left;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .bookingLeft{
-        width: 100%;
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: left;
-    flex-direction: column;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     }
 
     .bookingRight button {
         margin-bottom: 30px;
     }
 }
+

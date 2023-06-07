@@ -67,7 +67,7 @@ function Booking() {
                     </div>
                     <label htmlFor='medical' >
                         <input name='medical' className='medcheck' required type='checkbox' />
-                        <span>I read the form and made sure I'm safe to dive</span>
+                        <span>I have read the medical form and made sure I'm safe to dive</span>
                     </label>
 
                     <label htmlFor="comment">Comments</label>

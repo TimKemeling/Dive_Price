@@ -2,49 +2,33 @@
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    width: 250px;
+    max-width: 250px;
+    width: 75%;
     margin: 25px 0px; 
     background-color: #121619;
     box-shadow: 5px 5px 5px #232427;
 }
-
-/* .cardImage {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 150px;
-} */
 
 
 .courseCard p,
 .courseCard h3 {
     color: white;
     text-align: center;
-    height: 100%;
 }
 
-.courseCard h3 {
-    font-size: 1.3rem;
+.courseInfo {
+   display: grid; 
+   grid-template-columns: 1fr 1fr;
 }
 
-.courseCard p {
-    padding: 0 1em;
-}
-
-.courseCard a {
-    width: 100%;
-    display: flex;
-    text-decoration: none;
-
+.coursePrice {
+    grid-column: 1 / 3;
 }
 
 .courseCard button {
     width: 100%;
     height: 3rem;
-    background-color: #121619;
+    background-color: rgb(18, 22, 25);
     color: white;
     font-size: 1.1rem;
     border-bottom-left-radius: 5px;
@@ -57,8 +41,8 @@
 
 .courseCard button:hover,
 .courseCard button:focus {
-    background-color: #232427;
+    background-color: rgb(35, 36, 39);
     cursor: pointer;
     transition: 0.2s ease-in;
-    outline: none;
+    outline: none;                           
 }

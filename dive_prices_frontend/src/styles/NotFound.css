@@ -1,0 +1,14 @@
+footer {
+    display: none !important;
+}
+
+.notfound{
+    display: flex;
+}
+
+.notfoundimage {
+    width: 300px;
+    height: 300px;
+    margin: 0 3rem;
+    background-size: cover;
+}

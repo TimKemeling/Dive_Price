@@ -48,23 +48,29 @@
     align-items: start; 
 }
 
-.textbox {
+.background {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-content: center;
+    align-content: end;
     background-image: url('../assets/reefcropUnsplash.jpg');
     background-size: cover;
     background-position: center;
     margin: 2rem 0;
 }
 
+.textbox {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    background-color: rgb(18, 22,25, 80%);
+}
 .categorytext {
     width: 70%;
     padding: 1rem;
-    background-color: rgba(0,0,0, 0.65);
     color: white;
-
 }
 
 

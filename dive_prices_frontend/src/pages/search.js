@@ -79,6 +79,7 @@ function Search() {
             if (check) {filtered.push(school)}
         });
 
+        console.log(filtered)
         setFilteredres(makeComp(filtered))
         handleSearchClick()
     }
@@ -98,45 +99,49 @@ function Search() {
                 <meta name="description" content="Select your parameters, hit Search and Find the perfect dive school for your next Adventure"/>
             </Helmet>
 
+            <div className="toptext">
             <h1>Find the perfect dive school for you!</h1>
             <p>Select your parameters, hit Search and Find the perfect dive school for your next Adventure</p>
+            </div>
             <div className="Search">
                 <form className="SearchForm" onSubmit={onfilter}> 
+                <div className="options">
+                    <div className="optionbox">
+                        <label className="toplabel" htmlFor="Vibe">I'm looking for a .... diveschool</label>
+                        <label><input name="vibe_fun" type="checkbox"/>Fun</label>
+                        <label><input name="vibe_family" type="checkbox"/>Family Friendly</label>
+                        <label><input name="vibe_backpack" type="checkbox"/>Backpackers</label>
+                        <label><input name="vibe_quiet" type="checkbox"/>Quiet</label>
+                        <label><input name="vibe_serious" type="checkbox"/>Serious</label>
+                    </div>
 
-                <div className="optionbox">
-                    <label htmlFor="Vibe">I'm looking for a ____ diveschool</label>
-                    <label><input name="vibe_fun" type="checkbox"/>Fun</label>
-                    <label><input name="vibe_family" type="checkbox"/>Family Friendly</label>
-                    <label><input name="vibe_backpack" type="checkbox"/>Backpackers</label>
-                    <label><input name="vibe_quiet" type="checkbox"/>Quiet</label>
-                    <label><input name="vibe_serious" type="checkbox"/>Serious</label>
+                    <div className="optionbox">
+                        <label htmlFor="PriceRange">Price Range</label>
+                        <label><input name="price_1" type="checkbox"/>$</label>
+                        <label><input name="price_2" type="checkbox"/>$$</label>
+                        <label><input name="price_3" type="checkbox"/>$$$</label>
+                    </div>
+
+                    <div className="optionbox">
+                        <label htmlFor="Size">School Size</label>
+                        <label><input name="size_1" type="checkbox"/>Small</label>
+                        <label><input name="size_2" type="checkbox"/>Medium</label>
+                        <label><input name="size_3" type="checkbox"/>Large</label>
+                    </div>
+
+                    <div className="optionbox">
+                        <label htmlFor="Location">Location</label>
+                        <label><input name="maehaad" type="checkbox"/>Mae Haad</label>
+                        <label><input name="sairee" type="checkbox"/>Sairee</label>
+                        <label><input name="chalok" type="checkbox"/>Chalok</label>
+                    </div>
+
+                    <div className="optionbox">
+                        <label htmlFor="beach">Beachfront Location</label>
+                        <label><input name="beach" type="checkbox" />Yes Please!</label>
+                    </div>
                 </div>
 
-                <div className="optionbox">
-                    <label htmlFor="PriceRange">Price Range</label>
-                    <label><input name="price_1" type="checkbox"/>$</label>
-                    <label><input name="price_2" type="checkbox"/>$$</label>
-                    <label><input name="price_3" type="checkbox"/>$$$</label>
-                </div>
-
-                <div className="optionbox">
-                    <label htmlFor="Size">School Size</label>
-                    <label><input name="size_1" type="checkbox"/>Small</label>
-                    <label><input name="size_2" type="checkbox"/>Medium</label>
-                    <label><input name="size_3" type="checkbox"/>Large</label>
-                </div>
-
-                <div className="optionbox">
-                    <label htmlFor="Location">Location</label>
-                    <label><input name="maehaad" type="checkbox"/>Mae Haad</label>
-                    <label><input name="sairee" type="checkbox"/>Sairee</label>
-                    <label><input name="chalok" type="checkbox"/>Chalok</label>
-                </div>
-
-                <div className="optionbox">
-                    <label htmlFor="beach">Beachfront Location</label>
-                    <label><input name="beach" type="checkbox" />Yes Please!</label>
-                </div>
                 <button name="search" type="submit">Search</button>
                 </form>
             </div>  
