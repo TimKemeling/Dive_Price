@@ -49,7 +49,6 @@ function Search() {
 
     const [filteredres, setFilteredres] = useState([])
 
-
     function onfilter(event) {
         event.preventDefault();
         
@@ -63,6 +62,24 @@ function Search() {
         }
 
         const filtered = []
+
+// ============================================================================================================
+        // TRY TO SEE IF DIFFERENT FILTER OPTION WORKS
+
+        const filtercat = {
+            'vibe' : ['fun', 'family', 'quiet', 'backpack', 'serious'],
+            'price' : ['price_1', 'price_2', 'price_3'],
+            'size' : ['size_1', 'size_2', 'size_3'],
+            'location' : ['maehaad', 'sairee', 'chalok'],
+            'beachfront' : [true, false]
+        }
+
+        //steps:
+        // -check in what category filter is
+        // -tally amount of filters/category
+        // -if more than 1, save what filters
+        // -if more than 1, check school against both filters somehow...
+// ============================================================================================================
 
         response.data.forEach(school => {
 
@@ -79,7 +96,6 @@ function Search() {
             if (check) {filtered.push(school)}
         });
 
-        console.log(filtered)
         setFilteredres(makeComp(filtered))
         handleSearchClick()
     }

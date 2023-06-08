@@ -1,8 +1,9 @@
 from rest_framework.views import APIView
+from rest_framework.generics import ListCreateAPIView
 from rest_framework import generics
 from rest_framework.response import Response
-from api.models import schools, prices
-from api.serializers import schoolSerializer, priceSerializer
+from api.models import schools, prices, booking
+from api.serializers import schoolSerializer, priceSerializer, bookingSerializer
     
 class all_schools(generics.ListAPIView):
     queryset = schools.objects.all()
@@ -27,6 +28,16 @@ class courseDetail(APIView):
         course = prices.objects.get(pk=100)
         serializer = priceSerializer(course)
         return Response(serializer.data)
+    
+class all_courses(generics.ListAPIView):
+    queryset = prices.objects.all()
+    serializer_class = priceSerializer
+
+    def course_list(self, request):
+        if request.method == 'GET':
+            queryset =  self.get_queryset()
+            serializer = priceSerializer(queryset, many=True)
+            return Response(serializer.data)    
     
 class BeginnerOverview(APIView):
     def get(self, request):
@@ -65,3 +76,6 @@ class schoolOverview(APIView):
         serializer = priceSerializer(course_list, many=True)   
         return Response(serializer.data)
     
+class booking(ListCreateAPIView):
+    queryset = booking.objects.all()
+    serializer_class = bookingSerializer

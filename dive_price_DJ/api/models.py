@@ -1,4 +1,6 @@
 from django.db import models
+from api.django_email_server import send_email
+
 
 class schools(models.Model):
     id = models.AutoField(auto_created=True, db_column='id', primary_key=True)
@@ -42,6 +44,7 @@ class schools(models.Model):
     class Meta:
         managed = True
         db_table = 'schools'
+        verbose_name_plural = 'schools'
 
 class prices(models.Model):
     name = models.TextField(blank=True, null=True, max_length=200)
@@ -58,3 +61,29 @@ class prices(models.Model):
     class Meta:
         managed = True
         db_table = 'prices'
+        verbose_name_plural = 'prices'
+
+
+class booking(models.Model):
+    first_name = models.TextField(blank=True, null=True, max_length=200)
+    last_name = models.TextField(blank=True, null=True, max_length=200)
+    course = models.TextField(blank=True, null=True, max_length=200)
+    diveschool = models.TextField(blank=True, null=True, max_length=200)
+    date_of_birth = models.TextField(blank=True, null=True, max_length=200)
+    date_of_book = models.TextField(blank=True, null=True, max_length=200)
+    email = models.TextField(blank=True, null=True, max_length=200)
+    comment = models.TextField(blank=True, null=True, max_length=200)
+
+    class Meta:
+        verbose_name_plural = 'bookings'
+        db_table = 'bookings'
+
+    def save(self, *args, **kwargs):
+        subject = 'Diveprices.com booking request'
+        message = self.course
+        recipient = 'tmkcrypto@gmail.com'
+        send_email(subject, message, recipient)
+
+        return super(booking, self).save(*args, **kwargs)
+
+

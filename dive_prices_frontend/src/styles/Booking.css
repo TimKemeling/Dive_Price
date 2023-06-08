@@ -36,6 +36,10 @@ form input {
     color: black;
 }
 
+.courseselect {
+    max-width: 10rem;
+}
+
 div.SchoolAndCourse {
     display: flex;
 }

@@ -1,8 +1,11 @@
 from django.core.mail import send_mail
 from django.conf import settings
 import requests
-from ..dive_price_DJ.config import email_check_API_key
-	
+from .config import email_check_API_key
+from django.template import loader
+
+
+
 api_key = email_check_API_key
 api_url = "https://emailvalidation.abstractapi.com/v1/?api_key=" + api_key
 
@@ -38,4 +41,14 @@ def send_email(subject, message, recipient):
                 subject=subject,
                 message=message,
                 from_email=settings.EMAIL_HOST_USER,
-                recipient_list=[recipient])
+                recipient_list=[recipient],
+                html_message= """<!DOCTYPE html>
+                                    <html>
+                                        <body>
+                                            <h1>you received a booking request from diveprices.com</h1>
+                                            <p>this will say what course has been booked</p>
+                                            <p>this will say who booked it</p>
+                                            <p>maybe more stuff</p>
+                                            <button>THIS IS A BUTTON</button>
+                                        </body>
+                                    </html>""")
