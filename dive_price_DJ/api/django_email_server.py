@@ -2,7 +2,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 import requests
 from .config import email_check_API_key
-from django.template import loader
+
 
 
 
@@ -36,19 +36,11 @@ def send_user(subject, message, recipient):
         print('not a valid email')
     
 # sends email without checking validity, used for known emails
-def send_email(subject, message, recipient):
+
+def send_email(subject, recipient, html_message):
         send_mail(
                 subject=subject,
-                message=message,
+                message = '',
                 from_email=settings.EMAIL_HOST_USER,
                 recipient_list=[recipient],
-                html_message= """<!DOCTYPE html>
-                                    <html>
-                                        <body>
-                                            <h1>you received a booking request from diveprices.com</h1>
-                                            <p>this will say what course has been booked</p>
-                                            <p>this will say who booked it</p>
-                                            <p>maybe more stuff</p>
-                                            <button>THIS IS A BUTTON</button>
-                                        </body>
-                                    </html>""")
+                html_message= html_message)

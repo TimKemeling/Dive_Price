@@ -1,9 +1,51 @@
-footer {
-    display: none !important;
-}
-
 .notfound{
     display: flex;
+    justify-content: space-around;
+}
+
+.notfoundheader {
+    width: auto;
+    margin-left: 3rem;
+}
+
+.notfoundheader h1 {
+    justify-content: center;
+    align-items: center;
+    font-size: 75px;
+    height: 60px;
+    font-weight: 50;
+    color: black;
+    
+}
+
+.notfoundheader p {
+    padding: 0;
+    font-size: 40px;
+    font-weight: lighter;
+    color: black;
+}
+
+.notfoundheader button {
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+    background-color: #030394;
+    height: 50px;
+    width: 150px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.notfoundheader button:hover,
+.notfoundheader button:focus,
+.notfoundheader a:focus {
+    background-color: #030365;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+    outline: none;
 }
 
 .notfoundimage {
@@ -11,4 +53,43 @@ footer {
     height: 300px;
     margin: 0 3rem;
     background-size: cover;
+}
+
+
+@media only screen and (max-width: 650px) {
+    .notfound {
+        flex-direction: column;
+    }
+    
+    .notfoundimgcontainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    }
+
+    .notfoundheader {
+        margin-left: 0px;
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+    }
+
+    .notfoundheader h1{
+        font-size: 40px;
+        height: 30px;
+        color: black;
+    }
+
+    .notfoundheader p {
+        font-size: 30px;
+        color: black;
+    }
+
+    .notfoundheader button {
+        margin-bottom: 30px;
+    }
 }

@@ -16,7 +16,7 @@ function PageNotFound() {
                 <meta name='description' content='Welcome to DivePrices.com. This Page does not exist Please try a different one!'/>
             </Helmet>
             <div 
-            className="headerContainer" 
+            className="notfoundheader" 
             >
                 <h1>Whoops!</h1>
                 <p>This page doesn't exist..</p>
@@ -25,7 +25,9 @@ function PageNotFound() {
                     <button> go back home </button>
                 </Link>    
             </div>
-            <div className='notfoundimage' style={{ backgroundImage: `url(${notfound})`}}></div>
+            <div className='notfoundimgcontainer'>
+                <div className='notfoundimage' style={{ backgroundImage: `url(${notfound})`}}></div>
+            </div>
 
         </div>
     )

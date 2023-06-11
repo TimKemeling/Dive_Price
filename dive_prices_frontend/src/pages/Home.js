@@ -22,9 +22,12 @@ function Home() {
             >
                 <h1>DivePrices.com</h1>
                 <p>Find out how much you're paying at the dive school that fits you</p>
-                <Link to="/booking" tabIndex="-1">
-                    <button> BOOK NOW </button>
-                </Link>    
+                <div className='homebuttons'>
+                    <Link to="/booking" tabIndex="-1"><button> BOOK NOW </button></Link>    
+                    <Link to="/search" tabIndex="-1"><button> Browse Schools </button></Link>    
+                </div>
+
+
             </div>
         </div>
     )

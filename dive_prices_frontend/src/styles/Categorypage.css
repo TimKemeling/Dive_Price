@@ -52,7 +52,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-content: end;
+    align-content: flex-end;
     background-image: url('../assets/reefcropUnsplash.jpg');
     background-size: cover;
     background-position: center;

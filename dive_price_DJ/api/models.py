@@ -1,5 +1,8 @@
 from django.db import models
 from api.django_email_server import send_email
+from django.template.loader import render_to_string
+from datetime import datetime, date
+
 
 
 class schools(models.Model):
@@ -79,10 +82,31 @@ class booking(models.Model):
         db_table = 'bookings'
 
     def save(self, *args, **kwargs):
+        bname = self.first_name + ' ' + self.last_name
+        bcourse = self.course
+        bdob = self.date_of_birth
+        bdate = self.date_of_book
+
+        dob = datetime.strptime(bdob, '%Y-%m-%d')
+
+        def age(birthdate):
+            today = date.today()
+            age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+            return age
+
+        booker_age = age(dob)
+
+        html_message = render_to_string("center_email.html", context={
+            'name' : bname,
+            'course' : bcourse,
+            'dob' : bdob,
+            'age' : booker_age,
+            'bookdate' : bdate,
+        })
+
         subject = 'Diveprices.com booking request'
-        message = self.course
         recipient = 'tmkcrypto@gmail.com'
-        send_email(subject, message, recipient)
+        send_email(subject, recipient, html_message)
 
         return super(booking, self).save(*args, **kwargs)
 

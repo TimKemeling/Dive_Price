@@ -30,12 +30,18 @@
     color: black;
 }
 
+.homebuttons {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    justify-content: space-evenly;
+}
+
 .headerContainer button {
     font-weight: bold;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    justify-content: center;
     background-color: #030394;
     height: 50px;
     width: 150px;
@@ -57,30 +63,20 @@
 
 @media only screen and (max-width: 650px) {
     .home {
-        justify-content: center;
         align-items: center;
     }
 
     .headerContainer {
         margin-left: 0px;
-        border-radius: 10px;
-        padding: 10px;
         width: 80%;
         display: flex;
-        justify-content: center;
         align-items: center;
         flex-direction: column;
         color: white;
     }
 
-    .headerContainer h1{
-        font-size: 40px;
-        height: 30px;
-        color: black;
-    }
-
     .headerContainer p {
-        font-size: 30px;
+        text-align: center;        
         color: black;
     }
 

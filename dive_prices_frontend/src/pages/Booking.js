@@ -33,6 +33,7 @@ function Booking() {
 
     // set schoolid
     const [idschool, setSchool] = useState(1)
+
     // fetch school data and make into option tags
     const FetchSchools = () => {
 
@@ -72,6 +73,7 @@ function Booking() {
 
 
     const makeCourses = (courses) => {
+        // eslint-disable-next-line array-callback-return
         const courselist = courses?.map((course)=> {
             if (course.schoolsid_id === schoolid) {
                 return <OptionTag 
@@ -84,6 +86,7 @@ function Booking() {
     const courselist = makeCourses(courses)
 
 
+    // change course options when school changes 
 
     const handleSchoolChange = (event) => {
         setSchool(event.target.value)
@@ -100,6 +103,7 @@ function Booking() {
         })
     }
 
+    // take submitted data and save into state
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -113,6 +117,7 @@ function Booking() {
         formData.append('date_of_book', bookData.DateOfBook)
         formData.append('comment', bookData.comment)
         
+        // send data to backend and wait for response, then reset form data to be empty
         try{
 
             const url = 'http://127.0.0.1:8000/api/booking'
@@ -189,7 +194,7 @@ function Booking() {
                     </div>
                     <label htmlFor='medical' >
                         <input name='medical' onChange={handleChange} className='medcheck' required type='checkbox' />
-                        <span>I have read the medical form and made sure I'm safe to dive</span>
+                        <span>I have read the <a href="/example.pdf" download="Diver-Medical-Statement" target="\_blank\" rel="noreferrer">medical</a> form and made sure I'm safe to dive</span>
                     </label>
 
                     <label htmlFor="comment">Comments</label>

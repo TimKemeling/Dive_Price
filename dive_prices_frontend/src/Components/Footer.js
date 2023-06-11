@@ -3,12 +3,36 @@ import "../styles/Footer.css";
 import { Link } from "react-router-dom"
 
 function Footer() {
+    const scrollTop =() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          })
+    }
     return (
         <footer className="footer">
-            <div className="socialMedia">
-                <Link to="https://www.facebook.com/TMKScuba"><p>SOCIAL LINK</p></Link>
-                <Link to="https://www.facebook.com/TMKScuba"><p>SOCIAL LINK</p></Link>
-                
+            <div className="footerlists">
+            <div>
+                <h4>Beginnners</h4>
+                <Link to="/course/Try-Diving" tabIndex="-1"><p onClick={scrollTop}>Try Diving</p></Link>
+                <Link to="/course/Open-Water" tabIndex="-1"><p onClick={scrollTop}>Open Water</p></Link>
+            </div>
+            <div>
+                <h4>Advanced</h4>
+                <Link to="/course/Advanced-Open-Water" tabIndex="-1"><p onClick={scrollTop}>Advanced Open Water</p></Link>
+                <Link to="/course/Specialties" tabIndex="-1"><p onClick={scrollTop}>Specialty Courses</p></Link>
+            </div>
+            <div>
+                <h4>Fun Diving</h4>
+                <Link to="/course/Fundiving" tabIndex="-1"><p onClick={scrollTop}>Fun Diving</p></Link>
+                <Link to="/course/Refresher" tabIndex="-1"><p onClick={scrollTop}>Refreshers</p></Link>
+            </div>
+            <div>
+                <Link to="/FAQ" tabIndex="-1"><h4 onClick={scrollTop}>FAQ</h4></Link>
+                <Link to="/booking" tabIndex="-1"><h4 onClick={scrollTop}>Book Now</h4></Link>
+
+            </div>                
             </div>
             <p>&copy; 2023 DivePrices.com</p>
 

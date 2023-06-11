@@ -122,7 +122,7 @@ function Course() {
                     return courselist
                 }
                 break;
-            case 'Fun-Diving':
+            case 'Fundiving':
                 head1 = 'Fun Diving'
                 p1 = `Fun Dives are diving experiences for certified divers to explore dive sites, marine life, and underwater ecosystems. 
                 It offers the diver the freedom to choose when and where they want to go diving.
