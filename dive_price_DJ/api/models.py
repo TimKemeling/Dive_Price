@@ -2,6 +2,7 @@ from django.db import models
 from api.django_email_server import send_email
 from django.template.loader import render_to_string
 from datetime import datetime, date
+import uuid
 
 
 
@@ -67,7 +68,8 @@ class prices(models.Model):
         verbose_name_plural = 'prices'
 
 
-class booking(models.Model):
+class Booking(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.TextField(blank=True, null=True, max_length=200)
     last_name = models.TextField(blank=True, null=True, max_length=200)
     course = models.TextField(blank=True, null=True, max_length=200)
@@ -76,18 +78,18 @@ class booking(models.Model):
     date_of_book = models.TextField(blank=True, null=True, max_length=200)
     email = models.TextField(blank=True, null=True, max_length=200)
     comment = models.TextField(blank=True, null=True, max_length=200)
+    confirmed = models.BooleanField(blank=False, null=False, default=False)
+
+
 
     class Meta:
-        verbose_name_plural = 'bookings'
+        verbose_name_plural = 'Bookings'
         db_table = 'bookings'
 
     def save(self, *args, **kwargs):
-        bname = self.first_name + ' ' + self.last_name
-        bcourse = self.course
-        bdob = self.date_of_birth
-        bdate = self.date_of_book
+        name = self.first_name + ' ' + self.last_name
 
-        dob = datetime.strptime(bdob, '%Y-%m-%d')
+        dob = datetime.strptime(self.date_of_birth, '%Y-%m-%d')
 
         def age(birthdate):
             today = date.today()
@@ -97,17 +99,20 @@ class booking(models.Model):
         booker_age = age(dob)
 
         html_message = render_to_string("center_email.html", context={
-            'name' : bname,
-            'course' : bcourse,
-            'dob' : bdob,
+            'name' : name,
+            'course' : self.course,
+            'dob' : self.date_of_birth,
             'age' : booker_age,
-            'bookdate' : bdate,
+            'email' : self.email,
+            'bookdate' : self.date_of_book,
+            'comment' : self.comment,
+            'reference' : self.id
         })
 
         subject = 'Diveprices.com booking request'
         recipient = 'tmkcrypto@gmail.com'
         send_email(subject, recipient, html_message)
 
-        return super(booking, self).save(*args, **kwargs)
+        return super(Booking, self).save(*args, **kwargs)
 
 

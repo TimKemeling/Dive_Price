@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import schools, prices, booking
+from api.models import schools, prices, Booking
 
 class priceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,5 +23,5 @@ class schoolSerializer(serializers.ModelSerializer):
 
 class bookingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = booking
+        model = Booking
         fields = '__all__'

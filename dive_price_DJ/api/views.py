@@ -1,8 +1,9 @@
 from rest_framework.views import APIView
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from rest_framework import generics
 from rest_framework.response import Response
-from api.models import schools, prices, booking
+from django.shortcuts import get_object_or_404
+from api.models import schools, prices, Booking
 from api.serializers import schoolSerializer, priceSerializer, bookingSerializer
     
 class all_schools(generics.ListAPIView):
@@ -77,5 +78,30 @@ class schoolOverview(APIView):
         return Response(serializer.data)
     
 class booking(ListCreateAPIView):
-    queryset = booking.objects.all()
+    queryset = Booking.objects.all()
     serializer_class = bookingSerializer
+
+class bookingaccept(RetrieveUpdateAPIView):  #READ UPDATEAPIVIEW DOCS!!
+    serializer_class = bookingSerializer  
+    queryset = Booking.objects.all()
+    lookup_field = 'id'
+
+    def get_object(self):
+        obj = get_object_or_404(self.get_queryset(), pk=self.kwargs["pk"])
+        self.check_object_permissions(self.request, obj)
+        return obj
+
+       
+    def put(self, request):
+        print('somethiing')
+        return super().put(request)
+    
+    # PUT METHOD IS WORKING ON DIRECT API LINK IN BROWSER, NEED TO CHANGE VALUE IMMEDIATELY WHEN CALL IS MADE
+    # CANNOT MAKE PUT REQUEST WITH HTML LINK TROUGH EMAIL, ONLY WORKS WITH BUTTON 
+    # MAKE PUT HAPPEN AUTOMATICALLY AND THIS WORKS
+    
+
+# class bookingdeny(UpdateAPIView):  #READ UPDATEAPIVIEW DOCS!!
+#     queryset = booking.objects.all()
+
+    
