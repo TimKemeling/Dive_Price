@@ -86,33 +86,4 @@ class Booking(models.Model):
         verbose_name_plural = 'Bookings'
         db_table = 'bookings'
 
-    def save(self, *args, **kwargs):
-        name = self.first_name + ' ' + self.last_name
-
-        dob = datetime.strptime(self.date_of_birth, '%Y-%m-%d')
-
-        def age(birthdate):
-            today = date.today()
-            age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
-            return age
-
-        booker_age = age(dob)
-
-        html_message = render_to_string("center_email.html", context={
-            'name' : name,
-            'course' : self.course,
-            'dob' : self.date_of_birth,
-            'age' : booker_age,
-            'email' : self.email,
-            'bookdate' : self.date_of_book,
-            'comment' : self.comment,
-            'reference' : self.id
-        })
-
-        subject = 'Diveprices.com booking request'
-        recipient = 'tmkcrypto@gmail.com'
-        send_email(subject, recipient, html_message)
-
-        return super(Booking, self).save(*args, **kwargs)
-
 

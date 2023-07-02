@@ -5,6 +5,10 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from api.models import schools, prices, Booking
 from api.serializers import schoolSerializer, priceSerializer, bookingSerializer
+
+from datetime import datetime, date
+from api.django_email_server import send_email
+from django.template.loader import render_to_string
     
 class all_schools(generics.ListAPIView):
     queryset = schools.objects.all()
@@ -80,8 +84,52 @@ class schoolOverview(APIView):
 class booking(ListCreateAPIView):
     queryset = Booking.objects.all()
     serializer_class = bookingSerializer
+    
 
-class bookingaccept(RetrieveUpdateAPIView):  #READ UPDATEAPIVIEW DOCS!!
+    def perform_create(self, serializer):
+        obj = serializer.save()
+        name = obj.first_name + ' ' + obj.last_name
+
+        dob = datetime.strptime(obj.date_of_birth, '%Y-%m-%d')
+
+        def age(birthdate):
+            today = date.today()
+            age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+            return age
+
+        booker_age = age(dob)
+
+        html_message_center = render_to_string("center_email.html", context={
+            'name' : name,
+            'course' : obj.course,
+            'dob' : obj.date_of_birth,
+            'age' : booker_age,
+            'email' : obj.email,
+            'bookdate' : obj.date_of_book,
+            'comment' : obj.comment,
+            'reference' : obj.id
+        })
+
+        html_message_customer = render_to_string("customer_email.html", context={
+            'name' : name,
+            'course' : obj.course,
+            'dob' : obj.date_of_birth,
+            'age' : booker_age,
+            'email' : obj.email,
+            'bookdate' : obj.date_of_book,
+            'comment' : obj.comment,
+            'reference' : obj.id
+        })
+
+        subject = 'Diveprices.com booking request'
+        recipient = 'tmkcrypto@gmail.com'
+        send_email(subject, recipient, html_message_center)
+        send_email(subject, recipient, html_message_customer)
+        
+
+        return super().perform_create(serializer)
+
+class bookingconfirm(RetrieveUpdateAPIView):  #READ UPDATEAPIVIEW DOCS!!
     serializer_class = bookingSerializer  
     queryset = Booking.objects.all()
     lookup_field = 'id'
@@ -92,13 +140,54 @@ class bookingaccept(RetrieveUpdateAPIView):  #READ UPDATEAPIVIEW DOCS!!
         return obj
 
        
-    def put(self, request):
-        print('somethiing')
-        return super().put(request)
-    
-    # PUT METHOD IS WORKING ON DIRECT API LINK IN BROWSER, NEED TO CHANGE VALUE IMMEDIATELY WHEN CALL IS MADE
-    # CANNOT MAKE PUT REQUEST WITH HTML LINK TROUGH EMAIL, ONLY WORKS WITH BUTTON 
-    # MAKE PUT HAPPEN AUTOMATICALLY AND THIS WORKS
+    def perform_update(self, serializer):
+        obj = self.get_object()
+        name = obj.first_name + ' ' + obj.last_name
+
+        dob = datetime.strptime(obj.date_of_birth, '%Y-%m-%d')
+
+        def age(birthdate):
+            today = date.today()
+            age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+            return age
+
+        booker_age = age(dob)
+
+        if self.request.data['confirmed']: 
+            html_message = render_to_string("customer_confirm_email.html", context={
+                'name' : name,
+                'course' : obj.course,
+                'dob' : obj.date_of_birth,
+                'age' : booker_age,
+                'email' : obj.email,
+                'bookdate' : obj.date_of_book,
+                'comment' : obj.comment,
+                'reference' : obj.id
+            })
+
+            subject = 'Diveprices.com booking request'
+            recipient = 'tmkcrypto@gmail.com'
+            send_email(subject, recipient, html_message)
+        else: 
+            html_message = render_to_string("customer_deny_email.html", context={
+                'name' : name,
+                'course' : obj.course,
+                'dob' : obj.date_of_birth,
+                'age' : booker_age,
+                'email' : obj.email,
+                'bookdate' : obj.date_of_book,
+                'comment' : obj.comment,
+                'reference' : obj.id
+            })
+
+            subject = 'Diveprices.com booking request'
+            recipient = 'tmkcrypto@gmail.com'
+            send_email(subject, recipient, html_message)
+            
+
+        return super().perform_update(serializer)
+
+
     
 
 # class bookingdeny(UpdateAPIView):  #READ UPDATEAPIVIEW DOCS!!

@@ -20,13 +20,13 @@ function Booking() {
 
     // set initial booking state
     const [bookData, setBookData] = useState({
-        'First-Name':'',
-        'Last-Name':'',
-        'DiveSchool':'',
-        'Course':'',
-        'Email':'',
-        'DateOfBirth':'',
-        'DateOfBook':'',
+        'first_name':'',
+        'last_name':'',
+        'diveschool':'',
+        'course':'',
+        'email':'',
+        'date_of_birth':'',
+        'date_of_book':'',
         'comment':'',
         'status':''
     });
@@ -108,30 +108,30 @@ function Booking() {
         event.preventDefault()
 
         const formData = new FormData(event.target);
-        formData.append('first_name', bookData['First-Name'])
-        formData.append('last_name', bookData['Last-Name'])
-        formData.append('diveschool', bookData.DiveSchool)
-        formData.append('course', bookData.Course)
-        formData.append('email', bookData.Email)
-        formData.append('date_of_birth', bookData.DateOfBirth)
-        formData.append('date_of_book', bookData.DateOfBook)
+        formData.append('first_name', bookData['first_name'])
+        formData.append('last_name', bookData['last_name'])
+        formData.append('diveschool', bookData.diveschool)
+        formData.append('course', bookData.course)
+        formData.append('email', bookData.email)
+        formData.append('date_of_birth', bookData.date_of_birth)
+        formData.append('date_of_book', bookData.date_of_book)
         formData.append('comment', bookData.comment)
         
         // send data to backend and wait for response, then reset form data to be empty
         try{
 
-            const url = 'http://127.0.0.1:8000/api/booking'
+            const url = 'http://127.0.0.1:8000/api/bookings'
             const config = {headers: { 'content-type': 'multipart/form-data' }};
             axios.post(url, formData, config)
             .then((response) => {
                 setBookData({
-                    'First-Name':'',
-                    'Last-Name':'',
-                    'DiveSchool':'',
-                    'Course':'',
-                    'Email':'',
-                    'DateOfBirth':'',
-                    'DateOfBook':'',
+                    'first_name':'',
+                    'last_name':'',
+                    'diveschool':'',
+                    'course':'',
+                    'email':'',
+                    'date_of_birth':'',
+                    'date_of_book':'',
                     'comment':'',
                     'status':'success'
                 })
@@ -158,38 +158,38 @@ function Booking() {
                 <form id="bookingForm" method="POST" className='BookingForm' onSubmit={handleSubmit}>
                     <div className='SchoolAndCourse'>
                         <div className='schoolDrop'>
-                            <label htmlFor='DiveSchool' >choose a diveschool</label>
-                            <select name='DiveSchool' onChange={handleSchoolChange}>
+                            <label htmlFor='diveschool' >choose a diveschool</label>
+                            <select name='diveschool' onChange={handleSchoolChange}>
                             <option selected disabled hidden>choose a school</option>
                                 {schoollist}
                             </select>
                         </div>
                         <div className='courseDrop'>
-                            <label htmlFor='Course' >choose a course</label>
-                            <select name='Course' className='courseselect' onChange={handleChange}>
+                            <label htmlFor='course' >choose a course</label>
+                            <select name='course' className='courseselect' onChange={handleChange}>
                                 <option selected disabled hidden>choose a course</option>
                                 {courselist}
                             </select>
                         </div>
                     </div>
 
-                    <label htmlFor="First-Name">First Name</label>
-                    <input name="First-Name" onChange={handleChange} type="text" required placeholder="please enter your first name"  />
+                    <label htmlFor="first_name">First Name</label>
+                    <input name="first_name" onChange={handleChange} type="text" required placeholder="please enter your first name"  />
 
-                    <label htmlFor="Last-Name">Last Name</label>
-                    <input name="Last-Name" onChange={handleChange} type="text" required placeholder="please enter your last name" />
+                    <label htmlFor="last_name">Last Name</label>
+                    <input name="last_name" onChange={handleChange} type="text" required placeholder="please enter your last name" />
 
-                    <label htmlFor="Email">Email</label>
-                    <input name="Email" onChange={handleChange} type="email" required placeholder="please enter your email"  />
+                    <label htmlFor="email">Email</label>
+                    <input name="email" onChange={handleChange} type="email" required placeholder="please enter your email"  />
 
                     <div className='DobAndMed'>
                         <div className='DoB'>
-                            <label htmlFor="DateOfBirth">Date of birth</label>
-                            <input name="DateOfBirth" onChange={handleChange} type='date' required placeholder="please enter your Date of Birth" />
+                            <label htmlFor="date_of_birth">Date of birth</label>
+                            <input name="date_of_birth" onChange={handleChange} type='date' required placeholder="please enter your Date of Birth" />
                         </div>
                         <div className='bookingdate'>
-                        <label htmlFor="DateOfBook">When do you want to dive?</label>
-                            <input name="DateOfBook" onChange={handleChange} type='date' min={pickdate} required placeholder="please enter the date you want to dive" />
+                        <label htmlFor="date_of_book">When do you want to dive?</label>
+                            <input name="date_of_book" onChange={handleChange} type='date' min={pickdate} required placeholder="please enter the date you want to dive" />
                         </div>
                     </div>
                     <label htmlFor='medical' >

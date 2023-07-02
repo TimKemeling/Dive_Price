@@ -8,7 +8,7 @@ import Schools from './pages/Schools';
 import Booking from './pages/Booking';
 import Search from './pages/search';
 import Faq from './pages/FaQ';
-import ApiView from './pages/tryAPI';
+import Confirmbooking from './pages/confirm';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Course from './pages/Course';
 import Advanced from './pages/Advanced';
@@ -31,10 +31,10 @@ function App() {
           <Route path="/course/:course" element ={<Course />}/>
           <Route path="/Search" element={<Search />}/>
           <Route path="/FAQ" element={<Faq />}/>
-          <Route path="/API" element={<ApiView />}/>
+          <Route path="/confirmbooking/:bookingid" element={<Confirmbooking />}/>
           <Route path="*" element={<PageNotFound />}/>
         </Routes>
-        {Location.pathname !== '/home' && <Footer /> }
+        <Footer />
       </Router>
     </div>
   );

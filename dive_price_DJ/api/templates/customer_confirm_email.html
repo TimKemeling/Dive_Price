@@ -45,40 +45,33 @@
                 padding-top: 1.2rem;
             }
 
-            .acceptbutton {
-                background-color: rgba(0, 128, 0, 0.838);
-            }
-
           </style>
     </head>
+    <!-- add more content as needed -->
     <body>
         <div class="header-container">
-            <h1>You received a booking request from diveprices.com</h1>
+            <h1>Your diveprices.com booking has been comfirmed!</h1>
             <div class="content-container">
                 <h2>booking reference number: {{reference}}</h2>
+
                 <h2>Course booked:</h2>
                 <h3>{{course}}</h3>
 
                 <h2>Booked By:</h2>
                 <h3>{{name}}</h3>
-                <h3>Date of Birth : {{dob}}</h3>
-                <h3>age : {{age}}</h3>
-                <h3>{{email}}</h3>
+                <h3>Date of Birth : {{dob}}, age : {{age}}</h3>
 
                 <h2>Booking Date:</h2>
                 <h3>{{bookdate}}</h3>
-
 
                 {% if comment %}
                 <h2>Comments</h2>
                 <h3>{{comment}}</h3>
                 {% endif %}
 
-                <h3>This booking is not final yet, please accept or deny within 24 hours</h3>
-                
-                <div class="buttons">
-                    <button class="acceptbutton"><a href="http://localhost:3000/confirmbooking/{{reference}}" class="buttonlink">Accept Booking</a></button>
-                </div>
+                <p>On the day of your booking, all you need to do is show up on time, bring a towel and some sunscreen</p>
+                <p>We hope you enjoy yourself on your next diving adventure!</p>
+
             </div>
         </div>
 
