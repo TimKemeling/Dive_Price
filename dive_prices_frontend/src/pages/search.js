@@ -9,6 +9,8 @@ function Search() {
 
     const [searched, setSearched] = useState(false)
 
+
+    // Fetch schools list from api and store in 'response'
     const FetchData = () => {
 
         const url = "http://127.0.0.1:8000/api/school-list"
@@ -18,10 +20,11 @@ function Search() {
 
     const response = FetchData()  
 
+    // make components from schools data using schoolcard component
     function makeComp(schools) {
         const schoolList = schools.map(school => {
 
-            let price = 'bla'
+            let price = ''
             if (school.price_1 === true) {
                 price = "$"
             } else if (school.price_2 === true){
@@ -40,6 +43,7 @@ function Search() {
         return schoolList
     }
 
+    // takes all schools and makes components to populate page at load
     const SchoolList = () => {
         if (response.loading === false) {
         const schools = response.data
@@ -49,9 +53,12 @@ function Search() {
 
     const [filteredres, setFilteredres] = useState([])
 
+    // contains filter logic for form submittal
     function onfilter(event) {
+        // prevents full reload on submit form
         event.preventDefault();
         
+        // pull all form data and store the filters in array
         const form = event.target;
         const formData = new FormData(form)
 
@@ -61,52 +68,133 @@ function Search() {
             filters.push(key)
         }
 
-        const filtered = []
 
-// ============================================================================================================
-        // TRY TO SEE IF DIFFERENT FILTER OPTION WORKS
+        // initiate filter categories and list all filters to be able to categorise them 
+        const vibefilters = []
+        const pricefilters = []
+        const sizefilters = []
+        const locationfilters = []
+        const beachfrontfilters = []
 
         const filtercat = {
-            'vibe' : ['fun', 'family', 'quiet', 'backpack', 'serious'],
-            'price' : ['price_1', 'price_2', 'price_3'],
-            'size' : ['size_1', 'size_2', 'size_3'],
-            'location' : ['maehaad', 'sairee', 'chalok'],
-            'beachfront' : [true, false]
-        }
+            'vibe': ['vibe_fun', 'vibe_family', 'vibe_quiet', 'vibe_backpack', 'vibe_serious'],
+            'price': ['price_1', 'price_2', 'price_3'],
+            'size': ['size_1', 'size_2', 'size_3'],
+            'location': ['maehaad', 'sairee', 'chalok'],
+            'beach': ['beach']
+          }
+                    
+          // categorise all filters in correct arrays
+          filters.forEach(filter => {
+            for (const cat in filtercat) {
+                for (const x in filtercat[cat]){
+                    if (filter === filtercat[cat][x]) {
+                        switch (cat) {
+                            case 'vibe':
+                                vibefilters.push(filter)
+                                break;
+                            case 'price':
+                                pricefilters.push(filter)
+                                break;
+                            case 'size':
+                                sizefilters.push(filter)
+                                break;
+                            case 'location':
+                                locationfilters.push(filter)
+                                break;
+                            case 'beach':
+                                beachfrontfilters.push(filter)
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+              }
+          }
+          });
 
-        //steps:
-        // -check in what category filter is
-        // -tally amount of filters/category
-        // -if more than 1, save what filters
-        // -if more than 1, check school against both filters somehow...
-// ============================================================================================================
 
+        const vibefiltered = []
+        const pricefiltered = []
+        const sizefiltered = []
+        const locationfiltered = []
+        const beachfrontfiltered = []
+
+        const filtered = []
+
+        // compare filters to schools and save qualifying schools in separate arrays per category 
         response.data.forEach(school => {
-
-            let check = true
-            filters.forEach(filter => {
-                if (filter === 'maehaad' || filter === 'sairee' || filter === 'chalok') {
-                    const name = school['neighbourhood'].replace(' ','').toLowerCase();
-                    if (name !== filter){check = false}
+            vibefilters.forEach(filter => {
+                if (school[filter]) {
+                    if (!vibefiltered.includes(school) ){
+                        vibefiltered.push(school.id)
+                    }
                 }
-                else if (!school[filter]) {
-                    check = false}
             })
-                
-            if (check) {filtered.push(school)}
+
+            pricefilters.forEach(filter => {
+                if (school[filter]) {
+                    if (!pricefiltered.includes(school) ){
+                        pricefiltered.push(school.id)
+                    }
+                }
+            })
+
+            sizefilters.forEach(filter => {
+                if (school[filter]) {
+                    if (!sizefiltered.includes(school) ){
+                        sizefiltered.push(school.id)
+                    }
+                }
+            })
+
+            locationfilters.forEach(filter => {
+                if (school['neighbourhood'] === filter) {
+                    if (!locationfiltered.includes(school) ){
+                        locationfiltered.push(school.id)
+                    }
+                }
+            })
+
+            beachfrontfilters.forEach(filter => {
+                if (school[filter]) {
+                    if (!beachfrontfiltered.includes(school) ){
+                        beachfrontfiltered.push(school.id)
+                    }
+                }
+            })
         });
 
-        setFilteredres(makeComp(filtered))
+        // fill array in case of no filter clicked
+        if (vibefiltered.length === 0) {response.data.forEach(school => vibefiltered.push(school.id))}
+        if (pricefiltered.length === 0) {response.data.forEach(school => pricefiltered.push(school.id))}
+        if (sizefiltered.length === 0) {response.data.forEach(school => sizefiltered.push(school.id))}
+        if (locationfiltered.length === 0) {response.data.forEach(school => locationfiltered.push(school.id))}
+        if (beachfrontfiltered.length === 0) {response.data.forEach(school => beachfrontfiltered.push(school.id))}
+
+
+        // compare filtered arrays with each other and push accompanying school in to final array 
+        response.data.forEach(school => {
+            if (pricefiltered.includes(school.id)&& vibefiltered.includes(school.id) && sizefiltered.includes(school.id) && locationfiltered.includes(school.id) && beachfrontfiltered.includes(school.id)) {
+                filtered.push(school)
+            }
+        });
+
+        // set searched to true to refresh list 
         handleSearchClick()
+
+        // if no filters have been ticked full list will show, otherwise filtered results will show
+        if (filters.length === 0){ setSearched(false)}
+        else {setFilteredres(makeComp(filtered))}
+
     }
 
     function handleSearchClick() {
         setSearched (true)
     }
 
+    // set schoollist to full list to show something at load 
     const schoolList = SchoolList()
-
-
 
     return (
         <div className="Searchpage">

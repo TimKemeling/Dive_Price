@@ -22,7 +22,6 @@ function Navbar() {
     const navlink4 = 'Fun Diving'
     const navlink5 = 'Book'
     
-    // if (!openLinks) {
         return (
         <div className='navbar'>
             <div className='company'>
@@ -61,25 +60,5 @@ function Navbar() {
         </div>)
 
     } 
-    // else {
-    //     return (
-    //     <div className='navbar'>
-    //         <div className='mobile'>
-    //             <Link to="/"><img src={fishLogo} className='complogo' alt="Company Logo"/></Link>
-    //             <Link to="/"><p className="companyName">DivePrices.commobile</p></Link>
-    //         </div> 
-    //         <div className="hiddenLinks">
-    //                 <Link to="/search">Find</Link>
-    //                 <Link to="/beginners">Beginners</Link>  
-    //                 <Link to="/search">Advanced</Link>  
-    //                 <Link to="/booking">Book now</Link> 
-    //         </div>  
-    //         <div onClick={toggleNavBar} className="burger">
-    //         <Burger/>
-    //         </div>     
-    //     </div>
-    //     )
-    // }
-// }
 
 export default Navbar

@@ -33,8 +33,9 @@
 .homebuttons {
     display: flex;
     flex-direction: column;
+    width: fit-content;
     height: 50%;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .headerContainer button {
@@ -43,8 +44,8 @@
     border-radius: 5px;
     cursor: pointer;
     background-color: #030394;
-    height: 50px;
-    width: 150px;
+    height: 4rem;
+    width: 10rem;
     color: white;
     text-decoration: none;
     font-size: 20px;

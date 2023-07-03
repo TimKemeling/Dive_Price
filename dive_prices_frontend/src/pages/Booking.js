@@ -4,9 +4,15 @@ import {Helmet} from 'react-helmet'
 import OptionTag from '../Components/Optiontag'
 import { useAPI } from '../helpers/useAPI'
 import IndoManta from "../assets/IndoManta.jpg"
+import greenTick from "../assets/green-tick.png"
 import "../styles/Booking.css"
+import { Link } from 'react-router-dom'
 
 function Booking() {
+    const [isLoading, setIsLoading] = useState(false);
+    const [isBooked, setIsBooked] = useState(false);
+
+
 
     // set minimum booking date
     const today = new Date()
@@ -106,6 +112,7 @@ function Booking() {
     // take submitted data and save into state
     const handleSubmit = (event) => {
         event.preventDefault()
+        setIsLoading(true)
 
         const formData = new FormData(event.target);
         formData.append('first_name', bookData['first_name'])
@@ -135,6 +142,9 @@ function Booking() {
                     'comment':'',
                     'status':'success'
                 })
+                setIsLoading(false)
+                setIsBooked(true)
+
             });
 
         } catch(error){
@@ -152,10 +162,27 @@ function Booking() {
                 <meta name='description' content='Book your next Scuba Dive adventure! Select your Scuba Course and Dive school and secure your next adventure!'/>
             </Helmet>
             <div style={{ backgroundImage: `url(${IndoManta})`}} className="bookingLeft"></div>
-            <div className="bookingRight">
+            <div className="bookingRight" >
+            {isBooked? <div className='booked'>
+                <div style={{ backgroundImage: `url(${greenTick})`}} className='greenTick'></div>
+                <h1>Your next adventure is on the way!</h1>
+                <h2>Thank you for booking with Diveprices.com</h2>
+                <p>You have been sent a email with you booking details</p>
+                <p>The diveschool has been informed of your booking and will reply within 24 hours</p>
+                <p>Please remember this is not a confirmed booking yet.</p>
+                <p>You will be sent a email confirmation when the booking is finalized</p>
+                <div className='bookedbuttons'>
+                    <Link to={`/home`} ><button className='bookedbutton'>Back to home</button></Link> 
+                    {/* <Link to={`/booking`} ><button className='bookedbutton'>Book another course</button></Link>  */}
+                </div>
+
+
+            </div> : <div>
+            {!isLoading?  <div>
+
                 <h1>Book your Scuba Adventure</h1>
 
-                <form id="bookingForm" method="POST" className='BookingForm' onSubmit={handleSubmit}>
+                <form id="bookingForm" method="POST" className='BookingForm' onSubmit={handleSubmit} onKeyDown={(e) => { e.key ==='Enter' && e.preventDefault() }}>
                     <div className='SchoolAndCourse'>
                         <div className='schoolDrop'>
                             <label htmlFor='diveschool' >choose a diveschool</label>
@@ -199,9 +226,15 @@ function Booking() {
 
                     <label htmlFor="comment">Comments</label>
                     <textarea name='comment' onChange={handleChange} rows="6" placeholder="Let us know if you have any special requests" maxLength={500}></textarea>
-                    <button type="submit">Submit</button>
+                    <button type="submit" disabled={isLoading} className='submitbutton'>Submit</button>
                 </form>
-
+                </div>
+                : 
+                <div className='loadingbooking'>
+                <h1>sending your booking request</h1>
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                </div>
+                } </div>}
             </div>
         </div>
     )

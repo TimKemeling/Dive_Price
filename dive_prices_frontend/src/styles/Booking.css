@@ -88,7 +88,7 @@ textarea::placeholder {
     color: black;
 }
 
-.bookingRight button {
+.submitbutton {
     width: 80%;
     height: 30px;
     color: white;
@@ -98,11 +98,92 @@ textarea::placeholder {
     margin-top: 25px;
 }
 
-.bookingRight button:hover {
+button:hover {
     background-color: #232427;
     cursor: pointer;
     transition: 0.2s ease-in;
 }
+
+.booked {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bookedbuttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+}
+
+.bookedbuttons a {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+}
+
+.bookedbutton{
+    width: 100%;
+    height: 30px;
+    color: white;
+    background-color: #121619;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+
+
+.greenTick {
+    height: 10rem;
+    width: 10rem;
+    background-size: cover;
+}
+
+.loadingbooking{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.lds-ring {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 80px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid white;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: black transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
 
 @media only screen and (max-width: 850px) {
     .SchoolAndCourse {
