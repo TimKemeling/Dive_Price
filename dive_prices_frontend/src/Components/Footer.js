@@ -1,6 +1,7 @@
 import React from 'react'
 import "../styles/Footer.css";
 import { Link } from "react-router-dom"
+import { businessName } from '../pages/names';
 
 function Footer() {
     const scrollTop =() => {
@@ -34,7 +35,7 @@ function Footer() {
 
             </div>                
             </div>
-            <p>&copy; 2023 DivePrices.com</p>
+            <p>&copy; 2023 {businessName}</p>
 
         </footer>
     )

@@ -3,10 +3,12 @@ import axios from 'axios'
 import {Helmet} from 'react-helmet'
 import OptionTag from '../Components/Optiontag'
 import { useAPI } from '../helpers/useAPI'
+import { Link } from 'react-router-dom'
+import { businessName } from './names'
+
 import IndoManta from "../assets/IndoManta.jpg"
 import greenTick from "../assets/green-tick.png"
 import "../styles/Booking.css"
-import { Link } from 'react-router-dom'
 
 function Booking() {
     const [isLoading, setIsLoading] = useState(false);
@@ -166,13 +168,13 @@ function Booking() {
             {isBooked? <div className='booked'>
                 <div style={{ backgroundImage: `url(${greenTick})`}} className='greenTick'></div>
                 <h1>Your next adventure is on the way!</h1>
-                <h2>Thank you for booking with Diveprices.com</h2>
+                <h2>Thank you for booking with {businessName}</h2>
                 <p>You have been sent a email with you booking details</p>
                 <p>The diveschool has been informed of your booking and will reply within 24 hours</p>
                 <p>Please remember this is not a confirmed booking yet.</p>
                 <p>You will be sent a email confirmation when the booking is finalized</p>
                 <div className='bookedbuttons'>
-                    <Link to={`/home`} ><button className='bookedbutton'>Back to home</button></Link> 
+                <button className='bookedbutton'><Link to={`/home`} ></Link>Back to home</button>
                     {/* <Link to={`/booking`} ><button className='bookedbutton'>Book another course</button></Link>  */}
                 </div>
 

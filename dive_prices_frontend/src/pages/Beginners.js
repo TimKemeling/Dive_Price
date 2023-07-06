@@ -2,6 +2,7 @@ import React from 'react';
 import {Helmet} from 'react-helmet'
 import { Link } from 'react-router-dom';
 import "../styles/Categorypage.css";
+import { businessName } from './names';
 
 function Beginners() {
     const button1 = 'Try Diving'
@@ -13,7 +14,7 @@ function Beginners() {
     return (
         <div className="category">
             <Helmet>
-                <title>diveprices.com Beginner Scuba Courses</title>
+                <title>{businessName} Beginner Scuba Courses</title>
                 <meta name='description' content='Find out what makes a great beginner course and book at the right divecenter for you!'/>
 
             </Helmet>

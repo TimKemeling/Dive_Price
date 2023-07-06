@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import fishLogo from '../assets/fishLogo.png';
 import '../styles/burger.css';
 import '../styles/Navbar.css';
+import { businessName } from '../pages/names';
 
 
 function Navbar() {
@@ -26,7 +27,7 @@ function Navbar() {
         <div className='navbar'>
             <div className='company'>
                 <Link to="/"><img src={fishLogo} className='complogo' alt="Company Logo"/></Link>
-                <Link to="/"><p className="companyName">DivePrices.com</p></Link> 
+                <Link to="/"><p className="companyName">{businessName}</p></Link> 
             </div> 
             {!openLinks? (
                 <div className='desktoplinks'> 

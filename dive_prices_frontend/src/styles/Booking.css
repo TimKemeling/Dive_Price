@@ -108,10 +108,11 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .bookedbuttons {
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -119,7 +120,7 @@ button:hover {
 }
 
 .bookedbuttons a {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;

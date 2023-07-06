@@ -2,6 +2,7 @@ import React from 'react'
 import {Helmet} from 'react-helmet'
 
 import '../styles/FaQ.css'
+import { businessName } from './names'
 
 
 
@@ -10,7 +11,7 @@ function Faq() {
     return (
         <div className="FAQ">
             <Helmet>
-                <title>DivePrices.com FAQ</title>
+                <title>{businessName} FAQ</title>
                 <meta name='description' content='FAQ for all your burning questions!'/>
             </Helmet>
             <div className="faqheader">
@@ -60,7 +61,7 @@ function Faq() {
                 <div className='question'>
                     <h2>Can I book diving outside Koh Tao?</h2>
                     <p>
-                        Currently DivePrices.com is a Koh Tao only platform.
+                        Currently {businessName} is a Koh Tao only platform.
                     </p>
                 </div>
             </div>

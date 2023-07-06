@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import "../styles/Course.css";
 import "../styles/Coursecard.css"
+import { businessName } from './names';
 
 function Course() {
     const params = useParams();
@@ -233,12 +234,12 @@ function Course() {
         count = count + 1
     });
 
-    const metacont = `Browse different ${head1} courses on DivePrices.com and find out which one suits you best!`
+    const metacont = `Browse different ${head1} courses on ${businessName} and find out which one suits you best!`
 
     return (
         <div className='coursePage'>
             <Helmet>
-                <title>diveprices.com {head1} Scuba Courses</title>
+                <title>{businessName} {head1} Scuba Courses</title>
                 <meta name='description' content={metacont}/>
             </Helmet>
 

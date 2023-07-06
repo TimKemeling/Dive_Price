@@ -2,6 +2,7 @@ import React from 'react';
 import {Helmet} from 'react-helmet'
 import { Link } from 'react-router-dom';
 import "../styles/Categorypage.css";
+import { businessName } from './names';
 
 function Fundiving() {
     const button1 = 'Refresher'
@@ -14,7 +15,7 @@ function Fundiving() {
     return (
         <div className="category">
             <Helmet>
-                <title>diveprices.com FunDiving</title>
+                <title>{businessName} FunDiving</title>
                 <meta name='description' content='Find out how fundiving works and book your some dives at your favourite school!'/>
 
             </Helmet>

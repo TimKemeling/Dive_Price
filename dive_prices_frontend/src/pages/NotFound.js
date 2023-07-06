@@ -4,16 +4,19 @@ import {Helmet} from 'react-helmet';
 
 import '../styles/NotFound.css';
 import notfound from '../assets/pageNotFoundDiver.png'
+import { businessName } from './names';
 
 
 
 function PageNotFound() {
 
+    const metacontent = `Welcome to ${businessName}. This Page does not exist Please try a different one!`
+
     return (
         <div className="notfound">
             <Helmet>
-                <title>404 Page not found DivePrices.com</title>
-                <meta name='description' content='Welcome to DivePrices.com. This Page does not exist Please try a different one!'/>
+                <title>404 Page not found {businessName}</title>
+                <meta name='description' content={metacontent}/>
             </Helmet>
             <div 
             className="notfoundheader" 
