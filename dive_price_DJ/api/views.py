@@ -129,7 +129,7 @@ class booking(ListCreateAPIView):
 
         return super().perform_create(serializer)
 
-class bookingconfirm(RetrieveUpdateAPIView):  #READ UPDATEAPIVIEW DOCS!!
+class bookingconfirm(RetrieveUpdateAPIView):
     serializer_class = bookingSerializer  
     queryset = Booking.objects.all()
     lookup_field = 'id'
@@ -168,6 +168,7 @@ class bookingconfirm(RetrieveUpdateAPIView):  #READ UPDATEAPIVIEW DOCS!!
             subject = 'Diveprices.com booking request'
             recipient = 'tmkcrypto@gmail.com'
             send_email(subject, recipient, html_message)
+
         else: 
             html_message = render_to_string("customer_deny_email.html", context={
                 'name' : name,
@@ -177,6 +178,7 @@ class bookingconfirm(RetrieveUpdateAPIView):  #READ UPDATEAPIVIEW DOCS!!
                 'email' : obj.email,
                 'bookdate' : obj.date_of_book,
                 'comment' : obj.comment,
+                'deniedfor' : self.request.data['deniedfor'],
                 'reference' : obj.id
             })
 
@@ -186,11 +188,5 @@ class bookingconfirm(RetrieveUpdateAPIView):  #READ UPDATEAPIVIEW DOCS!!
             
 
         return super().perform_update(serializer)
-
-
-    
-
-# class bookingdeny(UpdateAPIView):  #READ UPDATEAPIVIEW DOCS!!
-#     queryset = booking.objects.all()
 
     

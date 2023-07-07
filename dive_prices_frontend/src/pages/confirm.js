@@ -11,7 +11,9 @@ function Confirmbooking () {
     const bookingid = params.bookingid
 
     const [isLoading, setisLoading] = useState(false)
-    const [isFinal, setisFinal] = useState(true)
+    const [isFinal, setisFinal] = useState(false)
+    const [DenyForm, setDenyForm] = useState(true)
+    const [Denyreason, setDenyreason] = useState('')
 
 
 
@@ -63,7 +65,7 @@ function Confirmbooking () {
 
         try{
             const url = `http://127.0.0.1:8000/api/booking/confirm/${bookingid}`
-            axios.put(url, {'confirmed': true, 'denied':false})
+            axios.put(url, {'confirmed': true, 'denied':false, 'deniedfor': ''})
             .then((response) => {
                 setisLoading(false)
                 setisFinal(true)
@@ -78,11 +80,15 @@ function Confirmbooking () {
     
     const Denybooking = (event) => {
         event.preventDefault()
+        if (Denyreason === 'none' || Denyreason === '') {
+            alert('please add a reason for denying the booking')
+        }
+        else {
         setisLoading(true)
 
         try{
             const url = `http://127.0.0.1:8000/api/booking/confirm/${bookingid}`
-            axios.put(url, {'confirmed': false, 'denied':true})
+            axios.put(url, {'confirmed': false, 'denied':true, 'deniedfor': Denyreason})
             .then((response) => {
                 setisLoading(false)
                 setisFinal(true)
@@ -90,10 +96,20 @@ function Confirmbooking () {
 
         } catch(error){
             console.log(error)
-        }
+        }}
+    };
 
-
+    const Trydeny = (e) => {
+        e.preventDefault() 
+        setDenyForm(true)
     }
+
+    const ReasonDeny = (e) => {
+        e.preventDefault() 
+        setDenyreason(e.target.value)
+    }
+
+
 
     return (
         <div className="booking-container">
@@ -101,13 +117,27 @@ function Confirmbooking () {
             {bookingcomp}
             {isFinal? <h1 className="finalh1">Thank you for finalising this booking.</h1> 
             : <div>
-            {!isLoading? <div className="buttons">
+            {!isLoading? <div>
+                {!DenyForm? <div className="buttons">
                     <button className="acceptbutton" onClick={Acceptbooking}>Accept Booking</button>
-                    <button className="denybutton" onClick={Denybooking}>Deny Booking</button>
+                    <button className="denybutton" onClick={Trydeny}>Deny Booking</button>
+                </div> : <div className="Denyreason">
+
+                <h2 className="denyh2">Please let us know why the booking is being denied</h2>
+                <select onChange={ReasonDeny} className="reasondenyselect">
+                    <option defaultValue value='none'>please choose a reason</option>
+                    <option value='No availability for the selected dates'>No availability for the selected dates</option>
+                    <option value='No instructors available'>No instructors available</option>
+                    <option value='Too short notice for this course'>Too short notice for this course</option>
+                </select>
+                <button className="denysend" onClick={Denybooking}>Deny Booking</button>
                 </div>
-            : <div className='loadingbooking'>
+                }
+
+                </div>
+            : <div className='loadingconfirm'>
                 <h1>saving booking</h1>
-                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                <div class="lds-ring-confirm"><div></div><div></div><div></div><div></div></div>
             </div>} 
             </div> }
             </div>

@@ -23,6 +23,15 @@ function Schools() {
     const school = schoolObject.school_name
     const location = schoolObject.city
     const title = `Dive with ${school} in ${location}`
+    let pro = ''
+
+    if (schoolObject.pro_1) {
+        pro = 'Up to Dive master'
+    } else if (schoolObject.pro_2) {
+        pro = "Up to instructor"
+    } else if (schoolObject.pro_3) {
+        pro = "Up to instructor trainer"
+    }
 
     return (
         <div className="aboutPage">
@@ -34,6 +43,17 @@ function Schools() {
             <div className="aboutContainer">
             <div className="aboutBox">
                 <h1>{school}</h1> 
+                <div className='schoolLocInfo'>
+                    <p>{schoolObject.country}</p>
+                    <p>{schoolObject.city}</p>
+                    <p>{schoolObject.neighbourhood}</p>
+                </div>
+
+                <div className='schoolMiscInfo'>
+                    <p>Pro training: {pro}</p>
+                    <p>{schoolObject.beach? "Beachfront access available" : "no Beachfront access"}</p>
+                </div>
+
                 <p>
                    {schoolObject.description}
                 </p>

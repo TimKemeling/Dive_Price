@@ -1,8 +1,8 @@
 .booking-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
 }
 
 .border-container {
@@ -21,26 +21,26 @@
 }
 
 .buttons {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.buttons button {
-    height: 4rem;
-    width: 8rem;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-bottom: 3rem;
+.buttons button{
+  height: 4rem;
+  width: 8rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-bottom: 3rem;
 }
 
 .buttonlink {
-    text-decoration: none;
-    color: black !important;
-    width: 100%;
-    height: 75%;
-    display: inline-block;
-    padding-top: 1.2rem;
+  text-decoration: none;
+  color: black !important;
+  width: 100%;
+  height: 75%;
+  display: inline-block;
+  padding-top: 1.2rem;
 }
 
 .acceptbutton {
@@ -51,20 +51,50 @@
     background-color: rgba(255, 0, 0, 0.834);
 }
 
-.loadingbooking{
+.denyh2 {
+  color: white;
+}
+
+.Denyreason {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.reasondenyselect{
+  width: max-content;
+  align-self: center;
+
+}
+
+.denysend {
+  background-color: rgba(255, 0, 0, 0.834);
+  height: 2rem;
+  width: 75%;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin: 2rem;
+
+
+}
+
+
+.loadingconfirm{
     display: flex;
     flex-direction: column;
     color: white;
 
 }
 
-.lds-ring {
+.lds-ring-confirm {
     display: flex;
     justify-content: center;
     width: 100%;
     height: 80px;
   }
-  .lds-ring div {
+  .lds-ring-confirm div {
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -73,19 +103,19 @@
     margin: 8px;
     border: 8px solid white;
     border-radius: 50%;
-    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: lds-ring-confirm 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: white transparent transparent transparent;
   }
-  .lds-ring div:nth-child(1) {
+  .lds-ring-confirm div:nth-child(1) {
     animation-delay: -0.45s;
   }
-  .lds-ring div:nth-child(2) {
+  .lds-ring-confirm div:nth-child(2) {
     animation-delay: -0.3s;
   }
-  .lds-ring div:nth-child(3) {
+  .lds-ring-confirm div:nth-child(3) {
     animation-delay: -0.15s;
   }
-  @keyframes lds-ring {
+  @keyframes lds-ring-confirm {
     0% {
       transform: rotate(0deg);
     }

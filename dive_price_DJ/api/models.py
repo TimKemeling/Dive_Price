@@ -79,6 +79,8 @@ class Booking(models.Model):
     email = models.TextField(blank=True, null=True, max_length=200)
     comment = models.TextField(blank=True, null=True, max_length=200)
     confirmed = models.BooleanField(blank=False, null=False, default=False)
+    denied = models.BooleanField(blank=False, null=False, default=False)
+    deniedfor = models.TextField(blank=True, null=True, max_length=200)
 
 
 
