@@ -9,7 +9,7 @@ function BookingPage({id, course, first_name, last_name, email, school, date_of_
             <h3>{course}</h3>
 
             <h2>Booked By:</h2>
-            <h3>{first_name}{last_name}</h3>
+            <h3>{first_name} {last_name}</h3>
             <h3>Date of Birth : {date_of_birth}</h3>
             <h3>age : {age} </h3>
             <h3>{email}</h3>

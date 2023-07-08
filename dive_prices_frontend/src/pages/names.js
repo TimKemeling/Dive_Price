@@ -1,1 +1,1 @@
-export const businessName = 'DivePrices.com'
+export const businessName = 'DivePrices'

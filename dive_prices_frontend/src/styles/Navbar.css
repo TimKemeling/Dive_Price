@@ -2,6 +2,7 @@
     width: 100%;
     height: auto;
     background-color: rgb(18, 22, 25);
+    /* background-color: black; */
     display: flex;
     flex-direction: row;
 }

@@ -39,6 +39,12 @@
     font-size: 2rem;
 }
 
+.schoollogo {
+    height: 7rem;
+    background-color: white;
+    margin: 1rem;
+}
+
 .schoolLocInfo {
     display: flex;
     justify-content: center;
@@ -55,6 +61,20 @@
     font-size: 1.1rem;
     line-height: 1.4;
     padding: 0 1.5em;
+}
+
+.schoolbook {
+    width: 100%;
+    height: 3rem;
+    color: white;
+    background-color: rgb(18, 22, 25);
+    font-size: 1.1rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: 1px solid black;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
 }
 
 @media only screen and (max-width: 600px) {

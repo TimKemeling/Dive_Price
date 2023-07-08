@@ -1,5 +1,5 @@
 import React from 'react';
-import {Helmet} from 'react-helmet'
+import {Helmet, HelmetProvider} from 'react-helmet-async'
 import { Link } from 'react-router-dom';
 import "../styles/Categorypage.css";
 import { businessName } from './names';
@@ -9,10 +9,11 @@ function Fundiving() {
     const page1 = 'Refresher'
 
     const button2 = 'Fun Diving'
-    const page2 = 'Fun-Diving'
+    const page2 = 'Fundiving'
 
 
     return (
+        <HelmetProvider>
         <div className="category">
             <Helmet>
                 <title>{businessName} FunDiving</title>
@@ -51,6 +52,7 @@ function Fundiving() {
             </div>
 
         </div>
+        </HelmetProvider>
     )
 };
 

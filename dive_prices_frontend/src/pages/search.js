@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useState } from "react";
 import { useAPI } from "../helpers/useAPI";
 import SchoolCard from "../Components/SchoolCard";
@@ -197,6 +197,7 @@ function Search() {
     const schoolList = SchoolList()
 
     return (
+        <HelmetProvider>
         <div className="Searchpage">
             <Helmet>
                 <title>Find the perfect diveschool for you!</title>
@@ -253,6 +254,7 @@ function Search() {
                 <div className="SchoolResults">{searched? filteredres : schoolList}</div>
             </div>
         </div>
+        </HelmetProvider>
     )
 }
 

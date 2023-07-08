@@ -136,6 +136,10 @@ button:hover {
     margin-top: 25px;
 }
 
+.bookedbuttonlink {
+    text-decoration: none;
+}
+
 
 .greenTick {
     height: 10rem;

@@ -122,9 +122,10 @@ class booking(ListCreateAPIView):
         })
 
         subject = 'Diveprices.com booking request'
-        recipient = 'tmkcrypto@gmail.com'
-        send_email(subject, recipient, html_message_center)
-        send_email(subject, recipient, html_message_customer)
+        custrecipient = obj.email
+        centerrecipient = 'tmkcrypto@gmail.com'
+        send_email(subject, centerrecipient, html_message_center)
+        send_email(subject, custrecipient, html_message_customer)
         
 
         return super().perform_create(serializer)
@@ -166,7 +167,7 @@ class bookingconfirm(RetrieveUpdateAPIView):
             })
 
             subject = 'Diveprices.com booking request'
-            recipient = 'tmkcrypto@gmail.com'
+            recipient = obj.email
             send_email(subject, recipient, html_message)
 
         else: 
@@ -183,7 +184,7 @@ class bookingconfirm(RetrieveUpdateAPIView):
             })
 
             subject = 'Diveprices.com booking request'
-            recipient = 'tmkcrypto@gmail.com'
+            recipient = obj.email
             send_email(subject, recipient, html_message)
             
 

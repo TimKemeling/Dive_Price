@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from "react-router-dom";
 import { useAPI } from '../helpers/useAPI';
 import CourseCard from '../Components/CourseCard';
-import { Helmet } from 'react-helmet';
+import {Helmet, HelmetProvider} from 'react-helmet-async'
 
 
 import "../styles/Course.css";
@@ -237,6 +237,7 @@ function Course() {
     const metacont = `Browse different ${head1} courses on ${businessName} and find out which one suits you best!`
 
     return (
+        <HelmetProvider>
         <div className='coursePage'>
             <Helmet>
                 <title>{businessName} {head1} Scuba Courses</title>
@@ -259,7 +260,7 @@ function Course() {
                 {courselist}
             </div>
         </div>
-
+        </HelmetProvider>
     )
 }
 export default Course

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import {Helmet} from 'react-helmet';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 import '../styles/NotFound.css';
 import notfound from '../assets/pageNotFoundDiver.png'
@@ -13,6 +13,7 @@ function PageNotFound() {
     const metacontent = `Welcome to ${businessName}. This Page does not exist Please try a different one!`
 
     return (
+        <HelmetProvider>
         <div className="notfound">
             <Helmet>
                 <title>404 Page not found {businessName}</title>
@@ -31,8 +32,8 @@ function PageNotFound() {
             <div className='notfoundimgcontainer'>
                 <div className='notfoundimage' style={{ backgroundImage: `url(${notfound})`}}></div>
             </div>
-
         </div>
+        </HelmetProvider>
     )
 }
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import {Helmet} from 'react-helmet'
-import OptionTag from '../Components/Optiontag'
+import {Helmet, HelmetProvider} from 'react-helmet-async'
 import { useAPI } from '../helpers/useAPI'
 import { Link } from 'react-router-dom'
 import { businessName } from './names'
@@ -60,8 +59,8 @@ function Booking() {
             if (school.school_name === idschool){
                 schoolid = school.id
             }
-            return <OptionTag 
-            option = {school.school_name}/>
+                return  <option value={school.school_name} key={school.id}>{school.school_name}</option>
+
         })
         return schoollist
     }
@@ -84,8 +83,7 @@ function Booking() {
         // eslint-disable-next-line array-callback-return
         const courselist = courses?.map((course)=> {
             if (course.schoolsid_id === schoolid) {
-                return <OptionTag 
-                option = {course.name}/>
+                return  <option value={course.name} key={course.id}>{course.name}</option>
             }
         })
         return courselist
@@ -155,9 +153,14 @@ function Booking() {
         }
     }
 
+    function refreshPage() {
+        window.location.reload(false);
+      }
+
 
 
     return (
+        <HelmetProvider>
         <div className="booking">
             <Helmet>
                 <title>Book your next Scuba Diving adventure!</title>
@@ -174,8 +177,8 @@ function Booking() {
                 <p>Please remember this is not a confirmed booking yet.</p>
                 <p>You will be sent a email confirmation when the booking is finalized</p>
                 <div className='bookedbuttons'>
-                <button className='bookedbutton'><Link to={`/home`} ></Link>Back to home</button>
-                    {/* <Link to={`/booking`} ><button className='bookedbutton'>Book another course</button></Link>  */}
+                <Link to={`/home`} className='bookedbuttonlink'><button className='bookedbutton'>Back to home</button></Link> 
+                <Link to={`/booking`} className='bookedbuttonlink'><button className='bookedbutton' onClick={refreshPage}>Book another course</button></Link> 
                 </div>
 
 
@@ -188,15 +191,15 @@ function Booking() {
                     <div className='SchoolAndCourse'>
                         <div className='schoolDrop'>
                             <label htmlFor='diveschool' >choose a diveschool</label>
-                            <select name='diveschool' onChange={handleSchoolChange}>
-                            <option selected disabled hidden>choose a school</option>
+                            <select name='diveschool' onChange={handleSchoolChange} defaultValue={"DEFAULT"}>
+                            <option value="DEFAULT" disabled key='default'>choose a school</option>
                                 {schoollist}
                             </select>
                         </div>
                         <div className='courseDrop'>
                             <label htmlFor='course' >choose a course</label>
-                            <select name='course' className='courseselect' onChange={handleChange}>
-                                <option selected disabled hidden>choose a course</option>
+                            <select name='course' className='courseselect' onChange={handleChange} defaultValue={"DEFAULT"}>
+                                <option value="DEFAULT" disabled key='default'>choose a course</option>
                                 {courselist}
                             </select>
                         </div>
@@ -239,6 +242,7 @@ function Booking() {
                 } </div>}
             </div>
         </div>
+        </HelmetProvider>
     )
 }
 

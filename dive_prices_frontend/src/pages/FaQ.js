@@ -1,5 +1,5 @@
 import React from 'react'
-import {Helmet} from 'react-helmet'
+import {Helmet, HelmetProvider} from 'react-helmet-async'
 
 import '../styles/FaQ.css'
 import { businessName } from './names'
@@ -9,6 +9,7 @@ import { businessName } from './names'
 function Faq() {
 
     return (
+        <HelmetProvider>
         <div className="FAQ">
             <Helmet>
                 <title>{businessName} FAQ</title>
@@ -66,6 +67,7 @@ function Faq() {
                 </div>
             </div>
         </div>
+        </HelmetProvider>
     )
 }
 

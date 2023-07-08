@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
-import fishLogo from '../assets/fishLogo.png';
+import logo from '../assets/diveprices-logo-white.png';
 import '../styles/burger.css';
 import '../styles/Navbar.css';
 import { businessName } from '../pages/names';
@@ -26,7 +26,7 @@ function Navbar() {
         return (
         <div className='navbar'>
             <div className='company'>
-                <Link to="/"><img src={fishLogo} className='complogo' alt="Company Logo"/></Link>
+                <Link to="/"><img src={logo} className='complogo' alt="Company Logo"/></Link>
                 <Link to="/"><p className="companyName">{businessName}</p></Link> 
             </div> 
             {!openLinks? (

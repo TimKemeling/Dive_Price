@@ -1,5 +1,5 @@
 import React from 'react';
-import {Helmet} from 'react-helmet'
+import {Helmet, HelmetProvider} from 'react-helmet-async'
 import { Link } from 'react-router-dom';
 import "../styles/Categorypage.css";
 import { businessName } from './names';
@@ -12,6 +12,7 @@ function Advanced() {
     const page2 = 'Specialties'
 
     return (
+        <HelmetProvider>
         <div className="category">
             <Helmet>
                 <title>{businessName} Advanced Scuba Courses</title>
@@ -47,6 +48,7 @@ function Advanced() {
             </div>
 
         </div>
+        </HelmetProvider>
     )
 };
 

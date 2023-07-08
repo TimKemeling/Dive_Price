@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import {Helmet} from 'react-helmet'
+import {Helmet, HelmetProvider} from 'react-helmet-async'
 
 import backgroundImage from "../assets/reefBackground.jpg";
 import '../styles/Home.css'
@@ -12,6 +12,7 @@ function Home() {
 
     const metacontent = `Welcome to ${businessName}. We help you find the perfect diveschool for you! fill in your preferences, have a look around and book your next adventure!`
     return (
+        <HelmetProvider>
         <div className="home"
         style={{ backgroundImage: `url(${backgroundImage})`}}
         >
@@ -32,6 +33,7 @@ function Home() {
 
             </div>
         </div>
+        </HelmetProvider>
     )
 }
 

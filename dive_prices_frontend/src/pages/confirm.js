@@ -3,6 +3,9 @@ import axios from "axios";
 import { useAPI } from "../helpers/useAPI";
 import { useParams } from "react-router-dom";
 import BookingPage from "../Components/bookingpage";
+import {Helmet, HelmetProvider} from 'react-helmet-async'
+import { businessName } from "./names";
+
 
 import '../styles/Confirm.css'
 
@@ -12,7 +15,7 @@ function Confirmbooking () {
 
     const [isLoading, setisLoading] = useState(false)
     const [isFinal, setisFinal] = useState(false)
-    const [DenyForm, setDenyForm] = useState(true)
+    const [DenyForm, setDenyForm] = useState(false)
     const [Denyreason, setDenyreason] = useState('')
 
 
@@ -109,9 +112,16 @@ function Confirmbooking () {
         setDenyreason(e.target.value)
     }
 
+    const metacont = `Finalise your ${businessName} booking with just 1 click!`
+
 
 
     return (
+        <HelmetProvider>
+            <Helmet>
+                <title>Finalise your {businessName} booking</title>
+                <meta name='description' content={metacont}/>
+            </Helmet>
         <div className="booking-container">
             <div className='border-container'>
             {bookingcomp}
@@ -142,6 +152,7 @@ function Confirmbooking () {
             </div> }
             </div>
         </div>
+        </HelmetProvider>
     )
 }
 
