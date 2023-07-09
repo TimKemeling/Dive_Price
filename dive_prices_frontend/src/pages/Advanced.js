@@ -1,6 +1,7 @@
 import React from 'react';
 import {Helmet, HelmetProvider} from 'react-helmet-async'
 import { Link } from 'react-router-dom';
+import { scrollTop } from '../helpers/helpfuncs';
 import "../styles/Categorypage.css";
 import { businessName } from './names';
 
@@ -10,6 +11,8 @@ function Advanced() {
     
     const button2 = 'Specialty Courses'
     const page2 = 'Specialties'
+
+
 
     return (
         <HelmetProvider>
@@ -21,8 +24,8 @@ function Advanced() {
             </Helmet>
             <h1 className="categoryTitle">Continuing education</h1>
             <div className='buttoncontainer'>
-            <Link to={`/course/${page1}`} tabIndex="-1" ><button>{button1}</button></Link> 
-            <Link to={`/course/${page2}`} tabIndex="-1" ><button>{button2}</button></Link> 
+            <Link to={`/course/${page1}`} tabIndex="-1" ><button onClick={scrollTop}>{button1}</button></Link> 
+            <Link to={`/course/${page2}`} tabIndex="-1" ><button onClick={scrollTop}>{button2}</button></Link> 
             </div>
 
             <div className='background'>
@@ -43,8 +46,8 @@ function Advanced() {
                 
             </div>
             <div className='buttoncontainer'>
-            <Link to={`/course/${page1}`} tabIndex="-1" ><button>{button1}</button></Link> 
-            <Link to={`/course/${page2}`} tabIndex="-1" ><button>{button2}</button></Link> 
+            <Link to={`/course/${page1}`} tabIndex="-1" ><button onClick={scrollTop}>{button1}</button></Link> 
+            <Link to={`/course/${page2}`} tabIndex="-1" ><button onClick={scrollTop}>{button2}</button></Link> 
             </div>
 
         </div>

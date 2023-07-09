@@ -8,6 +8,8 @@
   flex-direction: column;
   font-family: 'Big Shoulders Text', sans-serif; 
   min-height: 100vh;
+  line-height: 1.5;
+  letter-spacing: 0.05rem;
 }
 
 

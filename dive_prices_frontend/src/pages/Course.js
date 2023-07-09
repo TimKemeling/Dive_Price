@@ -98,7 +98,7 @@ function Course() {
         let response = []
         switch (params.course) {
             case 'Open-Water':
-                head1 = 'Open water'
+                head1 = 'Open Water'
                 p1 = `The Open Water course is the entry-level certification for scuba diving. 
                 It covers theory, skills, and open water dives, equipping participants with the knowledge and abilities for safe diving. 
                 Upon completion, students earn a Open Water Diver certification, enabling autonomous diving to 18 or 20 meters, depending on certifying agency. 
@@ -124,7 +124,7 @@ function Course() {
                 It covers a small amount of theory to make sure students know the important safety rules and some confined water work to get familiar with equipment. 
                 Students are provided a taste of the underwater world without a certification. For certification the full Open Water course needs to be completed.`
 
-                sched = `A Try diving experience is done in 1 day. You will meet your instructor in the morning and go trough some basics. 
+                sched = `A Try diving experience is done in 1 day. You will meet your instructor in the morning and go through some basics. 
                 Some schools start with theory, others with the confined water session. A lot of schools do the confined session in the afternoon in a shallow bay. 
                 Once the theory and confined have been completed you're ready for a dive. At a maximum depth of 12 meters these dives are relatively safe and easy. 
                 There is often an option for doing a second dive if you wish to do so for a small fee. `
@@ -161,7 +161,7 @@ function Course() {
                 head1 = 'Refreshers'
                 p1 = ` Refresher courses provide certified divers with the opportunity to review diving knowledge and skills after a period of inactivity. 
                 The general recommendation by large dive agencies is to do a refresher after 6-12 months of inactivity depending on previous experience. 
-                Refreshers take divers trough the basic theory and safety procedures they learned on their Open Water Courses. 
+                Refreshers take divers through the basic theory and safety procedures they learned on their Open Water Courses. 
                 Next to the theory there is a skill review to ensure people know how to use dive equipment and keep themselves safe. 
                 Ultimately, refreshers help divers regain confidence and ensure safe diving practices by refreshing essential techniques and procedures.`
 

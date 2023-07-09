@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { scrollTop } from '../helpers/helpfuncs';
 
 function SchoolCard({name, price, agency, tagline, id}) {
     return (
@@ -9,7 +10,7 @@ function SchoolCard({name, price, agency, tagline, id}) {
                 <p>Price Range: {price}</p>  
                 <p>{tagline}</p>
                 <Link to={`/schools/${id}`} tabIndex="-1" >
-                    <button> Learn more </button>
+                    <button onClick={scrollTop}> Learn more </button>
                 </Link>  
         </div>
     )

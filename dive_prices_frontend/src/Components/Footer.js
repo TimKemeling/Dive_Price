@@ -2,15 +2,9 @@ import React from 'react'
 import "../styles/Footer.css";
 import { Link } from "react-router-dom"
 import { businessName } from '../pages/names';
+import { scrollTop } from '../helpers/helpfuncs';
 
 function Footer() {
-    const scrollTop =() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "smooth",
-          })
-    }
     return (
         <footer className="footer">
             <div className="footerlists">

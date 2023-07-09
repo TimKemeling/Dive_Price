@@ -3,6 +3,7 @@ import {Helmet, HelmetProvider} from 'react-helmet-async'
 import { Link } from 'react-router-dom';
 import "../styles/Categorypage.css";
 import { businessName } from './names';
+import { scrollTop } from '../helpers/helpfuncs';
 
 function Fundiving() {
     const button1 = 'Refresher'
@@ -22,8 +23,8 @@ function Fundiving() {
             </Helmet>
             <h1 className="categoryTitle">Fun Diving</h1>
             <div className='buttoncontainer'>
-            <Link to={`/course/${page1}`} tabIndex="-1" ><button>{button1}</button></Link> 
-            <Link to={`/course/${page2}`} tabIndex="-1" ><button>{button2}</button></Link> 
+            <Link to={`/course/${page1}`} tabIndex="-1" ><button onClick={scrollTop}>{button1}</button></Link> 
+            <Link to={`/course/${page2}`} tabIndex="-1" ><button onClick={scrollTop}>{button2}</button></Link> 
             </div>
 
             <div className='background'>
@@ -47,8 +48,8 @@ function Fundiving() {
                 </div>
             </div>
             <div className='buttoncontainer'>
-            <Link to={`/course/${page1}`} tabIndex="-1" ><button>{button1}</button></Link> 
-            <Link to={`/course/${page2}`} tabIndex="-1" ><button>{button2}</button></Link> 
+            <Link to={`/course/${page1}`} tabIndex="-1" ><button onClick={scrollTop}>{button1}</button></Link> 
+            <Link to={`/course/${page2}`} tabIndex="-1" ><button onClick={scrollTop}>{button2}</button></Link> 
             </div>
 
         </div>

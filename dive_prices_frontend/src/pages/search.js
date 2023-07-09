@@ -8,6 +8,8 @@ import "../styles/Search.css"
 function Search() {
 
     const [searched, setSearched] = useState(false)
+    const [filteredres, setFilteredres] = useState([])
+
 
 
     // Fetch schools list from api and store in 'response'
@@ -51,7 +53,6 @@ function Search() {
         };
     };
 
-    const [filteredres, setFilteredres] = useState([])
 
     // contains filter logic for form submittal
     function onfilter(event) {
@@ -196,6 +197,8 @@ function Search() {
     // set schoollist to full list to show something at load 
     const schoolList = SchoolList()
 
+    const resultnum = filteredres.length
+
     return (
         <HelmetProvider>
         <div className="Searchpage">
@@ -243,14 +246,17 @@ function Search() {
 
                     <div className="optionbox">
                         <label htmlFor="beach">Beachfront Location</label>
-                        <label><input name="beach" type="checkbox" />Yes Please!</label>
+                        <label><input name="beach" type="checkbox" />Yes, please!</label>
                     </div>
                 </div>
 
-                <button name="search" type="submit">Search</button>
+                <div className="buttonbox">
+                    <button name="search" type="submit">Search</button>
+                </div>
                 </form>
             </div>  
             <div className="Results">
+                {!searched? <p style={{display:"none"}}></p> : <p className="resultnum">{resultnum} schools found</p>}
                 <div className="SchoolResults">{searched? filteredres : schoolList}</div>
             </div>
         </div>
