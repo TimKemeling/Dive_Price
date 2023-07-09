@@ -22,10 +22,10 @@ function Faq() {
             <div className='questions'>
                 <div className='question'>
                     <h2>Why can I not book a course tomorrow?</h2>
-                        <p>
-                            We like to give dive schools enough time to make sure they can accommodate you as well as possible.
-                            Sometimes it will take some time to find the right instructor for your course, or dive schools can be fully booked.
-                        </p>
+                    <p>
+                        We like to give dive schools enough time to make sure they can accommodate you as well as possible.
+                        Sometimes it will take some time to find the right instructor for your course, or dive schools can be fully booked.
+                    </p>
                 </div>
                 <div className='question'>
                     <h2>Why do I need to sign a medical form?</h2>
@@ -57,6 +57,13 @@ function Faq() {
                         Difficult answer? Still No.
                         In the end it is not the agency that teaches the course, it's the instructor. You are looking for a diveschool that fits
                         you. Once you've found that, it doesn't matter what your certification card says!
+                    </p>
+                </div>
+                <div className='question'>
+                    <h2>Isnt't there more dive schools on Koh Tao?</h2>
+                    <p>
+                        Yes there is! Many more. At the moment we are only working with the schools that are currently on the website.
+                        We are working on getting more schools to be on the website every day!
                     </p>
                 </div>
                 <div className='question'>

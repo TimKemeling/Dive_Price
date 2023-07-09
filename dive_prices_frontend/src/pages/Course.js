@@ -33,6 +33,12 @@ function Course() {
         return response
     }
 
+    const FetchTechlist = () => {
+        const url = "http://127.0.0.1:8000/api/tech-overview"
+        const response = useAPI(url)
+        return response
+    }
+
 
     function filterOW(courses) {
         const courseList = courses.filter(function (course) {
@@ -77,6 +83,13 @@ function Course() {
     function filterSpec(courses) {
         const courseList = courses.filter(function (course) {
             return course.name.includes('Specialty');
+        });
+        return courseList
+    }
+
+    function filterTech(courses) {
+        const courseList = courses.filter(function (course) {
+            return course.level === "tech";
         });
         return courseList
     }
@@ -198,7 +211,7 @@ function Course() {
                 sched = `Schedules for specialty courses depend heavily on what course has been chosen. 
                 Most Specialties take 2 days to complete while some can be done in a afternoon and others take over a week. 
                 When booking a specialty course, make sure to have enough time in your schedule to finish the course. 
-                Also mention in a comment with your booking what time your schedule allows to help the divecenter plan your course.`
+                Also mention in a comment with your booking how much time your schedule allows to help the divecenter plan your course.`
 
                 response = FetchAdvancedlist()
                 if (response.loading === false){
@@ -207,6 +220,29 @@ function Course() {
                     return courselist
                 }
                 break;
+
+            case 'Tech':
+                head1 = 'Tech'
+                p1 = `Technical diving, or Tech diving, is an advanced form of recreational diving with courses designed for experienced and adventurous divers looking to push their limits and explore more challenging underwater environments. 
+                Technical diving focuses on honing and perfecting basic diving skills like buoyancy, trim and awareness. It also teaches new equipment configurations, and in-depth knowledge of decompression theory. 
+                Participants learn to use specialized equipment, including multiple gas blends, dive computers, and redundant systems. 
+                Proper dive planning is central to tech diving, and much of these courses will be focused around why certain decisions are made during the planning phase. 
+                All of this work enables divers to explore deep wrecks, caves, and other demanding dive sites beyond the recreational limits.
+                Technical dive courses open doors to new underwater realms, providing access to breathtaking sites that few have explored. 
+                They offer a unique and exhilarating experience for divers seeking to challenge themselves and explore the outer edges of the underwater world.`
+
+                sched = `Tech diving courses are generally longer than recreational courses but some can take as little as 2 days. 
+                When starting a Technical diving course make sure you have a little wiggle room in your schedule since sometimes an extra day is required to be able to finish all the requirements.
+                Most courses will have full day programs including theory sessions, land drills, equipment familiarization, shallow water sessions and technical dives.`
+                
+                response = FetchTechlist()
+                if (response.loading === false){
+                    const courses = response.data
+                    const courselist = filterTech(courses)
+                    return courselist
+                }
+                break;
+                
             default:
                 break;
         }

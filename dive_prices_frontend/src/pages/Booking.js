@@ -13,8 +13,6 @@ function Booking() {
     const [isLoading, setIsLoading] = useState(false);
     const [isBooked, setIsBooked] = useState(false);
 
-
-
     // set minimum booking date
     const today = new Date()
     const twoDay = today.setDate(today.getDate() +2)
@@ -28,12 +26,13 @@ function Booking() {
     // set initial booking state
     const [bookData, setBookData] = useState({
         'first_name':'',
-        'last_name':'',
+        'last_name':'', 
         'diveschool':'',
         'course':'',
         'email':'',
         'date_of_birth':'',
         'date_of_book':'',
+        'date_booked':'',
         'comment':'',
         'status':''
     });
@@ -122,6 +121,7 @@ function Booking() {
         formData.append('email', bookData.email)
         formData.append('date_of_birth', bookData.date_of_birth)
         formData.append('date_of_book', bookData.date_of_book)
+        formData.append('date_booked', new Date())
         formData.append('comment', bookData.comment)
         
         // send data to backend and wait for response, then reset form data to be empty
@@ -139,6 +139,7 @@ function Booking() {
                     'email':'',
                     'date_of_birth':'',
                     'date_of_book':'',
+                    "date_booked" :'',
                     'comment':'',
                     'status':'success'
                 })

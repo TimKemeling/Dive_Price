@@ -30,6 +30,7 @@ function Footer() {
                 <Link to="/course/Refresher" tabIndex="-1"><p onClick={scrollTop}>Refreshers</p></Link>
             </div>
             <div>
+                <Link to="/course/Tech" tabIndex="-1"><h4 onClick={scrollTop}>Tech</h4></Link>
                 <Link to="/FAQ" tabIndex="-1"><h4 onClick={scrollTop}>FAQ</h4></Link>
                 <Link to="/booking" tabIndex="-1"><h4 onClick={scrollTop}>Book Now</h4></Link>
 

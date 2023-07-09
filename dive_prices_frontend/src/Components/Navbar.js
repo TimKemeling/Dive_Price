@@ -13,15 +13,14 @@ function Navbar() {
     
     const toggleNavBar = (event) => {
         setOpenLinks(!openLinks)
-
-        console.log(openLinks)
     } 
     
     const navlink1 = 'Find'
     const navlink2 = 'Beginners'
     const navlink3 = 'Advanced'
     const navlink4 = 'Fun Diving'
-    const navlink5 = 'Book'
+    const navlink5 = 'Tech'
+    const navlink6 = 'Book'
     
         return (
         <div className='navbar'>
@@ -35,7 +34,9 @@ function Navbar() {
                 <Link to="/beginners">{navlink2}</Link>  
                 <Link to="/advanced">{navlink3}</Link>  
                 <Link to="/fundiving">{navlink4}</Link>  
-                <Link to="/booking">{navlink5}</Link> 
+                <Link to="/course/Tech">{navlink5}</Link>
+                <Link to="/booking">{navlink6}</Link>
+                
             </div> 
             ): (
                 <div className='mobilelinks'> 
@@ -43,7 +44,9 @@ function Navbar() {
                 <Link to="/beginners">{navlink2}</Link>  
                 <Link to="/advanced">{navlink3}</Link> 
                 <Link to="/fundiving">{navlink4}</Link>  
-                <Link to="/booking">{navlink5}</Link> 
+                <Link to="/course/Tech">{navlink5}</Link> 
+                <Link to="/booking">{navlink6}</Link>
+
             </div>
             )}     
             <div className="burger">
@@ -55,6 +58,8 @@ function Navbar() {
                         <span className="bar bar3"></span>
                         <span className="bar bar4"></span>
                         <span className="bar bar5"></span>
+                        <span className="bar bar6"></span>
+
                     </div>
                 </label>        
             </div>

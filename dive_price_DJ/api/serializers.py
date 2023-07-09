@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from api.models import schools, prices, Booking
+from api.models import schools, Courses, Booking
 
 class priceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = prices
+        model = Courses
         fields = [
             'id',
             'name',

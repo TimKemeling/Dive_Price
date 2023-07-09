@@ -16,6 +16,10 @@
     text-align: center;
 }
 
+.courseCard h3 {
+    margin-bottom: auto;
+}
+
 .courseInfo {
    display: grid; 
    grid-template-columns: 1fr 1fr;

@@ -1,19 +1,17 @@
 from django.db import models
-from api.django_email_server import send_email
-from django.template.loader import render_to_string
-from datetime import datetime, date
+from django.contrib import admin
 import uuid
 
 
 
 class schools(models.Model):
     id = models.AutoField(auto_created=True, db_column='id', primary_key=True)
-    school_name = models.TextField(max_length=50, unique=True)
-    agency = models.TextField(blank=True, null=True, max_length=10)
+    school_name = models.CharField(max_length=50, unique=True)
+    agency = models.CharField(blank=True, null=True, max_length=10)
     website_link = models.URLField(blank=True, null=True, max_length=200)
-    country = models.TextField(blank=True, null=True, max_length=100)
-    city = models.TextField(blank=True, null=True, max_length=100)
-    neighbourhood = models.TextField(blank=True, null=True, max_length=100)
+    country = models.CharField(blank=True, null=True, max_length=100)
+    city = models.CharField(blank=True, null=True, max_length=100)
+    neighbourhood = models.CharField(blank=True, null=True, max_length=100)
     description = models.TextField(blank=True, null=True, max_length=750)
     tagline = models.TextField(blank=True, null=True, max_length=150)
 
@@ -50,42 +48,41 @@ class schools(models.Model):
         db_table = 'schools'
         verbose_name_plural = 'schools'
 
-class prices(models.Model):
-    name = models.TextField(blank=True, null=True, max_length=200)
+class Courses(models.Model):
+    name = models.CharField(blank=True, null=True, max_length=200)
     price = models.IntegerField(blank=True, null=True)
-    course_link = models.TextField(blank=True, null=True, max_length=200)
-    agency = models.TextField(blank=True, null=True, max_length=10)
+    course_link = models.CharField(blank=True, null=True, max_length=200)
+    agency = models.CharField(blank=True, null=True, max_length=10)
     schoolsid = models.ForeignKey(schools, blank=True, null=True, on_delete=models.CASCADE)
-    school = models.TextField(blank=True, null=True, max_length=50)
-    timestamp = models.TextField(blank=True, null=True)
-    location = models.TextField(blank=True, null=True, max_length=100)
-    level = models.TextField(blank=True, null=True, max_length=15)
+    school = models.CharField(blank=True, null=True, max_length=50)
+    timestamp = models.CharField(blank=True, null=True, max_length=75)
+    location = models.CharField(blank=True, null=True, max_length=100)
+    level = models.CharField(blank=True, null=True, max_length=15)
 
 
     class Meta:
         managed = True
         db_table = 'prices'
-        verbose_name_plural = 'prices'
+        verbose_name_plural = 'Courses'
 
 
 class Booking(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    first_name = models.TextField(blank=True, null=True, max_length=200)
-    last_name = models.TextField(blank=True, null=True, max_length=200)
-    course = models.TextField(blank=True, null=True, max_length=200)
-    diveschool = models.TextField(blank=True, null=True, max_length=200)
-    date_of_birth = models.TextField(blank=True, null=True, max_length=200)
-    date_of_book = models.TextField(blank=True, null=True, max_length=200)
-    email = models.TextField(blank=True, null=True, max_length=200)
-    comment = models.TextField(blank=True, null=True, max_length=200)
+    first_name = models.CharField(blank=True, null=True, max_length=200)
+    last_name = models.CharField(blank=True, null=True, max_length=200)
+    course = models.CharField(blank=True, null=True, max_length=200)
+    diveschool = models.CharField(blank=True, null=True, max_length=200)
+    date_of_birth = models.CharField(blank=True, null=True, max_length=200)
+    date_of_book = models.CharField(blank=True, null=True, max_length=200)
+    date_booked = models.CharField(blank=True, null=True, max_length=200)
+    email = models.CharField(blank=True, null=True, max_length=200)
+    comment = models.CharField(blank=True, null=True, max_length=200)
     confirmed = models.BooleanField(blank=False, null=False, default=False)
     denied = models.BooleanField(blank=False, null=False, default=False)
-    deniedfor = models.TextField(blank=True, null=True, max_length=200)
-
+    deniedfor = models.CharField(blank=True, null=True, max_length=200)
 
 
     class Meta:
         verbose_name_plural = 'Bookings'
         db_table = 'bookings'
-
-
+        ordering = ["-date_booked"]
