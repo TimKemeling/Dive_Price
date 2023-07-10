@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useAPI } from "../helpers/useAPI";
 import SchoolCard from "../Components/SchoolCard";
 import "../styles/Search.css"
+import { ApiUrls } from "../helpers/helpfuncs";
 
 function Search() {
 
@@ -15,7 +16,7 @@ function Search() {
     // Fetch schools list from api and store in 'response'
     const FetchData = () => {
 
-        const url = "http://127.0.0.1:8000/api/school-list"
+        const url = ApiUrls.Schoollist
         const response = useAPI(url)
         return response      
     }
@@ -215,7 +216,7 @@ function Search() {
                 <form className="SearchForm" onSubmit={onfilter}> 
                 <div className="options">
                     <div className="optionbox">
-                        <label className="toplabel" htmlFor="Vibe">I'm looking for a .... diveschool</label>
+                        <label className="toplabel" htmlFor="Vibe">I'm looking for a ___ diveschool</label>
                         <label><input name="vibe_fun" type="checkbox"/>Fun</label>
                         <label><input name="vibe_family" type="checkbox"/>Family Friendly</label>
                         <label><input name="vibe_backpack" type="checkbox"/>Backpackers</label>

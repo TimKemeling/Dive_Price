@@ -1,16 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import {Helmet, HelmetProvider} from 'react-helmet-async'
+import { businessName } from '../helpers/helpfuncs';
 
 import backgroundImage from "../assets/reefBackground.jpg";
 import '../styles/Home.css'
-import { businessName } from './names';
 
 
 
 function Home() {
 
     const metacontent = `Welcome to ${businessName}. We help you find the perfect diveschool for you! fill in your preferences, have a look around and book your next adventure!`
+    localStorage.clear()
+
     return (
         <HelmetProvider>
         <div className="home"

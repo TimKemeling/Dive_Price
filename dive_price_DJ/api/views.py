@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, ListAPIView
 from rest_framework import generics
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
@@ -75,11 +75,14 @@ class FundivingOverview(APIView):
         return Response(serializer.data)
     
 
-class schoolOverview(APIView):
-    def get(self, request):
-        course_list = Courses.objects.filter(school__icontains = 'black turtle dive')
-        serializer = priceSerializer(course_list, many=True)   
-        return Response(serializer.data)
+class CoursesBySchool(ListAPIView):
+    serializer_class = priceSerializer
+
+    def get_queryset(self):
+        schoolid = self.kwargs.get('pk')
+        queryset = Courses.objects.filter(schoolsid_id = schoolid)
+        return queryset
+
     
 class booking(ListCreateAPIView):
     queryset = Booking.objects.all()

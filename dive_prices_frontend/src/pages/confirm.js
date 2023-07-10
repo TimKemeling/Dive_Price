@@ -4,10 +4,11 @@ import { useAPI } from "../helpers/useAPI";
 import { useParams } from "react-router-dom";
 import BookingPage from "../Components/bookingpage";
 import {Helmet, HelmetProvider} from 'react-helmet-async'
-import { businessName } from "./names";
+import { businessName } from "../helpers/helpfuncs";
 
 
 import '../styles/Confirm.css'
+import { ApiUrls } from "../helpers/helpfuncs";
 
 function Confirmbooking () {  
     const params = useParams()
@@ -20,7 +21,7 @@ function Confirmbooking () {
 
 
 
-    const url = `http://127.0.0.1:8000/api/bookings`
+    const url = ApiUrls.Bookings
     const response = useAPI(url)
     const bookings = response.data
 
@@ -67,7 +68,7 @@ function Confirmbooking () {
         setisLoading(true)
 
         try{
-            const url = `http://127.0.0.1:8000/api/booking/confirm/${bookingid}`
+            const url = ApiUrls.BookingConfirm + bookingid
             axios.put(url, {'confirmed': true, 'denied':false, 'deniedfor': ''})
             .then((response) => {
                 setisLoading(false)
@@ -90,7 +91,7 @@ function Confirmbooking () {
         setisLoading(true)
 
         try{
-            const url = `http://127.0.0.1:8000/api/booking/confirm/${bookingid}`
+            const url = ApiUrls.BookingConfirm + bookingid
             axios.put(url, {'confirmed': false, 'denied':true, 'deniedfor': Denyreason})
             .then((response) => {
                 setisLoading(false)

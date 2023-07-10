@@ -1,7 +1,7 @@
 import React from 'react'
 import "../styles/Footer.css";
 import { Link } from "react-router-dom"
-import { businessName } from '../pages/names';
+import { businessName } from '../helpers/helpfuncs';
 import { scrollTop } from '../helpers/helpfuncs';
 
 function Footer() {

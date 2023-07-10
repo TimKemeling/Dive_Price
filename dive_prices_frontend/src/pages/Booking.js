@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import {Helmet, HelmetProvider} from 'react-helmet-async'
 import { useAPI } from '../helpers/useAPI'
 import { Link } from 'react-router-dom'
-import { businessName } from './names'
+import { businessName } from '../helpers/helpfuncs'
+import { ApiUrls } from '../helpers/helpfuncs'
+
 
 import IndoManta from "../assets/IndoManta.jpg"
 import greenTick from "../assets/green-tick.png"
@@ -12,6 +14,7 @@ import "../styles/Booking.css"
 function Booking() {
     const [isLoading, setIsLoading] = useState(false);
     const [isBooked, setIsBooked] = useState(false);
+    const [readMedical ,setreadMedical] = useState(false)
 
     // set minimum booking date
     const today = new Date()
@@ -43,7 +46,7 @@ function Booking() {
     // fetch school data and make into option tags
     const FetchSchools = () => {
 
-        const url = "http://127.0.0.1:8000/api/school-list"
+        const url = ApiUrls.Schoollist
         const response = useAPI(url)
         return response      
     }
@@ -69,7 +72,7 @@ function Booking() {
 
     // fetch course data and make option tags
     const FetchCourses = () => {
-        const url = "http://127.0.0.1:8000/api/course-list"
+        const url = ApiUrls.courselist
         const response = useAPI(url)
         return response      
     }
@@ -106,6 +109,7 @@ function Booking() {
             ...bookData,
             [event.target.name]:event.target.value
         })
+        console.log(bookData)
     }
 
     // take submitted data and save into state
@@ -127,7 +131,7 @@ function Booking() {
         // send data to backend and wait for response, then reset form data to be empty
         try{
 
-            const url = 'http://127.0.0.1:8000/api/bookings'
+            const url = ApiUrls.Bookings
             const config = {headers: { 'content-type': 'multipart/form-data' }};
             axios.post(url, formData, config)
             .then((response) => {
@@ -154,9 +158,28 @@ function Booking() {
         }
     }
 
-    function refreshPage() {
+    const refreshPage= () => {
         window.location.reload(false);
       }
+
+    const handleCheckbox = () => {
+        setreadMedical(true)
+    }
+
+    let localstring = ''
+    localStorage.getItem('school')? localstring = localStorage.getItem("school") : localstring = 'nothing stored'
+
+
+    useEffect (() => {
+        let info = JSON.parse(localStorage.getItem('school'))
+
+
+        localStorage.getItem('school')? setBookData({...bookData, 'diveschool' : info[0]}) : info = null
+        if (info) {setSchool(info[1])}
+    }, [])
+
+    // local storage is working, passing arguments to the right place, now need to set values in the dropdown lists if local storage has value..
+    
 
 
 
@@ -187,6 +210,9 @@ function Booking() {
             {!isLoading?  <div>
 
                 <h1>Book your Scuba Adventure</h1>
+                <p>{localstring}</p>
+
+                
 
                 <form id="bookingForm" method="POST" className='BookingForm' onSubmit={handleSubmit} onKeyDown={(e) => { e.key ==='Enter' && e.preventDefault() }}>
                     <div className='SchoolAndCourse'>
@@ -226,8 +252,8 @@ function Booking() {
                         </div>
                     </div>
                     <label htmlFor='medical' >
-                        <input name='medical' onChange={handleChange} className='medcheck' required type='checkbox' />
-                        <span>I have read the <a href="/example.pdf" download="Diver-Medical-Statement" target="\_blank\" rel="noreferrer">medical</a> form and made sure I'm safe to dive</span>
+                        <input name='medical' onChange={handleChange} className='medcheck' title='please open the medical form before proceeding' required disabled={!readMedical} onInvalid={e => e.target.setCustomValidity('Your custom message')} type='checkbox' />
+                        <span>I have read the <a href={`${process.env.PUBLIC_URL}/assets/Diver_Medical_Participant_Questionnaire.pdf`} target="\_blank\" rel="noreferrer noopener" onClick={handleCheckbox} title='please open this link before proceeding'>medical</a> form and made sure I'm safe to dive</span>
                     </label>
 
                     <label htmlFor="comment">Comments</label>

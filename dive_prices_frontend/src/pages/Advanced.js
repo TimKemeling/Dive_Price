@@ -3,10 +3,10 @@ import {Helmet, HelmetProvider} from 'react-helmet-async'
 import { Link } from 'react-router-dom';
 import { scrollTop } from '../helpers/helpfuncs';
 import "../styles/Categorypage.css";
-import { businessName } from './names';
+import { businessName } from '../helpers/helpfuncs';
 
 function Advanced() {
-    const button1 = 'Advanced OW courses'
+    const button1 = 'Advanced OW Courses'
     const page1 = 'Advanced-Open-Water'
     
     const button2 = 'Specialty Courses'

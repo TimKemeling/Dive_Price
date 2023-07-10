@@ -2,7 +2,7 @@ import React from 'react';
 import {Helmet, HelmetProvider} from 'react-helmet-async'
 import { Link } from 'react-router-dom';
 import "../styles/Categorypage.css";
-import { businessName } from './names';
+import { businessName } from '../helpers/helpfuncs';
 import { scrollTop } from '../helpers/helpfuncs';
 
 function Fundiving() {

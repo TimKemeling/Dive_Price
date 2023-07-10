@@ -10,9 +10,9 @@ function CourseCard({name, level, price, agency, school, school_id}) {
                     <p>{agency}</p>
                     <p className='coursePrice'>฿{price}</p> 
                 </div>
-                <Link to={`/schools/${school_id}`}><button>{school}</button></Link>
+                {school? <Link to={`/schools/${school_id}`}><button>{school}</button></Link>: <p style={{display:"none"}}></p> }
                 <Link to={`/booking`} tabIndex="-1" >
-                    <button >Book Now</button>
+                    <button>Book Now</button>
                 </Link>  
         </div>
     )

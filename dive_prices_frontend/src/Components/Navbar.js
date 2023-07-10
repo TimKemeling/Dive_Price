@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/diveprices-logo-white.png';
 import '../styles/burger.css';
 import '../styles/Navbar.css';
-import { businessName } from '../pages/names';
+import { businessName } from '../helpers/helpfuncs';
 
 
 function Navbar() {
@@ -21,12 +21,15 @@ function Navbar() {
     const navlink4 = 'Fun Diving'
     const navlink5 = 'Tech'
     const navlink6 = 'Book'
+
+
     
         return (
         <div className='navbar'>
             <div className='company'>
                 <Link to="/"><img src={logo} className='complogo' alt="Company Logo"/></Link>
                 <Link to="/"><p className="companyName">{businessName}</p></Link> 
+
             </div> 
             {!openLinks? (
                 <div className='desktoplinks'> 

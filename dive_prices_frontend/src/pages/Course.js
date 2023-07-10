@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useAPI } from '../helpers/useAPI';
 import CourseCard from '../Components/CourseCard';
@@ -7,7 +7,8 @@ import {Helmet, HelmetProvider} from 'react-helmet-async'
 
 import "../styles/Course.css";
 import "../styles/Coursecard.css"
-import { businessName } from './names';
+import { businessName } from '../helpers/helpfuncs'
+import { ApiUrls } from '../helpers/helpfuncs';
 
 function Course() {
     const params = useParams();
@@ -16,25 +17,25 @@ function Course() {
     let sched = ''
     
     const FetchBeginnerlist = () => {
-        const url = "http://127.0.0.1:8000/api/beginner-overview"
+        const url = ApiUrls.BeginnerOverview
         const response = useAPI(url)
         return response
     }
 
     const FetchAdvancedlist = () => {
-        const url = "http://127.0.0.1:8000/api/advanced-overview"
+        const url = ApiUrls.AdvancedOverview
         const response = useAPI(url)
         return response 
     }
 
     const FetchFundivelist = () => {
-        const url = "http://127.0.0.1:8000/api/fundiving-overview"
+        const url = ApiUrls.FundivingOverview
         const response = useAPI(url)
         return response
     }
 
     const FetchTechlist = () => {
-        const url = "http://127.0.0.1:8000/api/tech-overview"
+        const url = ApiUrls.TechOverview
         const response = useAPI(url)
         return response
     }
@@ -148,7 +149,9 @@ function Course() {
                 Morning trips go out around 7 and are back around noon, afternoon trips go out around 1 and are back around 5. 
                 The trips consist of 2 dives at different dive sites. 
                 The timing normally allows for divers to do two dives of about an hour under the guidance of a experienced dive guide. 
-                In between dives fresh fruit and refreshments are served and (de)briefings are done leading up to the next dive.`
+                In between dives fresh fruit and refreshments are served and (de)briefings are done leading up to the next dive.
+                Some schools do day trips to a famous dive site called Sail Rock. These trips normally leave earlier and serve breakfast and lunch on the boat. 
+                It's worth trying to catch one of these trips if the weather is right!`
 
                 response = FetchFundivelist()
                 if (response.loading === false){
@@ -264,8 +267,30 @@ function Course() {
     }
 
     const courses = MakeCourselist()
+
+    const [sortOption, setSortOption] = useState('school')
+    const [isSorted, setIsSorted] = useState(false)
+
+    const handleChange = (event) => {
+        setIsSorted(true)   
+        setSortOption(event.target.value)
+
+    }
+
+    const coursescopy = courses?.map((x) => x)
+    const sorted = coursescopy?.sort((a,b) =>  a[sortOption]> b[sortOption]? 1 : -1, );
+
     const courselist = makeComp(courses)
+    const sortedlist = makeComp(sorted)
+
+
+    // TO SEPARATE ALL COURSES BY SCHOOL: 
+    // MAKE LIST OF ALL SCHOOLS, DIVIDE COURSES BY THOSE SCHOOLS
+    // H2 FOR ALL SCHOOLS WITH CARDS BENEATH IT
+    // MAYBE DICT WITH SCHOOL NAME AND ID TO SEPARATE?
+
     let count = 0 
+
     courses?.forEach(element => {
         count = count + 1
     });
@@ -283,17 +308,26 @@ function Course() {
             <h1>{head1}</h1>
             <div className='info'>
                 <p className='courseOutline'>{p1}</p>
-                <h2>Schedule</h2>
+                <h2>Schedule*</h2>
                 <p className='courseSchedule'>{sched}</p>
                 <p className='disclaimer'>*Course structures and schedules can change per school. <br/>
-                We can not guarantee these schedules are accurate for every school*</p>
-
-                <p></p>
-                <p>Courses available: {count}</p>
+                We can not guarantee these schedules are accurate for every school</p>
             </div>
 
-            <div className='coursesContainer'>
-                {courselist}
+            <div >
+                <div className='sortinfo'>
+                    <p>Courses available: {count}</p>
+                    <label htmlFor='sortlist'>sort courses by:
+                    <select name='sortlist' className='sortlist' onChange={handleChange}>
+                        <option value='school' key={'school'}>school</option>
+                        <option value='name' key={'name'}>name</option>
+                        <option value='price' key={'price'}>price</option>
+                        <option value='agency' key={'agency'}>agency</option>
+                    </select></label>
+                </div>
+                <div className='coursesContainer'>
+                    {!isSorted? courselist: sortedlist}
+                </div>
             </div>
         </div>
         </HelmetProvider>

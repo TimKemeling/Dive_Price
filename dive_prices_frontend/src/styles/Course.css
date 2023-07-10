@@ -16,6 +16,25 @@
     width: 80%;
 }
 
+.courseSchedule {
+    margin-top: 0;
+}
+
+.disclaimer {
+    font-size: 1rem;
+    width: 80%;
+}
+
+.sortinfo {
+    margin-left: 2rem;
+    display: flex;    
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.sortlist {
+    margin-left: 0.5rem;
+}
 
 .coursesContainer {
     display: grid;
@@ -24,10 +43,7 @@
     margin: auto 2rem;
 }
 
-.disclaimer {
-    font-size: 1rem;
-    width: 80%;
-}
+
 
 @media only screen and (max-width: 1000px) {
     .coursesContainer {
@@ -45,6 +61,14 @@
 @media only screen and (max-width: 550px) {
     .coursesContainer {
         grid-template-columns: 1fr;
+    }
+
+}
+
+@media only screen and (max-width: 450px) {
+    .sortinfo {
+        display: block;
+        text-align: center
     }
 
 }

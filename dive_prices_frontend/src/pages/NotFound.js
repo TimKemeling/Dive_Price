@@ -4,7 +4,7 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 import '../styles/NotFound.css';
 import notfound from '../assets/pageNotFoundDiver.png'
-import { businessName } from './names';
+import { businessName } from '../helpers/helpfuncs';
 
 
 

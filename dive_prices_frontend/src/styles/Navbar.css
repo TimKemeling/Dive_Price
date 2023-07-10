@@ -22,11 +22,11 @@
 
 .complogo {
     width: 6rem;
+    margin: 1rem;
 }
 
 .companyName {
     color: white;
-    padding-left: 0.6rem;
     font-size: 2rem;
     font-weight: bold;
 }
@@ -34,8 +34,6 @@
 .navbar a {
     color: white;
     text-decoration: none;
-    margin: 0.6rem;
-    padding: 0.6rem;
 }
 
 .burger {

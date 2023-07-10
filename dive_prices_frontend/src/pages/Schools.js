@@ -2,6 +2,8 @@ import React from 'react'
 import { useAPI } from '../helpers/useAPI';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
+import { ApiUrls } from '../helpers/helpfuncs';
+import CourseCard from '../Components/CourseCard';
 
 import "../styles/Schools.css"
 import maltaRock from "../assets/MaltaRock.png"
@@ -22,7 +24,7 @@ import SimpleLifeLogo from "../assets/SimpleLifeLogo.png"
 
 function Schools() {
 
-    const url = "http://127.0.0.1:8000/api/school-list"
+    const url = ApiUrls.Schoollist
     const response = useAPI(url)
     const schoolList = response.data
 
@@ -38,6 +40,8 @@ function Schools() {
     const title = `Dive with ${school} in ${location}`
     let pro = ''
     let logo = ''
+    let neighbourhood = ''
+
 
     if (schoolObject.pro_1) {
         pro = 'Up to Dive master'
@@ -45,6 +49,20 @@ function Schools() {
         pro = "Up to instructor"
     } else if (schoolObject.pro_3) {
         pro = "Up to instructor trainer"
+    }
+
+    switch (schoolObject.neighbourhood) {
+        case 'sairee':
+            neighbourhood = "Sairee"
+            break;       
+        case 'maehaad':
+            neighbourhood = "Mae Haad"
+            break;       
+        case 'chalok':
+            neighbourhood = "Chalok"
+            break;
+        default:
+            break;
     }
 
     switch (school) {
@@ -88,6 +106,45 @@ function Schools() {
             break;
     }
 
+    const Fetchcourselist = () => {
+        const schoolnum = params.id
+        const url = ApiUrls.CoursesBySchool + schoolnum
+        const response = useAPI(url)
+        return response
+    }
+
+    const Courselist = () => {
+        const response = Fetchcourselist()
+        if (!response.loading) {
+        const courses = response.data
+
+        const courselist = courses?.map(course => {
+            return <CourseCard 
+                name = {course.name}
+                level = {course.level}
+                price = {course.price}
+                agency={course.agency}
+                school_id={course.schoolsid_id}
+
+            />
+        })
+        return courselist
+        };
+    };
+
+    const courselist = Courselist()
+
+    let count = 0 
+    courselist?.forEach(element => {
+        count = count + 1
+    });
+
+    localStorage.clear()
+
+    const setStorage = () => {
+        localStorage.setItem("school", JSON.stringify([schoolObject.school_name, schoolObject.id]))
+        }
+
     return (
         <HelmetProvider>
         <div className="aboutPage">
@@ -95,33 +152,31 @@ function Schools() {
             <title>{title}</title>
             <meta name="description" content={`all you need to know about ${school} in ${location} `}/>
         </Helmet>
-            <div style={{ backgroundImage: `url(${maltaRock})`}} className="aboutImage"></div>
-            <div className="aboutContainer">
+            <div style={{ backgroundImage: `url(${maltaRock})`}} className="aboutImage">
             <div className="aboutBox">
                 <img className='schoollogo' src={logo} alt='dive school logo'/>
-                <div className='schoolLocInfobox'>
-                    <h3>Location:</h3>
-                    <div className='schoolLocInfo'>
-                        <p>{schoolObject.city}</p>
-                        <p>{schoolObject.neighbourhood}</p> 
-                    </div>
+                <h3>Location:</h3>
+                <div className='schoolLocInfo'>
+                    <p>{schoolObject.city}</p>
+                    <p>{neighbourhood}</p> 
                 </div>
 
-                <div className='schoolMiscInfoBOX'>
-                    <h3>Amenities:</h3>
-                    <div className='schoolMiscInfo'>
-                        <p>Pro training: {pro}</p>
-                        <p>{schoolObject.beach? "Beachfront location" : "no Beachfront access"}</p>
-                    </div>
+                <h3>Amenities:</h3>
+                <div className='schoolMiscInfo'>
+                    <p>Pro training: {pro}</p>
+                    {schoolObject.beach? <p>Beachfront location</p> : <p style={{display: "none"}}></p> }
                 </div>
 
                 <h3>About {school}</h3>
                 <p>
                    {schoolObject.description}
                 </p>
-                <Link to={'/booking'}><button className='schoolbook'>Book a course at {school}</button></Link>
+                <Link to={'/booking'}><button className='schoolbook' onClick={setStorage} >Book a course at {school}</button></Link>
             </div>
         </div>
+
+        <h2 className='schoolcoursesheader'>Courses available at {school}: {count}</h2>
+        <div className='coursesContainer'>{courselist}</div>
         </div>
         </HelmetProvider>
     )

@@ -1,8 +1,9 @@
 import React from 'react'
 import {Helmet, HelmetProvider} from 'react-helmet-async'
+import { businessName } from '../helpers/helpfuncs'
+
 
 import '../styles/FaQ.css'
-import { businessName } from './names'
 
 
 
