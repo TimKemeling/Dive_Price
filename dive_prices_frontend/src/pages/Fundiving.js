@@ -11,6 +11,8 @@ function Fundiving() {
 
     const button2 = 'Fun Diving'
     const page2 = 'Fundiving'
+    
+    localStorage.clear()
 
 
     return (

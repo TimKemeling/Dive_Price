@@ -8,6 +8,7 @@ import '../styles/FaQ.css'
 
 
 function Faq() {
+    localStorage.clear()
 
     return (
         <HelmetProvider>

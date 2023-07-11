@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import {Helmet, HelmetProvider} from 'react-helmet-async'
 import { useAPI } from '../helpers/useAPI'
 import { Link } from 'react-router-dom'
 import { businessName } from '../helpers/helpfuncs'
 import { ApiUrls } from '../helpers/helpfuncs'
+import Select from 'react-select'
 
 
 import IndoManta from "../assets/IndoManta.jpg"
@@ -38,7 +39,7 @@ function Booking() {
         'date_booked':'',
         'comment':'',
         'status':''
-    });
+    }); 
 
     // set schoolid
     const [idschool, setSchool] = useState(1)
@@ -53,16 +54,11 @@ function Booking() {
 
     const schoolresponse = FetchSchools()
     const schools = schoolresponse.data 
-    let schoolid = ''
 
 
     const makeSchools = (schools) => {
         const schoollist = schools?.map((school)=> {
-            if (school.school_name === idschool){
-                schoolid = school.id
-            }
-                return  <option value={school.school_name} key={school.id}>{school.school_name}</option>
-
+            return  {value : school.school_name, label: school.school_name, bookingcat: 'diveschool',  key:school.id}
         })
         return schoollist
     }
@@ -72,7 +68,7 @@ function Booking() {
 
     // fetch course data and make option tags
     const FetchCourses = () => {
-        const url = ApiUrls.courselist
+        const url = ApiUrls.CourseList
         const response = useAPI(url)
         return response      
     }
@@ -80,15 +76,18 @@ function Booking() {
     const courseresponse = FetchCourses()
     const courses = courseresponse.data 
 
-
     const makeCourses = (courses) => {
         // eslint-disable-next-line array-callback-return
-        const courselist = courses?.map((course)=> {
-            if (course.schoolsid_id === schoolid) {
-                return  <option value={course.name} key={course.id}>{course.name}</option>
+        const filteredlist = courses?.filter((course)=> {
+            if (course.schoolsid_id === idschool) {
+                return course
             }
         })
+        const courselist = filteredlist?.map((course) => {
+            return {value : course.name, label: course.name, bookingcat: 'course',  key:course.id}
+        })
         return courselist
+
     }
 
     const courselist = makeCourses(courses)
@@ -97,17 +96,18 @@ function Booking() {
     // change course options when school changes 
 
     const handleSchoolChange = (event) => {
-        setSchool(event.target.value)
+        setSchool(event.key)
         setBookData({
             ...bookData,
-            [event.target.name]:event.target.value
+            [event.bookingcat] : event.value,
+            'course' : ''
         })
     }
     
     const handleChange = (event) => {
         setBookData({
             ...bookData,
-            [event.target.name]:event.target.value
+            [event.bookingcat] : event.value
         })
         console.log(bookData)
     }
@@ -160,25 +160,46 @@ function Booking() {
 
     const refreshPage= () => {
         window.location.reload(false);
-      }
+    };
 
     const handleCheckbox = () => {
         setreadMedical(true)
-    }
+    };
 
-    let localstring = ''
-    localStorage.getItem('school')? localstring = localStorage.getItem("school") : localstring = 'nothing stored'
+    // set variables for pre filled options 
+    let schoolopt
+    let courseopt
 
+    let schoolInfo = useRef(null)
+    let courseInfo = useRef(null)
 
+    // retrieve data from local storage
+    schoolInfo.current = JSON.parse(localStorage.getItem('school')) 
+    courseInfo.current = JSON.parse(localStorage.getItem('course')) 
+
+    // prepare options for default value in select component
+    if (schoolInfo.current) { schoolopt = {value : schoolInfo.current[0], label: schoolInfo.current[0], bookingcat: 'diveschool',  key: schoolInfo.current[1]}}
+    if (courseInfo.current) { courseopt = {value : courseInfo.current[0], label: courseInfo.current[0], bookingcat: 'course',  key: courseInfo.current[1]}}
+
+    // set school id for course drop list, set bookData for school and or course if available 
     useEffect (() => {
-        let info = JSON.parse(localStorage.getItem('school'))
+        if (schoolInfo.current) {
+            setSchool(schoolInfo.current[1])
+        }
+
+        if (localStorage.getItem('course')) {
+            setBookData({...bookData, 
+                'diveschool' : schoolInfo.current[0],
+                'course' : courseInfo.current[0]
+            })
+        } else if (localStorage.getItem('school')) {
+            setBookData({...bookData, 'diveschool' : schoolInfo.current[0]})
+        } else {schoolInfo.current = null}
+
+    }, [])  // eslint-disable-line react-hooks/exhaustive-deps 
+            // adding array above causes infinite loop
 
 
-        localStorage.getItem('school')? setBookData({...bookData, 'diveschool' : info[0]}) : info = null
-        if (info) {setSchool(info[1])}
-    }, [])
-
-    // local storage is working, passing arguments to the right place, now need to set values in the dropdown lists if local storage has value..
     
 
 
@@ -209,26 +230,33 @@ function Booking() {
             </div> : <div>
             {!isLoading?  <div>
 
-                <h1>Book your Scuba Adventure</h1>
-                <p>{localstring}</p>
-
-                
+                <h1>Book your Scuba Adventure</h1>                
 
                 <form id="bookingForm" method="POST" className='BookingForm' onSubmit={handleSubmit} onKeyDown={(e) => { e.key ==='Enter' && e.preventDefault() }}>
                     <div className='SchoolAndCourse'>
                         <div className='schoolDrop'>
                             <label htmlFor='diveschool' >choose a diveschool</label>
-                            <select name='diveschool' onChange={handleSchoolChange} defaultValue={"DEFAULT"}>
-                            <option value="DEFAULT" disabled key='default'>choose a school</option>
-                                {schoollist}
-                            </select>
+                            <Select 
+                            options = {schoollist}
+                            onChange={handleSchoolChange} 
+                            name='diveschool'
+                            placeholder='Choose a school'
+                            defaultValue={schoolInfo === null? null : schoolopt }
+                            />
+
                         </div>
                         <div className='courseDrop'>
                             <label htmlFor='course' >choose a course</label>
-                            <select name='course' className='courseselect' onChange={handleChange} defaultValue={"DEFAULT"}>
-                                <option value="DEFAULT" disabled key='default'>choose a course</option>
-                                {courselist}
-                            </select>
+                            <Select 
+                            className='courseselect'
+                            options = {courselist}
+                            onChange={handleChange} 
+                            name='course'
+                            placeholder='Choose a course'
+                            defaultValue={courseInfo === null? null : courseopt }
+
+                            />
+
                         </div>
                     </div>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useState } from "react";
 import { useAPI } from "../helpers/useAPI";
@@ -200,6 +200,50 @@ function Search() {
 
     const resultnum = filteredres.length
 
+    const [searchoptions, setSearchoptions] = useState({
+            "vibe_fun" : false,
+            'vibe_family' : false,
+            'vibe_backpack' : false,
+            "vibe_quiet" : false,
+            "vibe_serious" : false,
+            "price_1" : false,
+            "price_2" : false,
+            "price_3" : false,
+            "size_1" : false,
+            "size_2" : false,
+            "size_3" : false,
+            "maehaad" : false,
+            "sairee" : false,
+            "chalok" : false,
+            "beach" : false,
+    })
+
+
+
+
+    localStorage.removeItem('school')
+    localStorage.removeItem('course')
+    
+    useEffect(() => {
+        if (localStorage.getItem('searchoptions')) {
+            setSearchoptions(JSON.parse(localStorage.getItem('searchoptions')) )
+        } else {
+            localStorage.setItem('searchoptions', JSON.stringify(searchoptions))
+        }
+    }, [])
+
+    const handleChange = (event) => {
+        let curr = event.target.checked
+        setSearchoptions({...searchoptions, 
+            [event.target.name] : curr
+        })
+
+        localStorage.setItem('searchoptions', JSON.stringify(searchoptions))
+    }
+
+    // WORKS 90% DOESN'T UPDATE LAST CHECKED BOX, ALSO DOESN'T FILTER ON RELOAD
+
+
     return (
         <HelmetProvider>
         <div className="Searchpage">
@@ -216,38 +260,38 @@ function Search() {
                 <form className="SearchForm" onSubmit={onfilter}> 
                 <div className="options">
                     <div className="optionbox">
-                        <label className="toplabel" htmlFor="Vibe">I'm looking for a ___ diveschool</label>
-                        <label><input name="vibe_fun" type="checkbox"/>Fun</label>
-                        <label><input name="vibe_family" type="checkbox"/>Family Friendly</label>
-                        <label><input name="vibe_backpack" type="checkbox"/>Backpackers</label>
-                        <label><input name="vibe_quiet" type="checkbox"/>Quiet</label>
-                        <label><input name="vibe_serious" type="checkbox"/>Serious</label>
+                        <label className="toplabel" htmlFor="Vibe">I'm looking for a <span style={{textDecoration: 'underline'}}>___</span> diveschool</label>
+                        <label><input onChange={handleChange} checked={searchoptions['vibe_fun']} name="vibe_fun" type="checkbox"/>Fun</label>
+                        <label><input onChange={handleChange} checked={searchoptions['vibe_family']} name="vibe_family" type="checkbox"/>Family Friendly</label>
+                        <label><input onChange={handleChange} checked={searchoptions['vibe_backpack']} name="vibe_backpack" type="checkbox"/>Backpackers</label>
+                        <label><input onChange={handleChange} checked={searchoptions['vibe_quiet']} name="vibe_quiet" type="checkbox"/>Quiet</label>
+                        <label><input onChange={handleChange} checked={searchoptions['vibe_serious']} name="vibe_serious" type="checkbox"/>Serious</label>
                     </div>
 
                     <div className="optionbox">
                         <label htmlFor="PriceRange">Price Range</label>
-                        <label><input name="price_1" type="checkbox"/>$</label>
-                        <label><input name="price_2" type="checkbox"/>$$</label>
-                        <label><input name="price_3" type="checkbox"/>$$$</label>
+                        <label><input onChange={handleChange} checked={searchoptions['price_1']} name="price_1" type="checkbox"/>$</label>
+                        <label><input onChange={handleChange} checked={searchoptions['price_2']} name="price_2" type="checkbox"/>$$</label>
+                        <label><input onChange={handleChange} checked={searchoptions['price_3']} name="price_3" type="checkbox"/>$$$</label>
                     </div>
 
                     <div className="optionbox">
                         <label htmlFor="Size">School Size</label>
-                        <label><input name="size_1" type="checkbox"/>Small</label>
-                        <label><input name="size_2" type="checkbox"/>Medium</label>
-                        <label><input name="size_3" type="checkbox"/>Large</label>
+                        <label><input onChange={handleChange} checked={searchoptions['size_1']} name="size_1" type="checkbox"/>Small</label>
+                        <label><input onChange={handleChange} checked={searchoptions['size_2']} name="size_2" type="checkbox"/>Medium</label>
+                        <label><input onChange={handleChange} checked={searchoptions['size_3']} name="size_3" type="checkbox"/>Large</label>
                     </div>
 
                     <div className="optionbox">
                         <label htmlFor="Location">Location</label>
-                        <label><input name="maehaad" type="checkbox"/>Mae Haad</label>
-                        <label><input name="sairee" type="checkbox"/>Sairee</label>
-                        <label><input name="chalok" type="checkbox"/>Chalok</label>
+                        <label><input onChange={handleChange} checked={searchoptions['maehaad']} name="maehaad" type="checkbox"/>Mae Haad</label>
+                        <label><input onChange={handleChange} checked={searchoptions['sairee']} name="sairee" type="checkbox"/>Sairee</label>
+                        <label><input onChange={handleChange} checked={searchoptions['chalok']} name="chalok" type="checkbox"/>Chalok</label>
                     </div>
 
                     <div className="optionbox">
                         <label htmlFor="beach">Beachfront Location</label>
-                        <label><input name="beach" type="checkbox" />Yes, please!</label>
+                        <label><input onChange={handleChange} name="beach" type="checkbox" />Yes, please!</label>
                     </div>
                 </div>
 

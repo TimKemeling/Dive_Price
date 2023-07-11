@@ -12,6 +12,7 @@ function Advanced() {
     const button2 = 'Specialty Courses'
     const page2 = 'Specialties'
 
+    localStorage.clear()
 
 
     return (

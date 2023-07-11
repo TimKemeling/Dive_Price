@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useAPI } from '../helpers/useAPI';
 import CourseCard from '../Components/CourseCard';
 import {Helmet, HelmetProvider} from 'react-helmet-async'
+import Select from 'react-select'
 
 
 import "../styles/Course.css";
@@ -261,7 +262,9 @@ function Course() {
             price = {course.price}
             agency={course.agency}
             school = {course.school}
-            school_id={course.schoolsid_id}/>
+            school_id={course.schoolsid_id}
+            course_id ={course.id}
+            />
         })
         return courselist
     }
@@ -273,8 +276,7 @@ function Course() {
 
     const handleChange = (event) => {
         setIsSorted(true)   
-        setSortOption(event.target.value)
-
+        setSortOption(event.value)
     }
 
     const coursescopy = courses?.map((x) => x)
@@ -283,19 +285,21 @@ function Course() {
     const courselist = makeComp(courses)
     const sortedlist = makeComp(sorted)
 
-
-    // TO SEPARATE ALL COURSES BY SCHOOL: 
-    // MAKE LIST OF ALL SCHOOLS, DIVIDE COURSES BY THOSE SCHOOLS
-    // H2 FOR ALL SCHOOLS WITH CARDS BENEATH IT
-    // MAYBE DICT WITH SCHOOL NAME AND ID TO SEPARATE?
-
     let count = 0 
 
     courses?.forEach(element => {
         count = count + 1
     });
 
+    const filteroptions = [
+        {value: 'school', label: 'School'},
+        {value: 'name', label: 'Name'},
+        {value: 'price', label: 'Price'},
+        {value: 'agency', label: 'Agency'},
+    ]
+
     const metacont = `Browse different ${head1} courses on ${businessName} and find out which one suits you best!`
+    localStorage.clear()
 
     return (
         <HelmetProvider>
@@ -317,13 +321,9 @@ function Course() {
             <div >
                 <div className='sortinfo'>
                     <p>Courses available: {count}</p>
-                    <label htmlFor='sortlist'>sort courses by:
-                    <select name='sortlist' className='sortlist' onChange={handleChange}>
-                        <option value='school' key={'school'}>school</option>
-                        <option value='name' key={'name'}>name</option>
-                        <option value='price' key={'price'}>price</option>
-                        <option value='agency' key={'agency'}>agency</option>
-                    </select></label>
+                    <label htmlFor='sortlist'>Sort courses by:
+                    <Select options={filteroptions} name='sortlist' className='sortlist' onChange={handleChange}/>
+                    </label>
                 </div>
                 <div className='coursesContainer'>
                     {!isSorted? courselist: sortedlist}

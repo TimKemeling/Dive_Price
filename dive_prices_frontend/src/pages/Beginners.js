@@ -12,6 +12,8 @@ function Beginners() {
     const button2 = 'Open Water Courses'
     const page2 = 'Open-Water'
 
+    localStorage.clear()
+
     return (
         <HelmetProvider>
         <div className="category">

@@ -123,9 +123,11 @@ function Schools() {
                 name = {course.name}
                 level = {course.level}
                 price = {course.price}
+                school = {course.school}
                 agency={course.agency}
                 school_id={course.schoolsid_id}
-
+                course_id={course.id}
+                key={course.id}
             />
         })
         return courselist
@@ -139,11 +141,12 @@ function Schools() {
         count = count + 1
     });
 
-    localStorage.clear()
 
-    const setStorage = () => {
+    const setSchoolStorage = () => {
         localStorage.setItem("school", JSON.stringify([schoolObject.school_name, schoolObject.id]))
-        }
+    }
+    
+    localStorage.clear()
 
     return (
         <HelmetProvider>
@@ -171,7 +174,7 @@ function Schools() {
                 <p>
                    {schoolObject.description}
                 </p>
-                <Link to={'/booking'}><button className='schoolbook' onClick={setStorage} >Book a course at {school}</button></Link>
+                <Link to={'/booking'}><button className='schoolbook' onClick={setSchoolStorage} >Book a course at {school}</button></Link>
             </div>
         </div>
 

@@ -11,6 +11,8 @@ import '../styles/Home.css'
 function Home() {
 
     const metacontent = `Welcome to ${businessName}. We help you find the perfect diveschool for you! fill in your preferences, have a look around and book your next adventure!`
+    
+    
     localStorage.clear()
 
     return (
