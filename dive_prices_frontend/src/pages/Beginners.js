@@ -12,8 +12,8 @@ function Beginners() {
     const button2 = 'Open Water Courses'
     const page2 = 'Open-Water'
 
-    localStorage.clear()
-
+    localStorage.removeItem('school')
+    localStorage.removeItem('course')
     return (
         <HelmetProvider>
         <div className="category">

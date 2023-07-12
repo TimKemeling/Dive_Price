@@ -199,10 +199,7 @@ function Booking() {
     }, [])  // eslint-disable-line react-hooks/exhaustive-deps 
             // adding array above causes infinite loop
 
-
     
-
-
 
     return (
         <HelmetProvider>
@@ -235,8 +232,10 @@ function Booking() {
                 <form id="bookingForm" method="POST" className='BookingForm' onSubmit={handleSubmit} onKeyDown={(e) => { e.key ==='Enter' && e.preventDefault() }}>
                     <div className='SchoolAndCourse'>
                         <div className='schoolDrop'>
-                            <label htmlFor='diveschool' >choose a diveschool</label>
+                            <label htmlFor='diveschool' className='selectlabel'>choose a diveschool</label>
                             <Select 
+                            className='schoolselect'
+                            classNamePrefix='schoolselect'
                             options = {schoollist}
                             onChange={handleSchoolChange} 
                             name='diveschool'
@@ -246,15 +245,15 @@ function Booking() {
 
                         </div>
                         <div className='courseDrop'>
-                            <label htmlFor='course' >choose a course</label>
+                            <label htmlFor='course' className='selectlabel'>choose a course</label>
                             <Select 
                             className='courseselect'
+                            classNamePrefix='courseselect'
                             options = {courselist}
                             onChange={handleChange} 
                             name='course'
                             placeholder='Choose a course'
                             defaultValue={courseInfo === null? null : courseopt }
-
                             />
 
                         </div>

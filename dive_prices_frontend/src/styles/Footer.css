@@ -24,9 +24,7 @@
     text-decoration: none;
 }
 
-.footer li {
-    list-style: none;
-}
+
 
 .footer a:hover {
     text-decoration: solid underline white 2px;
@@ -34,16 +32,13 @@
 
 
 @media only screen and (max-width: 550px) {
-    footer {
-        width: 100%;
+    .footerpagelinks {
+        display: none;
     }
 
-    .footerlists {
-        display: flex;
+    .footerformobile {
         width: 100%;
-    }
-    
-    .footerlists a {
-        padding: 0 1rem;
+        display: flex;
+        justify-content: space-around;
     }
 }

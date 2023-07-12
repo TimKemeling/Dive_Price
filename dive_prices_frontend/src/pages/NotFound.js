@@ -11,8 +11,9 @@ import { businessName } from '../helpers/helpfuncs';
 function PageNotFound() {
 
     const metacontent = `Welcome to ${businessName}. This Page does not exist Please try a different one!`
-    localStorage.clear()
-
+    localStorage.removeItem('school')
+    localStorage.removeItem('course')
+    
     return (
         <HelmetProvider>
         <div className="notfound">

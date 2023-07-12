@@ -13,8 +13,9 @@ function Home() {
     const metacontent = `Welcome to ${businessName}. We help you find the perfect diveschool for you! fill in your preferences, have a look around and book your next adventure!`
     
     
-    localStorage.clear()
-
+    localStorage.removeItem('school')
+    localStorage.removeItem('course')
+    
     return (
         <HelmetProvider>
         <div className="home"
@@ -30,7 +31,7 @@ function Home() {
                 <h1>{businessName}</h1>
                 <p>Find out how much you're paying at the dive school that fits you</p>
                 <div className='homebuttons'>
-                    <Link to="/booking" tabIndex="-1"><button> BOOK NOW </button></Link>    
+                    <Link to="/booking" tabIndex="-1"><button> Book Now </button></Link>    
                     <Link to="/search" tabIndex="-1"><button> Browse Schools </button></Link>    
                 </div>
 

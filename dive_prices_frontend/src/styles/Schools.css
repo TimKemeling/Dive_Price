@@ -39,6 +39,8 @@
     height: 7rem;
     background-color: white;
     margin: 1rem;
+    width: -webkit-fill-available;
+    max-width: max-content;
 }
 
 .aboutBox p {
@@ -64,9 +66,62 @@
     margin-left: 2rem;
 }
 
+.schoolcoursesContainer {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: auto 2rem;
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+    .schoolcoursesContainer {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+}
+
+@media only screen and (max-width: 800px) {
+    .schoolcoursesContainer {
+        margin: 0;
+    }
+    .courseCard {
+        font-size: 1rem;
+    }
+
+    .schoolcoursesContainer .courseLinks {
+        display: block;
+    }
+
+    .courseCard button {
+        font-size: 1rem !important;
+    }
+
+    .coursefirstbutton {
+        border-right: 1px solid black !important;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .schoolcoursesContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
 @media only screen and (max-width: 600px) {
     .aboutBox p {
         line-height: 1.2;
     }
     
+}
+
+@media only screen and (max-width: 450px) {
+    .sortinfo {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
 }

@@ -8,8 +8,9 @@ import '../styles/FaQ.css'
 
 
 function Faq() {
-    localStorage.clear()
-
+    localStorage.removeItem('school')
+    localStorage.removeItem('course')
+    
     return (
         <HelmetProvider>
         <div className="FAQ">

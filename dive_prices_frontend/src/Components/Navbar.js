@@ -43,26 +43,23 @@ function Navbar() {
             </div> 
             ): (
                 <div className='mobilelinks'> 
-                <Link to="/search">{navlink1}</Link>
-                <Link to="/beginners">{navlink2}</Link>  
-                <Link to="/advanced">{navlink3}</Link> 
-                <Link to="/fundiving">{navlink4}</Link>  
-                <Link to="/course/Tech">{navlink5}</Link> 
-                <Link to="/booking">{navlink6}</Link>
+                <Link to="/search" onClick={toggleNavBar}>{navlink1}</Link>
+                <Link to="/beginners" onClick={toggleNavBar}>{navlink2}</Link>  
+                <Link to="/advanced" onClick={toggleNavBar}>{navlink3}</Link> 
+                <Link to="/fundiving" onClick={toggleNavBar}>{navlink4}</Link>  
+                <Link to="/course/Tech" onClick={toggleNavBar}>{navlink5}</Link> 
+                <Link to="/booking" onClick={toggleNavBar}>{navlink6}</Link>
 
             </div>
             )}     
             <div className="burger">
-                <input type="checkbox" onClick={toggleNavBar} id="checkbox4" className="checkbox4 visuallyHidden"></input>
-                <label htmlFor="checkbox4">
-                    <div className="hamburger hamburger4">
-                        <span className="bar bar1"></span>
-                        <span className="bar bar2"></span>
-                        <span className="bar bar3"></span>
-                        <span className="bar bar4"></span>
-                        <span className="bar bar5"></span>
-                        <span className="bar bar6"></span>
-
+                <input type="checkbox" onClick={toggleNavBar} id="checkbox3" class="checkbox3 visuallyHidden"></input>
+                <label for="checkbox3">
+                    <div class="hamburger hamburger3">
+                        <span class="bar bar1"></span>
+                        <span class="bar bar2"></span>
+                        <span class="bar bar3"></span>
+                        <span class="bar bar4"></span>
                     </div>
                 </label>        
             </div>

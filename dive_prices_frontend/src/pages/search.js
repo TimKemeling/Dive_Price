@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useState } from "react";
 import { useAPI } from "../helpers/useAPI";
@@ -10,18 +10,17 @@ function Search() {
 
     const [searched, setSearched] = useState(false)
     const [filteredres, setFilteredres] = useState([])
-
+    let schoolList = useRef([])
+    let response = useRef()
 
 
     // Fetch schools list from api and store in 'response'
     const FetchData = () => {
-
         const url = ApiUrls.Schoollist
-        const response = useAPI(url)
-        return response      
+        response = useAPI(url)
     }
 
-    const response = FetchData()  
+    FetchData()  
 
     // make components from schools data using schoolcard component
     function makeComp(schools) {
@@ -46,30 +45,37 @@ function Search() {
         return schoolList
     }
 
-    // takes all schools and makes components to populate page at load
-    const SchoolList = () => {
-        if (response.loading === false) {
-        const schools = response.data
-        return makeComp(schools)
-        };
-    };
-
+    const initialstate = {
+        "vibe_fun" : false,
+        'vibe_family' : false,
+        'vibe_backpack' : false,
+        "vibe_quiet" : false,
+        "vibe_serious" : false,
+        "price_1" : false,
+        "price_2" : false,
+        "price_3" : false,
+        "size_1" : false,
+        "size_2" : false,
+        "size_3" : false,
+        "maehaad" : false,
+        "sairee" : false,
+        "chalok" : false,
+        "beach" : false,
+    }
+    const [searchoptions, setSearchoptions] = useState(initialstate)
 
     // contains filter logic for form submittal
     function onfilter(event) {
-        // prevents full reload on submit form
-        event.preventDefault();
-        
-        // pull all form data and store the filters in array
-        const form = event.target;
-        const formData = new FormData(form)
+        event.preventDefault() 
+        console.log('filtering')       
 
-        const formJson = Object.fromEntries(formData.entries());
         const filters = []
-        for (const key in formJson){
-            filters.push(key)
-        }
 
+        Object.keys(searchoptions).forEach(opt => {
+            if (searchoptions[opt]) {
+                filters.push(opt)
+            }
+        })
 
         // initiate filter categories and list all filters to be able to categorise them 
         const vibefilters = []
@@ -186,63 +192,66 @@ function Search() {
         handleSearchClick()
 
         // if no filters have been ticked full list will show, otherwise filtered results will show
-        if (filters.length === 0){ setSearched(false)}
-        else {setFilteredres(makeComp(filtered))}
+        if (filters.length === 0){ 
+            let F = false
+            setSearched(F)
+        } else {
+            let tempfilteredres = makeComp(filtered)
+            setFilteredres(tempfilteredres)
 
+            const lastfilter = JSON.stringify(filtered)
+            sessionStorage.setItem('lastfilter', lastfilter)
+
+        }
     }
 
     function handleSearchClick() {
         setSearched (true)
     }
 
-    // set schoollist to full list to show something at load 
-    const schoolList = SchoolList()
-
     const resultnum = filteredres.length
-
-    const [searchoptions, setSearchoptions] = useState({
-            "vibe_fun" : false,
-            'vibe_family' : false,
-            'vibe_backpack' : false,
-            "vibe_quiet" : false,
-            "vibe_serious" : false,
-            "price_1" : false,
-            "price_2" : false,
-            "price_3" : false,
-            "size_1" : false,
-            "size_2" : false,
-            "size_3" : false,
-            "maehaad" : false,
-            "sairee" : false,
-            "chalok" : false,
-            "beach" : false,
-    })
-
-
-
-
-    localStorage.removeItem('school')
-    localStorage.removeItem('course')
-    
-    useEffect(() => {
-        if (localStorage.getItem('searchoptions')) {
-            setSearchoptions(JSON.parse(localStorage.getItem('searchoptions')) )
-        } else {
-            localStorage.setItem('searchoptions', JSON.stringify(searchoptions))
-        }
-    }, [])
 
     const handleChange = (event) => {
         let curr = event.target.checked
-        setSearchoptions({...searchoptions, 
-            [event.target.name] : curr
-        })
+        let tempsearch = {...searchoptions}
+        tempsearch[event.target.name] = curr
+        setSearchoptions(tempsearch)
 
-        localStorage.setItem('searchoptions', JSON.stringify(searchoptions))
+        sessionStorage.setItem('searchoptions', JSON.stringify(tempsearch))
     }
 
-    // WORKS 90% DOESN'T UPDATE LAST CHECKED BOX, ALSO DOESN'T FILTER ON RELOAD
+    const clearSearch = (event) => {
+        event.preventDefault() 
+        sessionStorage.clear()
+        setSearchoptions(initialstate)
+        let F = false
+        setSearched(F)
+        }
+    
+    useEffect(() => {
+        if (sessionStorage.getItem('lastfilter')) {
+            const lastfiltercomp = makeComp(JSON.parse(sessionStorage.getItem('lastfilter')))
+            schoolList.current = lastfiltercomp
+        } else if (response?.loading === false){
+                const schools = makeComp(response.data)
+                schoolList.current = schools
+            };       
+    }, [response])
 
+
+    useEffect(() => {
+        if (sessionStorage.getItem('searchoptions')) {
+            setSearchoptions(JSON.parse(sessionStorage.getItem('searchoptions')) )
+        } else {
+            sessionStorage.setItem('searchoptions', JSON.stringify(searchoptions))
+        }
+    }, [])
+
+
+    // set schoollist to populate at start or empty filters
+
+    localStorage.removeItem('school')
+    localStorage.removeItem('course')
 
     return (
         <HelmetProvider>
@@ -296,13 +305,16 @@ function Search() {
                 </div>
 
                 <div className="buttonbox">
+                    <button name="clearsearch" onClick={clearSearch}>Clear</button>
                     <button name="search" type="submit">Search</button>
                 </div>
                 </form>
             </div>  
             <div className="Results">
                 {!searched? <p style={{display:"none"}}></p> : <p className="resultnum">{resultnum} schools found</p>}
-                <div className="SchoolResults">{searched? filteredres : schoolList}</div>
+                <div className="SchoolResults">{searched? filteredres : schoolList.current}</div>
+                {/* <div className="SchoolResults">{searched? filteredres : <h1>try</h1>}</div> */}
+
             </div>
         </div>
         </HelmetProvider>

@@ -12,8 +12,8 @@ function Fundiving() {
     const button2 = 'Fun Diving'
     const page2 = 'Fundiving'
     
-    localStorage.clear()
-
+    localStorage.removeItem('school')
+    localStorage.removeItem('course')
 
     return (
         <HelmetProvider>

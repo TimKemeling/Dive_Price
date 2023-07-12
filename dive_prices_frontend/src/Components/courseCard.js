@@ -20,10 +20,15 @@ function CourseCard({name, level, price, agency, school, school_id, course_id}) 
                     <p className='coursePrice'>฿{price}</p> 
 
                 </div>
-                {!inSchools? <Link to={`/schools/${school_id}`}><button onClick={scrollTop}>{school}</button></Link>: <p style={{display:"none"}}></p> }
-                <Link to={`/booking`} tabIndex="-1" onClick={scrollTop} >
-                    <button onClick={setStorage}>Book Now</button>
-                </Link>  
+                <div className='courseLinks'>
+                    {!inSchools? <Link to={`/schools/${school_id}`}> 
+                    <button onClick={scrollTop} className='coursefirstbutton'>{school}</button>
+                    </Link>: <p style={{display:"none"}}></p> }
+
+                    <Link to={`/booking`} tabIndex="-1" onClick={scrollTop} >
+                    <button onClick={setStorage} className='coursesecondbutton'>Book Now</button>
+                    </Link> 
+                </div>
         </div>
     )
 }

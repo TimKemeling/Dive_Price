@@ -25,11 +25,20 @@
     width: 80%;
 }
 
+.disclaimer2 {
+    margin-top: 0;
+}
+
 .sortinfo {
     margin-left: 2rem;
     display: flex;    
     align-items: center;
     justify-content: space-evenly;
+}
+
+.sortbox {
+    display: flex;
+    align-items: center;
 }
 
 .sortlist {
@@ -52,23 +61,40 @@
 
 }
 
-@media only screen and (max-width: 775px) {
+@media only screen and (max-width: 800px) {
     .coursesContainer {
-        grid-template-columns: 1fr 1fr;
+        margin: 0;
+    }
+    .courseCard {
+        font-size: 1rem;
+    }
+
+    .courseLinks {
+        display: flex;
+        
+    }
+
+    .courseCard button {
+        font-size: 1rem !important;
+    }
+
+    .coursefirstbutton {
+        border-right: 1px solid black !important;
     }
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 650px) {
     .coursesContainer {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
 }
 
 @media only screen and (max-width: 450px) {
     .sortinfo {
-        display: block;
-        text-align: center
+        align-items: center;
+        display: flex;
+        flex-direction: column;
     }
 
 }

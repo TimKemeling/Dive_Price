@@ -146,8 +146,9 @@ function Schools() {
         localStorage.setItem("school", JSON.stringify([schoolObject.school_name, schoolObject.id]))
     }
     
-    localStorage.clear()
-
+    localStorage.removeItem('school')
+    localStorage.removeItem('course')
+    
     return (
         <HelmetProvider>
         <div className="aboutPage">
@@ -179,7 +180,7 @@ function Schools() {
         </div>
 
         <h2 className='schoolcoursesheader'>Courses available at {school}: {count}</h2>
-        <div className='coursesContainer'>{courselist}</div>
+        <div className='schoolcoursesContainer'>{courselist}</div>
         </div>
         </HelmetProvider>
     )

@@ -299,8 +299,9 @@ function Course() {
     ]
 
     const metacont = `Browse different ${head1} courses on ${businessName} and find out which one suits you best!`
-    localStorage.clear()
-
+    localStorage.removeItem('school')
+    localStorage.removeItem('course')
+    
     return (
         <HelmetProvider>
         <div className='coursePage'>
@@ -314,16 +315,17 @@ function Course() {
                 <p className='courseOutline'>{p1}</p>
                 <h2>Schedule*</h2>
                 <p className='courseSchedule'>{sched}</p>
-                <p className='disclaimer'>*Course structures and schedules can change per school. <br/>
-                We can not guarantee these schedules are accurate for every school</p>
+                <p className='disclaimer'>*Course structures and schedules can change per school. We can not guarantee these schedules are accurate for every school.</p>
             </div>
 
             <div >
                 <div className='sortinfo'>
                     <p>Courses available: {count}</p>
-                    <label htmlFor='sortlist'>Sort courses by:
-                    <Select options={filteroptions} name='sortlist' className='sortlist' onChange={handleChange}/>
-                    </label>
+                    <div className='sortbox'>
+                        <label htmlFor='sortlist'>Sort courses by: </label>
+                        <Select options={filteroptions} name='sortlist' className='sortlist' onChange={handleChange}/>
+                    </div>
+
                 </div>
                 <div className='coursesContainer'>
                     {!isSorted? courselist: sortedlist}

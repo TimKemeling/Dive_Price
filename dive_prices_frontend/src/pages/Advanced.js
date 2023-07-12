@@ -12,8 +12,8 @@ function Advanced() {
     const button2 = 'Specialty Courses'
     const page2 = 'Specialties'
 
-    localStorage.clear()
-
+    localStorage.removeItem('school')
+    localStorage.removeItem('course')
 
     return (
         <HelmetProvider>
@@ -23,7 +23,7 @@ function Advanced() {
                 <meta name='description' content='Find out about what makes a good advanced scuba course and book your favourite course at the right divecenter!'/>
 
             </Helmet>
-            <h1 className="categoryTitle">Continuing education</h1>
+            <h1 className="categoryTitle">Continuing Education</h1>
             <div className='buttoncontainer'>
             <Link to={`/course/${page1}`} tabIndex="-1" ><button onClick={scrollTop}>{button1}</button></Link> 
             <Link to={`/course/${page2}`} tabIndex="-1" ><button onClick={scrollTop}>{button2}</button></Link> 
